@@ -1,0 +1,204 @@
+{
+  "summary": "以擁抱與內在神性的意象安慰聽者，從哭泣走向安心。日文段落將大地、太陽與「我」連結，可以作為整體與自我相連的詩性描寫。",
+  "notes": [
+    "「母なる／父なる」的「なる」相當於較文學性的「作為……的」。",
+    "「cry your heart out」意為痛痛快快地哭；ur 是 your 的非正式縮寫。",
+    "「It’s all, right」把 alright 拆開，這裡保留為「這一切，都很好」的雙關讀法。",
+    "kama 與 Prema 在此分別按欲望與愛的對比理解；這是依語境的學習譯法，不等於歌詞對宗教概念的完整定義。",
+    "「愛し子」可有不同詞典讀法，此處採「いとしご」；實際歌唱連音請搭配原曲聽辨。"
+  ],
+  "lines": {
+    "母なる大地は私の愛し子": {
+      "v": 2,
+      "ro": "haha naru daichi wa watashi no itoshigo",
+      "zh": "大地母親，是我心愛的孩子。",
+      "tk": [
+        {
+          "t": "母なる",
+          "k": "ははなる",
+          "r": "haha naru",
+          "p": "phrase",
+          "m": "作為母親的"
+        },
+        {
+          "t": "大地は",
+          "k": "だいちは",
+          "r": "daichi wa",
+          "p": "phrase",
+          "m": "大地（主題）"
+        },
+        {
+          "t": "私の",
+          "k": "わたしの",
+          "r": "watashi no",
+          "p": "phrase",
+          "m": "我的"
+        },
+        {
+          "t": "愛し子",
+          "k": "いとしご",
+          "r": "itoshigo",
+          "p": "noun",
+          "m": "心愛的孩子"
+        }
+      ]
+    },
+    "父なる太陽は私のまなこ": {
+      "v": 2,
+      "ro": "chichi naru taiyou wa watashi no manako",
+      "zh": "太陽父親，是我的眼睛。",
+      "tk": [
+        {
+          "t": "父なる",
+          "k": "ちちなる",
+          "r": "chichi naru",
+          "p": "phrase",
+          "m": "作為父親的"
+        },
+        {
+          "t": "太陽は",
+          "k": "たいようは",
+          "r": "taiyou wa",
+          "p": "phrase",
+          "m": "太陽（主題）"
+        },
+        {
+          "t": "私の",
+          "k": "わたしの",
+          "r": "watashi no",
+          "p": "phrase",
+          "m": "我的"
+        },
+        {
+          "t": "まなこ",
+          "k": "まなこ",
+          "r": "manako",
+          "p": "noun",
+          "m": "眼睛（較文學性的說法）"
+        }
+      ]
+    },
+    "この世は私の思わく通りに": {
+      "v": 2,
+      "ro": "kono yo wa watashi no omowaku doori ni",
+      "zh": "這個世界，依循著我的心意，",
+      "tk": [
+        {
+          "t": "この世は",
+          "k": "このよは",
+          "r": "kono yo wa",
+          "p": "phrase",
+          "m": "這個世界"
+        },
+        {
+          "t": "私の",
+          "k": "わたしの",
+          "r": "watashi no",
+          "p": "phrase",
+          "m": "我的"
+        },
+        {
+          "t": "思わく通りに",
+          "k": "おもわくどおりに",
+          "r": "omowaku doori ni",
+          "p": "phrase",
+          "m": "如心中所想、依照心意"
+        }
+      ]
+    },
+    "今日とて可愛く回っています": {
+      "v": 2,
+      "ro": "kyou tote kawaiku mawatte imasu",
+      "zh": "今天也一樣，可愛地轉動著。",
+      "tk": [
+        {
+          "t": "今日とて",
+          "k": "きょうとて",
+          "r": "kyou tote",
+          "p": "phrase",
+          "m": "即使今天也、今天同樣"
+        },
+        {
+          "t": "可愛く",
+          "k": "かわいく",
+          "r": "kawaiku",
+          "p": "adv",
+          "m": "可愛地"
+        },
+        {
+          "t": "回っています",
+          "k": "まわっています",
+          "r": "mawatte imasu",
+          "p": "verb",
+          "m": "正轉動著（禮貌語）"
+        }
+      ]
+    },
+    "Come, cry ur heart, cry ur heart out": {
+      "v": 2,
+      "ro": "",
+      "zh": "來吧，把心裡的委屈盡情哭出來。",
+      "tk": []
+    },
+    "Here in my arms, in my arms like": {
+      "v": 2,
+      "ro": "",
+      "zh": "就在我的懷裡，在我懷裡，像這樣——",
+      "tk": []
+    },
+    "Ah ah ah ah ah ah ah ah": {
+      "v": 2,
+      "ro": "",
+      "zh": "啊——啊——啊——啊——啊——啊——啊——啊——",
+      "tk": []
+    },
+    "God is inside, is inside us": {
+      "v": 2,
+      "ro": "",
+      "zh": "神就在裡面，就在我們心中。",
+      "tk": []
+    },
+    "This is our time, is our time, thus": {
+      "v": 2,
+      "ro": "",
+      "zh": "這是屬於我們的時刻，正是我們的時刻，所以，",
+      "tk": []
+    },
+    "Sooner or later, we better know that": {
+      "v": 2,
+      "ro": "",
+      "zh": "遲早，我們都該明白，",
+      "tk": []
+    },
+    "Everything is gonna be alright": {
+      "v": 2,
+      "ro": "",
+      "zh": "一切都會好起來的。",
+      "tk": []
+    },
+    "It's alright...": {
+      "v": 2,
+      "ro": "",
+      "zh": "沒事的……",
+      "tk": []
+    },
+    "It's all, right": {
+      "v": 2,
+      "ro": "",
+      "zh": "這一切，都很好。",
+      "tk": []
+    },
+    "Give it up, kama": {
+      "v": 2,
+      "ro": "",
+      "zh": "放下吧，那份欲望。",
+      "tk": []
+    },
+    "Bring it on, Prema": {
+      "v": 2,
+      "ro": "",
+      "zh": "讓愛到來吧。",
+      "tk": []
+    }
+  }
+}

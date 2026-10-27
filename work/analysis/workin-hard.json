@@ -1,0 +1,484 @@
+{
+  "summary": "歌詞把努力的價值從結果轉向過程，並以放鬆、舞動與互相扶持回應競爭壓力。",
+  "notes": [
+    "ほんま、わし、～とる等口語帶親近感；讀音依提供文字。",
+    "workin’＝working；give you a hand 是「幫你一把」。",
+    "圧巻でらした、あたた為特殊表記，保留原文，不當成標準文法範例。"
+  ],
+  "lines": {
+    "掻っ攫った 圧巻でらした あらら 世は実に易し": {
+      "v": 2,
+      "ro": "kassaratta akkan de rashita arara yo wa jitsu ni yasushi",
+      "zh": "一舉奪下，表現壓倒全場；哎呀，世事還真容易。",
+      "tk": [
+        {
+          "t": "掻っ攫った",
+          "k": "かっさらった",
+          "r": "kassaratta",
+          "p": "phrase",
+          "m": "一舉奪走；強烈口語"
+        },
+        {
+          "t": "圧巻でらした",
+          "k": "あっかんでらした",
+          "r": "akkan de rashita",
+          "p": "phrase",
+          "m": "壓倒性的表現；でらした為特殊口語，保留原文"
+        },
+        {
+          "t": "あらら",
+          "k": "あらら",
+          "r": "arara",
+          "p": "phrase",
+          "m": "哎呀，驚嘆"
+        },
+        {
+          "t": "世は実に易し",
+          "k": "よはじつにやすし",
+          "r": "yo wa jitsu ni yasushi",
+          "p": "phrase",
+          "m": "世事實在容易；易し為文語"
+        }
+      ]
+    },
+    "信じ切った 安心し切った あたた 深き喜び": {
+      "v": 2,
+      "ro": "shinjikitta anshin shikitta atata fukaki yorokobi",
+      "zh": "徹底相信，完全安心；啊，深深的喜悅。",
+      "tk": [
+        {
+          "t": "信じ切った",
+          "k": "しんじきった",
+          "r": "shinjikitta",
+          "p": "phrase",
+          "m": "完全相信；切る表徹底"
+        },
+        {
+          "t": "安心し切った",
+          "k": "あんしんしきった",
+          "r": "anshin shikitta",
+          "p": "phrase",
+          "m": "徹底安心"
+        },
+        {
+          "t": "あたた",
+          "k": "あたた",
+          "r": "atata",
+          "p": "phrase",
+          "m": "感嘆聲，依原文保留"
+        },
+        {
+          "t": "深き喜び",
+          "k": "ふかきよろこび",
+          "r": "fukaki yorokobi",
+          "p": "phrase",
+          "m": "深厚喜悅；深き為文語修飾"
+        }
+      ]
+    },
+    "戦うは なぎ倒すは か弱い己自身さ": {
+      "v": 2,
+      "ro": "tatakau wa nagitaosu wa kayowai onore jishin sa",
+      "zh": "要戰鬥、要擊倒的，是脆弱的自己。",
+      "tk": [
+        {
+          "t": "戦うは",
+          "k": "たたかうは",
+          "r": "tatakau wa",
+          "p": "phrase",
+          "m": "戰鬥的對象是；詩歌省略"
+        },
+        {
+          "t": "なぎ倒すは",
+          "k": "なぎたおすは",
+          "r": "nagitaosu wa",
+          "p": "phrase",
+          "m": "要橫掃打倒的"
+        },
+        {
+          "t": "か弱い己自身さ",
+          "k": "かよわいおのれじしんさ",
+          "r": "kayowai onore jishin sa",
+          "p": "phrase",
+          "m": "柔弱的自己啊"
+        }
+      ]
+    },
+    "やり切って胸はって 綺麗に散るのさ～ ah": {
+      "v": 2,
+      "ro": "yarikitte mune hatte kirei ni chiru no sa ～ ah",
+      "zh": "竭盡全力、挺起胸膛，再漂亮地謝幕啊。",
+      "tk": [
+        {
+          "t": "やり切って",
+          "k": "やりきって",
+          "r": "yarikitte",
+          "p": "phrase",
+          "m": "做到最後、全力完成"
+        },
+        {
+          "t": "胸はって",
+          "k": "むねはって",
+          "r": "mune hatte",
+          "p": "phrase",
+          "m": "挺起胸膛；胸を張る的省略"
+        },
+        {
+          "t": "綺麗に散るのさ",
+          "k": "きれいにちるのさ",
+          "r": "kirei ni chiru no sa",
+          "p": "phrase",
+          "m": "美麗地凋落，比喻坦然謝幕"
+        },
+        {
+          "t": "ah",
+          "k": "ah",
+          "r": "ah",
+          "p": "interj",
+          "m": "吟唱"
+        }
+      ]
+    },
+    "みんなほんまよーやるわ めっちゃがんばっとるわ": {
+      "v": 2,
+      "ro": "minna honma yoo yaru wa metcha ganbattoru wa",
+      "zh": "大家真的很了不起，真的都很努力。",
+      "tk": [
+        {
+          "t": "みんな",
+          "k": "みんな",
+          "r": "minna",
+          "p": "phrase",
+          "m": "大家"
+        },
+        {
+          "t": "ほんまよーやるわ",
+          "k": "ほんまよーやるわ",
+          "r": "honma yoo yaru wa",
+          "p": "phrase",
+          "m": "真的很能幹；ほんま＝本当、よー＝よく"
+        },
+        {
+          "t": "めっちゃがんばっとるわ",
+          "k": "めっちゃがんばっとるわ",
+          "r": "metcha ganbattoru wa",
+          "p": "phrase",
+          "m": "非常努力著；とる對應ている"
+        }
+      ]
+    },
+    "わしかて負けんよーにな ひそかに何かと努めるわ": {
+      "v": 2,
+      "ro": "washi kate maken yoo ni na hisoka ni nanika to tsutomeru wa",
+      "zh": "我也不想落後，私下總會努力做點什麼。",
+      "tk": [
+        {
+          "t": "わしかて",
+          "k": "わしかて",
+          "r": "washi kate",
+          "p": "phrase",
+          "m": "就連我也；方言"
+        },
+        {
+          "t": "負けんよーにな",
+          "k": "まけんよーにな",
+          "r": "maken yoo ni na",
+          "p": "phrase",
+          "m": "為了不輸；負けないように"
+        },
+        {
+          "t": "ひそかに",
+          "k": "ひそかに",
+          "r": "hisoka ni",
+          "p": "adv",
+          "m": "暗地裡"
+        },
+        {
+          "t": "何かと努めるわ",
+          "k": "なにかとつとめるわ",
+          "r": "nanika to tsutomeru wa",
+          "p": "phrase",
+          "m": "在各方面努力"
+        }
+      ]
+    },
+    "なんも無くたっていいや 結果なんぞかったりーわ": {
+      "v": 2,
+      "ro": "nanmo nakutatte ii ya kekka nanzo kattarii wa",
+      "zh": "什麼成果都沒有也沒關係，結果什麼的真麻煩。",
+      "tk": [
+        {
+          "t": "なんも無くたって",
+          "k": "なんもなくたって",
+          "r": "nanmo nakutatte",
+          "p": "phrase",
+          "m": "即使一無所有；何もなくても的口語"
+        },
+        {
+          "t": "いいや",
+          "k": "いいや",
+          "r": "ii ya",
+          "p": "phrase",
+          "m": "也無所謂"
+        },
+        {
+          "t": "結果なんぞ",
+          "k": "けっかなんぞ",
+          "r": "kekka nanzo",
+          "p": "phrase",
+          "m": "結果那種東西；輕視語氣"
+        },
+        {
+          "t": "かったりーわ",
+          "k": "かったりーわ",
+          "r": "kattarii wa",
+          "p": "phrase",
+          "m": "好煩、懶得管；かったるい的口語"
+        }
+      ]
+    },
+    "Better sit back, take a deep breath": {
+      "v": 2,
+      "ro": "",
+      "zh": "先放鬆下來，深呼吸吧。",
+      "tk": []
+    },
+    "And you'll know-know-know, know-know-know, know-know-know-know": {
+      "v": 2,
+      "ro": "",
+      "zh": "你就會明白、明白、明白。（反覆吟唱）",
+      "tk": []
+    },
+    "You've been workin' hard, workin' hard": {
+      "v": 2,
+      "ro": "",
+      "zh": "你一直很努力，很努力。",
+      "tk": []
+    },
+    "Maybe you don't understand": {
+      "v": 2,
+      "ro": "",
+      "zh": "也許你自己還不明白。",
+      "tk": []
+    },
+    "But I know that you're workin' hard, workin' hard": {
+      "v": 2,
+      "ro": "",
+      "zh": "但我知道，你真的一直很努力。",
+      "tk": []
+    },
+    "Wish I could give you a hand": {
+      "v": 2,
+      "ro": "",
+      "zh": "真希望我能幫你一把。",
+      "tk": []
+    },
+    "Baby, you've been workin' hard, workin' hard": {
+      "v": 2,
+      "ro": "",
+      "zh": "親愛的，你一直很努力，很努力。",
+      "tk": []
+    },
+    "Trust the process and be brave, you've been workin' hard": {
+      "v": 2,
+      "ro": "",
+      "zh": "相信這段過程，勇敢一點；你一直很努力。",
+      "tk": []
+    },
+    "God, you've been workin' hard": {
+      "v": 2,
+      "ro": "",
+      "zh": "天啊，你真的一直很努力。",
+      "tk": []
+    },
+    "Let's sit back, time to relax": {
+      "v": 2,
+      "ro": "",
+      "zh": "放鬆坐好，該休息了。",
+      "tk": []
+    },
+    "鼓動に任せて自由に踊って": {
+      "v": 2,
+      "ro": "kodou ni makasete jiyuu ni odotte",
+      "zh": "跟隨心跳，自由起舞。",
+      "tk": [
+        {
+          "t": "鼓動に任せて",
+          "k": "こどうにまかせて",
+          "r": "kodou ni makasete",
+          "p": "phrase",
+          "m": "交給心跳帶領"
+        },
+        {
+          "t": "自由に踊って",
+          "k": "じゆうにおどって",
+          "r": "jiyuu ni odotte",
+          "p": "phrase",
+          "m": "自由地跳舞"
+        }
+      ]
+    },
+    "Bow down, show them respect": {
+      "v": 2,
+      "ro": "",
+      "zh": "俯身致意，向他們表達尊重。",
+      "tk": []
+    },
+    "敵も味方もここにはねえから": {
+      "v": 2,
+      "ro": "teki mo mikata mo koko ni wa nee kara",
+      "zh": "因為這裡不分敵人或同伴。",
+      "tk": [
+        {
+          "t": "敵も味方も",
+          "k": "てきもみかたも",
+          "r": "teki mo mikata mo",
+          "p": "phrase",
+          "m": "敵方與己方都"
+        },
+        {
+          "t": "ここにはねえから",
+          "k": "ここにはねえから",
+          "r": "koko ni wa nee kara",
+          "p": "phrase",
+          "m": "因為這裡不存在；ねえ＝ない"
+        }
+      ]
+    },
+    "Sit back, time to relax": {
+      "v": 2,
+      "ro": "",
+      "zh": "放鬆坐好，該休息了。",
+      "tk": []
+    },
+    "敵も味方もほんまはねえから": {
+      "v": 2,
+      "ro": "teki mo mikata mo honma wa nee kara",
+      "zh": "因為其實根本沒有敵我之分。",
+      "tk": [
+        {
+          "t": "敵も味方も",
+          "k": "てきもみかたも",
+          "r": "teki mo mikata mo",
+          "p": "phrase",
+          "m": "敵方與己方都"
+        },
+        {
+          "t": "ほんまはねえから",
+          "k": "ほんまはねえから",
+          "r": "honma wa nee kara",
+          "p": "phrase",
+          "m": "因為實際上並不存在"
+        }
+      ]
+    },
+    "And you'll know-know-know, know-know-know, know-know-know-know (oh)": {
+      "v": 2,
+      "ro": "",
+      "zh": "你就會明白、明白、明白。（反覆吟唱）（附和聲）",
+      "tk": []
+    },
+    "You've been workin' hard, workin' hard (oh)": {
+      "v": 2,
+      "ro": "",
+      "zh": "你一直很努力，很努力。（附和聲）",
+      "tk": []
+    },
+    "But I know that you're workin' hard, workin' hard (yeah)": {
+      "v": 2,
+      "ro": "",
+      "zh": "但我知道，你真的一直很努力。（附和聲）",
+      "tk": []
+    },
+    "Baby, you've been workin' hard, workin' hard (workin' hard, oh, yeah)": {
+      "v": 2,
+      "ro": "",
+      "zh": "親愛的，你一直很努力，很努力。（附和聲）",
+      "tk": []
+    },
+    "Trust the process and be brave, you've been workin' hard (workin' hard)": {
+      "v": 2,
+      "ro": "",
+      "zh": "相信這段過程，勇敢一點；你一直很努力。（附和聲）",
+      "tk": []
+    },
+    "All we gonna do is to make you happy": {
+      "v": 2,
+      "ro": "",
+      "zh": "我們所要做的，就是讓你快樂。",
+      "tk": []
+    },
+    "All we gonna do is to make you lucky": {
+      "v": 2,
+      "ro": "",
+      "zh": "我們所要做的，就是讓你感到幸運。",
+      "tk": []
+    },
+    "All we gonna do is, all we gonna do is": {
+      "v": 2,
+      "ro": "",
+      "zh": "我們所要做的，我們所要做的……",
+      "tk": []
+    },
+    "To make you, make you feel alive": {
+      "v": 2,
+      "ro": "",
+      "zh": "就是讓你，讓你感到自己活著。",
+      "tk": []
+    },
+    "What we gonna do is to make you feel good": {
+      "v": 2,
+      "ro": "",
+      "zh": "我們要做的，就是讓你感覺美好。",
+      "tk": []
+    },
+    "What we gonna do is to make you feel, ah": {
+      "v": 2,
+      "ro": "",
+      "zh": "我們要做的，就是讓你感受到……啊。",
+      "tk": []
+    },
+    "It's all about others, it's all about brothers": {
+      "v": 2,
+      "ro": "",
+      "zh": "一切都關乎他人，關乎彼此的手足情誼。",
+      "tk": []
+    },
+    "Together, we can touch the sky": {
+      "v": 2,
+      "ro": "",
+      "zh": "一起，我們能觸及天空。",
+      "tk": []
+    },
+    "no": {
+      "v": 2,
+      "ro": "",
+      "zh": "不。（感嘆吟唱）",
+      "tk": []
+    },
+    "But I know that you're (workin' hard) workin' hard, huh": {
+      "v": 2,
+      "ro": "",
+      "zh": "但我知道你（一直努力）一直很努力，嗯。",
+      "tk": []
+    },
+    "Baby, you've been (workin' hard, workin' hard) workin' hard, workin' hard": {
+      "v": 2,
+      "ro": "",
+      "zh": "親愛的，你一直（努力、努力）努力著，努力著。",
+      "tk": []
+    },
+    "(Trust the process and be brave, you've been workin' hard) oh, yeah, yeah": {
+      "v": 2,
+      "ro": "",
+      "zh": "（相信過程，勇敢一點，你一直很努力）喔，耶，耶。",
+      "tk": []
+    },
+    "(God, you've been workin' hard) hard, workin' hard": {
+      "v": 2,
+      "ro": "",
+      "zh": "（天啊，你一直很努力）努力，努力著。",
+      "tk": []
+    }
+  }
+}

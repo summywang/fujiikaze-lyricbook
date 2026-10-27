@@ -1,0 +1,646 @@
+{
+  "summary": "用誓言與極端比較描寫不願失去摯愛的情緒，也承認內心偶爾動搖。",
+  "notes": [
+    "標題字面為「寧願死去」，此處按歌曲誇張抒情理解。",
+    "ええ＝いい、よか＝よりは、したない＝したくない。",
+    "死んでも治らな依提供原文保留，省略或轉錄狀況待確認。",
+    "後段大量 scat 為無固定語義的節奏吟唱。"
+  ],
+  "lines": {
+    "Huh-ha": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "Hey": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "Hey, yeah, hey": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "指切りげんまん ホラでも吹いたら": {
+      "v": 2,
+      "ro": "yubikiri genman hora demo fuitara",
+      "zh": "打勾勾約定，要是敢說謊，",
+      "tk": [
+        {
+          "t": "指切りげんまん",
+          "k": "ゆびきりげんまん",
+          "r": "yubikiri genman",
+          "p": "phrase",
+          "m": "拉勾盟誓的固定童謠用語"
+        },
+        {
+          "t": "ホラでも吹いたら",
+          "k": "ほらでもふいたら",
+          "r": "hora demo fuitara",
+          "p": "phrase",
+          "m": "若說謊或吹牛；ホラを吹く為慣用語"
+        }
+      ]
+    },
+    "針でもなんでも 飲ませていただき Monday": {
+      "v": 2,
+      "ro": "hari demo nan demo nomasete itadaki Monday",
+      "zh": "就請你吞針也好、什麼也好——Monday。（押韻接詞）",
+      "tk": [
+        {
+          "t": "針でもなんでも",
+          "k": "はりでもなんでも",
+          "r": "hari demo nan demo",
+          "p": "phrase",
+          "m": "針也好、任何東西也好"
+        },
+        {
+          "t": "飲ませていただき",
+          "k": "のませていただき",
+          "r": "nomasete itadaki",
+          "p": "phrase",
+          "m": "容我讓你喝下；故意停在連用形"
+        },
+        {
+          "t": "Monday",
+          "k": "Monday",
+          "r": "Monday",
+          "p": "en",
+          "m": "星期一；此處也作節奏押韻"
+        }
+      ]
+    },
+    "It doesn't matter if it's Sunday": {
+      "v": 2,
+      "ro": "",
+      "zh": "即使是星期天也沒關係。",
+      "tk": []
+    },
+    "鏡よ鏡よ この世で1番": {
+      "v": 2,
+      "ro": "kagami yo kagami yo kono yo de ichiban",
+      "zh": "魔鏡啊魔鏡，這世上最……",
+      "tk": [
+        {
+          "t": "鏡よ鏡よ",
+          "k": "かがみよかがみよ",
+          "r": "kagami yo kagami yo",
+          "p": "phrase",
+          "m": "呼喚鏡子；よ表示呼語"
+        },
+        {
+          "t": "この世で1番",
+          "k": "このよでいちばん",
+          "r": "kono yo de ichiban",
+          "p": "phrase",
+          "m": "在這世界最……，接下句"
+        }
+      ]
+    },
+    "変わることのない 愛をくれるのは だれ": {
+      "v": 2,
+      "ro": "kawaru koto no nai ai o kureru no wa dare",
+      "zh": "給我永不改變的愛的人，是誰？",
+      "tk": [
+        {
+          "t": "変わることのない",
+          "k": "かわることのない",
+          "r": "kawaru koto no nai",
+          "p": "phrase",
+          "m": "永不改變的"
+        },
+        {
+          "t": "愛をくれるのは",
+          "k": "あいをくれるのは",
+          "r": "ai o kureru no wa",
+          "p": "phrase",
+          "m": "給予我愛的人是"
+        },
+        {
+          "t": "だれ",
+          "k": "だれ",
+          "r": "dare",
+          "p": "pronoun",
+          "m": "誰"
+        }
+      ]
+    },
+    "No need to ask 'cause it's my darling": {
+      "v": 2,
+      "ro": "",
+      "zh": "不必問，因為那就是我的摯愛。",
+      "tk": []
+    },
+    "あたしの最後はあなたがいい (いい)": {
+      "v": 2,
+      "ro": "atashi no saigo wa anata ga ii (ii )",
+      "zh": "最後陪伴我的，我希望是你（是你）。",
+      "tk": [
+        {
+          "t": "あたしの最後は",
+          "k": "あたしのさいごは",
+          "r": "atashi no saigo wa",
+          "p": "phrase",
+          "m": "我的最後；あたし是私的口語"
+        },
+        {
+          "t": "あなたがいい",
+          "k": "あなたがいい",
+          "r": "anata ga ii",
+          "p": "phrase",
+          "m": "希望是你、你最好"
+        },
+        {
+          "t": "いい",
+          "k": "いい",
+          "r": "ii",
+          "p": "phrase",
+          "m": "重複尾詞和聲"
+        }
+      ]
+    },
+    "あなたとこのままおサラバするより": {
+      "v": 2,
+      "ro": "anata to kono mama osaraba suru yori",
+      "zh": "與其就這樣與你告別，",
+      "tk": [
+        {
+          "t": "あなたと",
+          "k": "あなたと",
+          "r": "anata to",
+          "p": "phrase",
+          "m": "與你"
+        },
+        {
+          "t": "このまま",
+          "k": "このまま",
+          "r": "kono mama",
+          "p": "phrase",
+          "m": "就這樣"
+        },
+        {
+          "t": "おサラバするより",
+          "k": "おさらばするより",
+          "r": "osaraba suru yori",
+          "p": "phrase",
+          "m": "比起道別；より表比較"
+        }
+      ]
+    },
+    "死ぬのがいいわ": {
+      "v": 2,
+      "ro": "shinu no ga ii wa",
+      "zh": "我寧願死去啊。",
+      "tk": [
+        {
+          "t": "死ぬのがいいわ",
+          "k": "しぬのがいいわ",
+          "r": "shinu no ga ii wa",
+          "p": "phrase",
+          "m": "字面為死去更好；歌詞的極端誇張表達"
+        }
+      ]
+    },
+    "三度の飯よりあんたがええのよ": {
+      "v": 2,
+      "ro": "sando no meshi yori anta ga ee no yo",
+      "zh": "比起一日三餐，我更喜歡你。",
+      "tk": [
+        {
+          "t": "三度の飯より",
+          "k": "さんどのめしより",
+          "r": "sando no meshi yori",
+          "p": "phrase",
+          "m": "比一日三餐更，強調非常喜愛"
+        },
+        {
+          "t": "あんたがええのよ",
+          "k": "あんたがええのよ",
+          "r": "anta ga ee no yo",
+          "p": "phrase",
+          "m": "你更好；あんた＝あなた、ええ＝いい"
+        }
+      ]
+    },
+    "あんたとこのままおサラバするよか": {
+      "v": 2,
+      "ro": "anta to kono mama osaraba suru yoka",
+      "zh": "與其就這樣跟你說再見，",
+      "tk": [
+        {
+          "t": "あんたと",
+          "k": "あんたと",
+          "r": "anta to",
+          "p": "phrase",
+          "m": "與你；親近口語"
+        },
+        {
+          "t": "このまま",
+          "k": "このまま",
+          "r": "kono mama",
+          "p": "phrase",
+          "m": "就這樣"
+        },
+        {
+          "t": "おサラバするよか",
+          "k": "おさらばするよか",
+          "r": "osaraba suru yoka",
+          "p": "phrase",
+          "m": "比起告別；よか對應よりは"
+        }
+      ]
+    },
+    "それでも時々 浮つく my heart": {
+      "v": 2,
+      "ro": "sore demo tokidoki uwatsuku my heart",
+      "zh": "即使如此，我的心偶爾仍會飄忽。",
+      "tk": [
+        {
+          "t": "それでも",
+          "k": "それでも",
+          "r": "sore demo",
+          "p": "phrase",
+          "m": "即便如此"
+        },
+        {
+          "t": "時々",
+          "k": "ときどき",
+          "r": "tokidoki",
+          "p": "phrase",
+          "m": "偶爾"
+        },
+        {
+          "t": "浮つく",
+          "k": "うわつく",
+          "r": "uwatsuku",
+          "p": "phrase",
+          "m": "心浮動、不專一"
+        },
+        {
+          "t": "my heart",
+          "k": "my heart",
+          "r": "my heart",
+          "p": "en",
+          "m": "我的心"
+        }
+      ]
+    },
+    "死んでも治らな治してみせます baby": {
+      "v": 2,
+      "ro": "shinde mo naorana naoshite misemasu baby",
+      "zh": "就算至死難改，我也會改好給你看，寶貝。",
+      "tk": [
+        {
+          "t": "死んでも",
+          "k": "しんでも",
+          "r": "shinde mo",
+          "p": "phrase",
+          "m": "即使死去也；強調程度"
+        },
+        {
+          "t": "治らな",
+          "k": "なおらな",
+          "r": "naorana",
+          "p": "phrase",
+          "m": "依提供原文保留，可能為治らないなら的省略或轉錄問題"
+        },
+        {
+          "t": "治してみせます",
+          "k": "なおしてみせます",
+          "r": "naoshite misemasu",
+          "p": "phrase",
+          "m": "一定改好給你看；てみせる表決心"
+        },
+        {
+          "t": "baby",
+          "k": "baby",
+          "r": "baby",
+          "p": "en",
+          "m": "寶貝"
+        }
+      ]
+    },
+    "Yeah, I ain't nothin' but ya baby": {
+      "v": 2,
+      "ro": "",
+      "zh": "是啊，我就是你的寶貝，僅此而已。",
+      "tk": []
+    },
+    "失って初めて気がつくなんて": {
+      "v": 2,
+      "ro": "ushinatte hajimete ki ga tsuku nante",
+      "zh": "直到失去才懂得珍惜這種事，",
+      "tk": [
+        {
+          "t": "失って初めて",
+          "k": "うしなってはじめて",
+          "r": "ushinatte hajimete",
+          "p": "phrase",
+          "m": "直到失去才"
+        },
+        {
+          "t": "気がつくなんて",
+          "k": "きがつくなんて",
+          "r": "ki ga tsuku nante",
+          "p": "phrase",
+          "m": "竟然才察覺；なんて帶評價"
+        }
+      ]
+    },
+    "そんなダサいこと もうしたないのよ goodbye": {
+      "v": 2,
+      "ro": "sonna dasai koto mou shitanai no yo goodbye",
+      "zh": "那麼遜的事，我再也不想做了，再見。",
+      "tk": [
+        {
+          "t": "そんなダサいこと",
+          "k": "そんなださいこと",
+          "r": "sonna dasai koto",
+          "p": "phrase",
+          "m": "那樣難看、遜的事"
+        },
+        {
+          "t": "もうしたないのよ",
+          "k": "もうしたないのよ",
+          "r": "mou shitanai no yo",
+          "p": "phrase",
+          "m": "再也不想做；したくない的方言"
+        },
+        {
+          "t": "goodbye",
+          "k": "goodbye",
+          "r": "goodbye",
+          "p": "en",
+          "m": "再見"
+        }
+      ]
+    },
+    "Oh, don't you ever say bye bye, yeah, yeah": {
+      "v": 2,
+      "ro": "",
+      "zh": "喔，你可千萬別說再見，耶，耶。",
+      "tk": []
+    },
+    "わたしの最後はあなたがいい (oh)": {
+      "v": 2,
+      "ro": "watashi no saigo wa anata ga ii (oh )",
+      "zh": "最後陪伴我的，我希望是你（喔）。",
+      "tk": [
+        {
+          "t": "わたしの最後は",
+          "k": "わたしのさいごは",
+          "r": "watashi no saigo wa",
+          "p": "phrase",
+          "m": "我的最後"
+        },
+        {
+          "t": "あなたがいい",
+          "k": "あなたがいい",
+          "r": "anata ga ii",
+          "p": "phrase",
+          "m": "希望是你"
+        },
+        {
+          "t": "oh",
+          "k": "oh",
+          "r": "oh",
+          "p": "interj",
+          "m": "吟唱"
+        }
+      ]
+    },
+    "あなたとこのままおサラバするより (oh)": {
+      "v": 2,
+      "ro": "anata to kono mama osaraba suru yori (oh )",
+      "zh": "與其就這樣與你告別，（oh，和聲）",
+      "tk": [
+        {
+          "t": "あなたと",
+          "k": "あなたと",
+          "r": "anata to",
+          "p": "phrase",
+          "m": "與你"
+        },
+        {
+          "t": "このまま",
+          "k": "このまま",
+          "r": "kono mama",
+          "p": "phrase",
+          "m": "就這樣"
+        },
+        {
+          "t": "おサラバするより",
+          "k": "おさらばするより",
+          "r": "osaraba suru yori",
+          "p": "phrase",
+          "m": "比起道別；より表比較"
+        },
+        {
+          "t": "oh",
+          "k": "oh",
+          "r": "oh",
+          "p": "interj",
+          "m": "吟唱或重複和聲"
+        }
+      ]
+    },
+    "死ぬのがいいわ (死ぬのがいいわ)": {
+      "v": 2,
+      "ro": "shinu no ga ii wa (shinu no ga ii wa )",
+      "zh": "我寧願死去啊。（我寧願死去啊。）",
+      "tk": [
+        {
+          "t": "死ぬのがいいわ",
+          "k": "しぬのがいいわ",
+          "r": "shinu no ga ii wa",
+          "p": "phrase",
+          "m": "字面為死去更好；歌詞的極端誇張表達"
+        },
+        {
+          "t": "死ぬのがいいわ",
+          "k": "しぬのがいいわ",
+          "r": "shinu no ga ii wa",
+          "p": "phrase",
+          "m": "字面為死去更好；歌詞的極端誇張表達"
+        }
+      ]
+    },
+    "Ayy, ah-dadan-eh": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "Ah-dan, da-dan, dobi-dobi-ooh": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "Babadan-ba, labada-ah": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "Badaba-dan, badaba-dan, baba ay": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "Ayy, badaba-dan ay": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "Balabalalalalabalalan-lan": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "Babadan-ba, lalalalalala": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "Balalan, nalalan, lalala yeah": {
+      "v": 2,
+      "ro": "",
+      "zh": "（節奏吟唱，無固定語義）",
+      "tk": []
+    },
+    "あたしの最後はあなたがいい (oh)": {
+      "v": 2,
+      "ro": "atashi no saigo wa anata ga ii (oh )",
+      "zh": "最後陪伴我的，我希望是你（喔）。",
+      "tk": [
+        {
+          "t": "あたしの最後は",
+          "k": "あたしのさいごは",
+          "r": "atashi no saigo wa",
+          "p": "phrase",
+          "m": "我的最後"
+        },
+        {
+          "t": "あなたがいい",
+          "k": "あなたがいい",
+          "r": "anata ga ii",
+          "p": "phrase",
+          "m": "希望是你"
+        },
+        {
+          "t": "oh",
+          "k": "oh",
+          "r": "oh",
+          "p": "interj",
+          "m": "吟唱"
+        }
+      ]
+    },
+    "死ぬのがいいわ (ay 死ぬのがいいわ)": {
+      "v": 2,
+      "ro": "shinu no ga ii wa (ay shinu no ga ii wa )",
+      "zh": "我寧願死去啊。（ay，我寧願死去啊）",
+      "tk": [
+        {
+          "t": "死ぬのがいいわ",
+          "k": "しぬのがいいわ",
+          "r": "shinu no ga ii wa",
+          "p": "phrase",
+          "m": "寧願死去；極端誇張的抒情表達"
+        },
+        {
+          "t": "ay",
+          "k": "ay",
+          "r": "ay",
+          "p": "interj",
+          "m": "吟唱"
+        },
+        {
+          "t": "死ぬのがいいわ",
+          "k": "しぬのがいいわ",
+          "r": "shinu no ga ii wa",
+          "p": "phrase",
+          "m": "重複主句的和聲"
+        }
+      ]
+    },
+    "それでも時々浮つく my heart": {
+      "v": 2,
+      "ro": "sore demo tokidoki uwatsuku my heart",
+      "zh": "即使如此，我的心偶爾仍會飄忽。",
+      "tk": [
+        {
+          "t": "それでも",
+          "k": "それでも",
+          "r": "sore demo",
+          "p": "phrase",
+          "m": "即便如此"
+        },
+        {
+          "t": "時々",
+          "k": "ときどき",
+          "r": "tokidoki",
+          "p": "phrase",
+          "m": "偶爾"
+        },
+        {
+          "t": "浮つく",
+          "k": "うわつく",
+          "r": "uwatsuku",
+          "p": "phrase",
+          "m": "心浮動、不專一"
+        },
+        {
+          "t": "my heart",
+          "k": "my heart",
+          "r": "my heart",
+          "p": "en",
+          "m": "我的心"
+        }
+      ]
+    },
+    "そんなダサいのは もう要らないのよ bye bye": {
+      "v": 2,
+      "ro": "sonna dasai no wa mou iranai no yo bye bye",
+      "zh": "那樣不堪的心態，我已經不需要了，掰掰。",
+      "tk": [
+        {
+          "t": "そんなダサいのは",
+          "k": "そんなださいのは",
+          "r": "sonna dasai no wa",
+          "p": "phrase",
+          "m": "那樣遜的事情、心態"
+        },
+        {
+          "t": "もう要らないのよ",
+          "k": "もういらないのよ",
+          "r": "mou iranai no yo",
+          "p": "phrase",
+          "m": "已經不需要了"
+        },
+        {
+          "t": "bye bye",
+          "k": "bye bye",
+          "r": "bye bye",
+          "p": "en",
+          "m": "再見"
+        }
+      ]
+    },
+    "I'll always stick with ya, my baby": {
+      "v": 2,
+      "ro": "",
+      "zh": "我會一直陪著你，我的寶貝。",
+      "tk": []
+    }
+  }
+}

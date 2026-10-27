@@ -1,0 +1,173 @@
+{
+  "summary": "反覆呼喚「你」回來，並連結失去熱情、冷漠與重新活過來的願望。「你」可讀作重要的人，也可能象徵活力或內在動力。",
+  "notes": [
+    "apathy 是冷漠、提不起勁；go astray 是迷失方向；die away 是逐漸消退。",
+    "Never wanted nothin’ 使用口語雙重否定，語境是從未如此渴望，不宜依形式直譯成相反意思。",
+    "首句 his 與後文 you 的人稱不同，保留使用者提供版本，不擅自統一。",
+    "scandalous 指令人震驚或不光彩；antagonist 可指對立者，此處帶有自責語氣。"
+  ],
+  "lines": {
+    "Alright need his energy back (It‘s not a want)": {
+      "v": 2,
+      "ro": "",
+      "zh": "好吧，我需要找回他的活力（這不是單純想要）",
+      "tk": []
+    },
+    "Alright I've been missin' you bad (It‘s been too long)": {
+      "v": 2,
+      "ro": "",
+      "zh": "好吧，我一直非常想你（已經太久了）",
+      "tk": []
+    },
+    "Alright alright I had enough": {
+      "v": 2,
+      "ro": "",
+      "zh": "好吧，好吧，我受夠了",
+      "tk": []
+    },
+    "Enough with this apathy (Apathy, yes)": {
+      "v": 2,
+      "ro": "",
+      "zh": "受夠這份冷漠了（冷漠，是啊）",
+      "tk": []
+    },
+    "How long have I gone astray? (I don't see the light)": {
+      "v": 2,
+      "ro": "",
+      "zh": "我迷失多久了？（我看不見光）",
+      "tk": []
+    },
+    "My passion has died away (Couldn’t even fight)": {
+      "v": 2,
+      "ro": "",
+      "zh": "我的熱情逐漸熄滅了（甚至無力抵抗）",
+      "tk": []
+    },
+    "Oh god please can we just go back": {
+      "v": 2,
+      "ro": "",
+      "zh": "喔，神啊，求你讓我們回去好嗎",
+      "tk": []
+    },
+    "Go back to those brighter days": {
+      "v": 2,
+      "ro": "",
+      "zh": "回到那些更明亮的日子",
+      "tk": []
+    },
+    "I wasn't right (Oh) yeah I've been scandalous": {
+      "v": 2,
+      "ro": "",
+      "zh": "我做得不對（喔），是啊，我曾經很不像話",
+      "tk": []
+    },
+    "I wasn't wise (Oh) such an antagonist": {
+      "v": 2,
+      "ro": "",
+      "zh": "我不夠明智（喔），簡直是個處處作對的人",
+      "tk": []
+    },
+    "It wasn't nice I know but I learned a lot": {
+      "v": 2,
+      "ro": "",
+      "zh": "我知道那樣不好，但我也學到很多",
+      "tk": []
+    },
+    "Baby, let me handle this again": {
+      "v": 2,
+      "ro": "",
+      "zh": "寶貝，讓我再處理一次吧",
+      "tk": []
+    },
+    "I need you back (Yeah, yeah)": {
+      "v": 2,
+      "ro": "",
+      "zh": "我需要你回來（耶，耶）",
+      "tk": []
+    },
+    "Never wanted nothin' like I want you tell me you'll be mine": {
+      "v": 2,
+      "ro": "",
+      "zh": "我從未像渴望你一樣渴望任何事，告訴我你會屬於我",
+      "tk": []
+    },
+    "Now is not the time to die I must be alive": {
+      "v": 2,
+      "ro": "",
+      "zh": "現在還不是死去的時候，我必須好好活著",
+      "tk": []
+    },
+    "Na-na-na-na-na": {
+      "v": 2,
+      "ro": "",
+      "zh": "啦、啦、啦、啦、啦",
+      "tk": []
+    },
+    "Now is not the time to die I'm alive": {
+      "v": 2,
+      "ro": "",
+      "zh": "現在還不是死去的時候，我還活著",
+      "tk": []
+    },
+    "Where have u gone, I'm all alone": {
+      "v": 2,
+      "ro": "",
+      "zh": "你去哪裡了？我孤單一人",
+      "tk": []
+    },
+    "Yes I've been, yes I've been here livin' on my own": {
+      "v": 2,
+      "ro": "",
+      "zh": "是啊，我一直、一直獨自生活在這裡",
+      "tk": []
+    },
+    "How can I go on, without u comin' home": {
+      "v": 2,
+      "ro": "",
+      "zh": "若你不回家，我怎麼走下去",
+      "tk": []
+    },
+    "Just once again": {
+      "v": 2,
+      "ro": "",
+      "zh": "就再一次",
+      "tk": []
+    },
+    "I need you back, babe (Yeah yeah)": {
+      "v": 2,
+      "ro": "",
+      "zh": "寶貝，我需要你回來（耶，耶）",
+      "tk": []
+    },
+    "Never wanted nothin like I want you tell me you'll be mine": {
+      "v": 2,
+      "ro": "",
+      "zh": "我從未像渴望你一樣渴望任何事，告訴我你會屬於我",
+      "tk": []
+    },
+    "I need you back (Yeah yeah)": {
+      "v": 2,
+      "ro": "",
+      "zh": "我需要你回來（耶，耶）",
+      "tk": []
+    },
+    "Yeah, yeah, yeah": {
+      "v": 2,
+      "ro": "",
+      "zh": "耶，耶，耶",
+      "tk": []
+    },
+    "Need you back in my life": {
+      "v": 2,
+      "ro": "",
+      "zh": "需要你回到我的生命裡",
+      "tk": []
+    },
+    "Need you back I'm alive (I need you back)": {
+      "v": 2,
+      "ro": "",
+      "zh": "需要你回來，我還活著（我需要你回來）",
+      "tk": []
+    }
+  }
+}
