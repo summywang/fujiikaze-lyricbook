@@ -101,7 +101,6 @@ a{color:inherit}
 .filters{display:flex;gap:2.9cqw}
 .fbtn{padding:0;border:0;background:none;cursor:pointer;font:600 4.8cqw/1.5 var(--f-serif)}
 .fbtn:nth-child(2){transform:rotate(3deg)} .fbtn:nth-child(3){transform:rotate(-2deg)}
-.colo{width:86cqw;font:400 3.3cqw/1.75 var(--f-zh)}
 
 .tk{position:absolute;left:calc(var(--x)*1cqw);top:calc(var(--y)*1cqw);z-index:5;display:block;text-decoration:none;font-size:calc(var(--fs)*1cqw);transform:rotate(calc(var(--r)*1deg));transform-origin:0 50%;transition:transform .28s ease}
 .tk.ra{left:auto;right:calc(var(--rx)*1cqw);transform-origin:100% 50%;text-align:right}
@@ -345,7 +344,6 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
       <button type="button" class="fbtn ink-a" data-f="en" aria-pressed="false"><span class="pr"><i>English 10</i></span></button>
       <button type="button" class="fbtn ink-a" data-f="ja" aria-pressed="false"><span class="pr"><i>日本語 11</i></span></button>
     </div>
-    <p class="pc colo ink-d" id="colophon" style="--x:6;--y:540;--r:-1;--z:6"><span class="pr"><i>21 首歌詞與解析已收錄，開啟即可練習。點句子用 <span lang="en">YouTube</span> 官方音源聽原唱、可單句循環；詞語朗讀使用裝置語音。翻譯為學習用語境解讀，照片取自各曲的 <span lang="en">YouTube</span> 影片。</i></span></p>
   </div>
 </main>
 
@@ -675,10 +673,8 @@ function layoutPoster() {
     }
     y += h + 8 + (i % 3);
   });
-  $("#colophon").style.setProperty("--y", (y + 10).toFixed(1));
-  clear.push([4, y + 8, 90, 30]);
-  scatterFlowers(board, strips, clear, y + 34);
-  board.style.aspectRatio = `100 / ${Math.ceil(y + 34)}`;
+  scatterFlowers(board, strips, clear, y + 12);
+  board.style.aspectRatio = `100 / ${Math.ceil(y + 12)}`;
   lastLine = null;
   updateFocus();
 }
