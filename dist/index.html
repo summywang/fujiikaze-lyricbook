@@ -37,7 +37,7 @@
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{color:var(--plum);font:16px/1.65 var(--f-zh);background:var(--sky-salmon)}
-body.on-song{background:var(--pg-bg)}
+body.on-song{margin:0;background:var(--pg-bg)}
 .sky{position:fixed;inset:0;z-index:-1;pointer-events:none;background:
   radial-gradient(70% 45% at 8% 0%,var(--sky-pink) 0%,transparent 70%),
   radial-gradient(60% 50% at 96% 14%,var(--sky-apricot) 0%,transparent 70%),
@@ -116,7 +116,7 @@ a{color:inherit}
 .tk-go svg{width:62%;fill:currentColor}
 
 /* ---------- song view: clean lyric card ---------- */
-.song{min-height:100vh;min-height:100dvh;background:linear-gradient(155deg,var(--pg-bg) 0%,var(--pg-bg) 35%,var(--pg-bg2) 100%);color:var(--pg-fg);font-family:var(--f-noto);padding-block:14px 80px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.song{min-height:100vh;min-height:100dvh;background:linear-gradient(155deg,var(--pg-bg) 0%,var(--pg-bg) 35%,var(--pg-bg2) 100%);color:var(--pg-fg);font-family:var(--f-noto);padding-block:14px max(170px,45vh);padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 .song-in{max-width:720px;margin-inline:auto}
 .s-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding-block:6px 30px}
 .s-back{text-decoration:none;font:500 15px/1.4 var(--f-noto-tc);padding:6px 0}
@@ -129,9 +129,6 @@ a{color:inherit}
 .s-head{display:flex;flex-wrap:wrap;align-items:center;gap:14px 16px;margin-bottom:34px}
 .s-meta{flex:1 1 180px;min-width:0}
 .s-thumb{flex:none;width:64px;height:64px;object-fit:cover;border-radius:4px}
-.spot{display:inline-flex;align-items:center;gap:8px;padding:7px 16px 7px 8px;border-radius:999px;background:var(--spotify);color:var(--spotify-ink);text-decoration:none;font:700 14px/1.3 var(--f-noto-tc);white-space:nowrap}
-.spot:hover{filter:brightness(1.06)}
-.spot svg{width:24px;height:24px;flex:none}
 .field-label{display:block;margin:18px 0 6px;font:500 14px/1.4 var(--f-noto-tc)}
 .paste input{display:block;width:100%;padding:11px 14px;border:0;border-radius:10px;background:var(--pg-field);color:var(--pg-fg);font:400 15px/1.4 var(--f-noto)}
 .paste input::placeholder{color:var(--pg-soft)}
@@ -157,32 +154,50 @@ a{color:inherit}
 .paste-note{margin:14px 0 0!important;font-size:14px!important}
 
 .lyrics{list-style:none;margin:0;padding:0}
-.ln{display:grid;grid-template-columns:minmax(0,1fr) 40px;gap:14px;align-items:start;padding:11px 0}
-.ln-body{min-width:0;cursor:pointer}
+/* one lyric = a centered block; the tapped line gets a stronger tint, the line being sung a soft one; no outlines */
+.ln{margin:2px -14px;padding:12px 14px;border-radius:16px;text-align:center;cursor:pointer;outline:none;transition:background-color .15s}
+.ln,.w,.act,.pill,.dock button{-webkit-tap-highlight-color:transparent}
+.song :focus:not(:focus-visible){outline:none}
+.ln.now,.ln.say,.ln:focus-visible{background:var(--pg-hover)}
+/* timing mode: buttons under each line */
+.ln-cal{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;margin-top:8px;cursor:default}
+.ln-cal button{min-height:34px;padding:6px 14px;border:0;border-radius:999px;background:var(--pg-field);color:var(--pg-fg);font:500 14px/1.2 var(--f-noto-tc);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ln-cal button:active{transform:scale(.96)}
+.ln-cal button.main{background:var(--pg-fg);color:var(--pg-bg);font-weight:700}
+.ln-cal button.link{min-height:0;padding:6px 4px;background:none;color:var(--pg-soft);text-decoration:underline;text-underline-offset:3px}
+.ln-cal span{font:400 12.5px/1.3 var(--f-noto-tc);color:var(--pg-soft)}
+.ln-body{min-width:0}
 .ln-src{margin:0;font:700 clamp(22px,4.6vw,30px)/1.42 var(--f-noto-ja);overflow-wrap:anywhere}
 .ln-src:lang(en){font-family:var(--f-noto)}
-.ln-src.split{display:flex;flex-wrap:wrap;align-items:flex-start;column-gap:.12em;row-gap:.3em}
+.ln-src.split{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;column-gap:.12em;row-gap:.3em}
 .seg{display:inline-flex;flex-direction:column;align-items:center;padding:0 .04em}
 .seg-jp{line-height:1.3}
-.seg-ro{margin-top:2px;font:400 14px/1.3 var(--f-noto);color:var(--pg-soft);white-space:nowrap}
+.seg-ro{margin-top:2px;font:400 16px/1.35 var(--f-noto);color:var(--pg-soft);white-space:nowrap}
 .sp-gap{width:.3em}
 .lyrics.hide-ro .seg-ro{display:none}
-.ln-ro{margin:4px 0 0;font:400 14px/1.45 var(--f-noto);color:var(--pg-soft)}
+.ln-ro{margin:4px 0 0;font:400 16px/1.5 var(--f-noto);color:var(--pg-soft)}
 .ln-zh{margin:3px 0 0;font:400 16px/1.55 var(--f-noto-tc);color:var(--pg-soft)}
 .ln.pending .ln-ro,.ln.pending .ln-zh{animation:pulse 1.4s ease-in-out infinite}
 .lyrics.hide-ro .ln-ro{display:none}
 .lyrics.hide-zh .ln-zh{display:none}
-.ln-play{display:grid;place-items:center;width:38px;height:38px;margin-top:4px;padding:0;border:1.5px solid var(--pg-line);border-radius:50%;background:transparent;color:var(--pg-fg);cursor:pointer}
-.ln-play svg{width:15px;fill:currentColor;margin-left:2px}
-.ln-play:hover{background:var(--pg-hover)}
-.ln.now .ln-play{background:var(--pg-fg);border-color:var(--pg-fg);color:var(--pg-bg)}
 .gap{height:22px}
 .w{border-radius:4px;cursor:pointer;transition:background-color .15s}
 .w:hover{background:var(--pg-hover)}
 .w.sel{background:var(--pg-hover)}
 
-.tip{position:fixed;z-index:20;left:0;top:0;width:max-content;max-width:min(340px,calc(100vw - 24px));padding:7px 12px;border-radius:8px;background:var(--pg-fg);color:var(--pg-bg);font:500 14px/1.4 var(--f-noto-tc);box-shadow:0 6px 18px rgba(40,10,20,.22)}
-.tip-t{display:block}
+.tip{position:fixed;z-index:22;left:0;top:0;width:max-content;max-width:min(340px,calc(100vw - 24px));padding:9px 14px;border-radius:12px;background:var(--pg-fg);color:var(--pg-bg);font:500 14px/1.4 var(--f-noto-tc);box-shadow:0 6px 18px rgba(40,10,20,.22)}
+.tip-head{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.tip-k{font:700 16px/1.4 var(--f-noto-ja)}
+.tip-tag{padding:1px 9px;border-radius:999px;background:var(--pg-bg);color:var(--pg-fg);font:500 12px/1.6 var(--f-noto-tc)}
+.tip-m{display:block;margin-top:3px}
+.tip-m:empty{display:none}
+/* a chunk's parts, one row each: the part (with its reading under kanji) and what it does, in plain words */
+.tip-parts{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:8px 14px;margin:9px 0 0;padding-top:9px;border-top:1px solid color-mix(in srgb,var(--pg-bg) 18%,transparent)}
+.tip-parts dt{font:700 15px/1.4 var(--f-noto-ja);white-space:nowrap}
+.tip-parts dt small{display:block;font:400 11px/1.3 var(--f-noto-ja);opacity:.7}
+.tip-parts dd{margin:0;font:400 13.5px/1.5 var(--f-noto-tc)}
+.tip-g{display:flex;align-items:baseline;gap:8px;margin:9px 0 0;padding-top:9px;border-top:1px solid color-mix(in srgb,var(--pg-bg) 18%,transparent);font:500 13.5px/1.5 var(--f-noto-tc)}
+.tip-g b{flex:none;padding:0 8px;border:1px solid currentColor;border-radius:999px;font:500 11.5px/1.6 var(--f-noto-tc)}
 .tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-5px;width:10px;height:10px;margin-left:-5px;background:var(--pg-fg);transform:rotate(45deg)}
 .tip.below::after{bottom:auto;top:-5px}
 
@@ -194,10 +209,106 @@ a{color:inherit}
   .glint{animation:none;opacity:.85;transform:scale(.8) rotate(45deg)}
 }
 
-.study{margin:16px 0 30px;border:1px solid var(--pg-line);border-radius:16px;padding:18px 20px;color:var(--pg-fg);font-family:var(--f-zh);line-height:1.8;font-size:16px}
-.study summary{cursor:pointer;font-weight:700}.study p{margin:12px 0}.study ul{padding-left:1.3em}.study li{margin:10px 0}.study .hint{font-size:13px;opacity:.85}.ln-src{overflow-wrap:anywhere}.tip{max-width:min(360px,calc(100vw - 24px));line-height:1.6}.s-tools{flex-wrap:wrap}.s-status{line-height:1.6}.ln-play:disabled{opacity:.3;cursor:default}
-@media(max-width:520px){.s-bar{align-items:flex-start}.study{padding:14px}.s-tools{gap:6px}.pill{padding:7px 10px}}
-</style>
+.ln-src{overflow-wrap:anywhere}.tip{max-width:min(360px,calc(100vw - 24px));line-height:1.6}.s-tools{flex-wrap:wrap}.s-status{line-height:1.6}
+@media(max-width:520px){.s-bar{align-items:flex-start}.s-tools{gap:4px}.pill{padding:7px 8px;font-size:13px}.s-tools .pill.icon{width:32px}}
+
+/* ---------- official cover art: the whole square in its own colors, no film tone or cutout ---------- */
+.ph.cover img{filter:none}
+.ph.cover::before{display:none}
+.s-thumb.cover{width:76px;height:76px;filter:none;box-shadow:0 4px 14px rgba(40,10,20,.22)}
+.s-cover{flex:none;line-height:0}
+
+/* ---------- original vocals: YouTube player pinned edge to edge at the top of the song page ---------- */
+/* 16:9 across a phone; on wide screens capped near half the window height and centered on black. Never under 200px. */
+.song{--yt-h:max(200px,min(56.25vw,46vh))}
+.yt{position:sticky;top:0;z-index:12;margin:-14px calc(-1 * max(20px,env(safe-area-inset-right,0px))) 14px calc(-1 * max(20px,env(safe-area-inset-left,0px)));background:#000}
+.yt-frame{position:relative;width:min(100%,calc(var(--yt-h) * 16 / 9));height:var(--yt-h);margin-inline:auto;overflow:hidden}
+.yt-frame iframe,.yt-frame>div{position:absolute;top:0;left:0;width:100%;height:var(--yt-h);border:0}
+.song.yt-off .song-in{padding-top:46px}
+
+/* back to the catalog: a translucent circle pinned top-left, just under the video so it never covers the player */
+.back-btn{position:fixed;z-index:16;top:calc(10px + env(safe-area-inset-top,0px));left:calc(10px + env(safe-area-inset-left,0px));display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.62);color:#1b1b1b;box-shadow:0 2px 10px rgba(0,0,0,.18);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);-webkit-tap-highlight-color:transparent}
+.back-btn svg{width:22px;height:22px;fill:currentColor;margin-left:-2px}
+.song:not(.yt-off) .back-btn{top:calc(var(--yt-h) + 10px)}
+.song:not(.yt-off) .song-in{padding-top:40px}
+.yt-note{margin:0;padding:9px 58px;background:var(--pg-bg);font:500 14.5px/1.5 var(--f-noto-tc);color:var(--pg-fg);text-align:center}
+/* which video plays the original: studio audio or the MV */
+.src-switch{display:inline-flex;margin-top:8px;padding:2px;border:1.5px solid var(--pg-line);border-radius:999px}
+.src-switch button{padding:3px 13px;border:0;border-radius:999px;background:transparent;color:var(--pg-fg);font:500 13px/1.4 var(--f-noto-tc);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.src-switch button[aria-pressed="true"]{background:var(--pg-fg);color:var(--pg-bg)}
+/* one-tap alignment for a video whose intro differs from the studio track */
+.alignbar{display:flex;align-items:center;gap:12px;margin:-8px 0 20px;padding:12px 14px;border-radius:14px;background:var(--pg-field)}
+.alignbar p{flex:1;margin:0;font:500 14px/1.55 var(--f-noto-tc)}
+.alignbar .act{flex:none;padding:8px 18px;border:0;border-radius:999px;background:var(--pg-fg);color:var(--pg-bg);font:600 15px/1.3 var(--f-noto-tc);cursor:pointer;-webkit-tap-highlight-color:transparent}
+
+/* player controls on the page itself (no panel behind them): timeline, then speed · −5 · play · +5 · tune */
+.dock{position:fixed;z-index:15;left:0;right:0;bottom:0;padding:28px 0 0;background:linear-gradient(to bottom,transparent,var(--pg-bg) 44%);color:var(--pg-fg);font-family:var(--f-noto);pointer-events:none}
+.dk-in{max-width:592px;margin-inline:auto;padding:0 max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));pointer-events:auto}
+.cal-on .dk-in{padding-bottom:10px}
+.dk-seek{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;font:500 12px/1 var(--f-noto);color:var(--pg-soft);font-variant-numeric:tabular-nums}
+.dk-seek input{--p:0%;width:100%;height:22px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer}
+.dk-seek input::-webkit-slider-runnable-track{height:3px;border-radius:2px;background:linear-gradient(90deg,var(--pg-fg) var(--p),var(--pg-line) var(--p))}
+.dk-seek input::-moz-range-track{height:3px;border-radius:2px;background:linear-gradient(90deg,var(--pg-fg) var(--p),var(--pg-line) var(--p))}
+.dk-seek input::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;margin-top:-5px;border:0;border-radius:50%;background:var(--pg-fg)}
+.dk-seek input::-moz-range-thumb{width:13px;height:13px;border:0;border-radius:50%;background:var(--pg-fg)}
+.dk-btns{display:grid;grid-template-columns:1fr auto auto auto 1fr;align-items:center;gap:18px;margin-top:4px}
+.dock button{display:grid;place-items:center;padding:0;border:0;background:transparent;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dock button svg{fill:currentColor}
+.dock .dk-rate{justify-self:start;min-width:52px;height:40px;border-radius:999px;background:var(--pg-field);font:700 16px/1 var(--f-noto)}
+.dock .dk-sm{width:40px;height:40px;border-radius:50%;background:var(--pg-field);color:var(--pg-soft)}
+.dock .dk-sm svg{width:24px;height:24px}
+.dock .dk-main{width:68px;height:52px;border-radius:16px;background:var(--pg-fg);color:var(--pg-bg)}
+.dock .dk-main svg{width:32px;height:32px}
+.dock .dk-tune{justify-self:end;width:46px;height:40px;border-radius:12px;background:var(--pg-field)}
+.dock .dk-tune svg{width:24px;height:24px}
+
+/* short notes, just under the video */
+.toast{position:fixed;z-index:21;left:50%;top:calc(var(--yt-h) + 58px);transform:translateX(-50%);width:max-content;max-width:calc(100vw - 40px);padding:9px 16px;border-radius:12px;background:var(--pg-fg);color:var(--pg-bg);font:500 14px/1.45 var(--f-noto-tc);text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.song.yt-off .toast{top:60px}
+
+/* bottom sheets, in the tip's inverted colors */
+.scrim{position:fixed;inset:0;z-index:19;background:rgba(0,0,0,.3)}
+body{--yt-h:max(200px,min(56.25vw,46vh))}
+.sheet{--soft:color-mix(in srgb,var(--pg-bg) 9%,transparent);--rule:color-mix(in srgb,var(--pg-bg) 16%,transparent);position:fixed;z-index:20;left:0;right:0;bottom:0;max-height:min(72vh,600px,calc(100vh - var(--yt-h) - 130px));overflow-y:auto;overscroll-behavior:contain;padding:8px max(18px,env(safe-area-inset-left,0px)) calc(16px + env(safe-area-inset-bottom,0px));border-radius:20px 20px 0 0;background:var(--pg-fg);color:var(--pg-bg);box-shadow:0 -10px 30px rgba(0,0,0,.25);font-family:var(--f-noto-tc)}
+.sheet::before{content:"";display:block;width:36px;height:4px;margin:0 auto 4px;border-radius:2px;background:currentColor;opacity:.22}
+.sh-in{max-width:560px;margin-inline:auto}
+:where(.sheet button){font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:where(.sheet svg){width:22px;height:22px;fill:currentColor;flex:none}
+.sh-head{display:flex;align-items:center;gap:10px;min-height:46px}
+.sh-head h3{flex:1;margin:0;font:700 17px/1.3 var(--f-noto-tc)}
+.sh-x{display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:50%;background:var(--soft)}
+.sh-row{display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:6px 2px;border:0;border-top:1px solid var(--rule);background:none;text-align:left;font:500 16px/1.3 var(--f-noto-tc)}
+.sh-row>span{flex:1}
+.sh-row small{display:block;margin-top:2px;font:400 12.5px/1.3 var(--f-noto-tc);opacity:.65}
+.sw{position:relative;flex:none;width:46px;height:28px;border-radius:999px;background:color-mix(in srgb,var(--pg-bg) 24%,transparent);transition:background-color .15s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--pg-fg);box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s}
+.sh-row[aria-checked="true"] .sw{background:var(--pg-bg)}
+.sh-row[aria-checked="true"] .sw::after{transform:translateX(18px)}
+/* timing mode: a full-width bar at the very bottom — mode label with its help, then restore and done */
+.dk-edit{position:relative;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--pg-fg);color:var(--pg-bg);pointer-events:auto}
+.dk-edit-in{display:flex;align-items:center;gap:8px;max-width:560px;margin-inline:auto}
+.dk-edit-label{font:700 15px/1.3 var(--f-noto-tc)}
+.dock .dk-help-btn{width:30px;height:30px;border-radius:50%;margin-right:auto}
+.dock .dk-help-btn svg{width:22px;height:22px}
+.dock .dk-help-btn[aria-expanded="true"]{background:color-mix(in srgb,var(--pg-bg) 12%,transparent)}
+.dock .dk-outline{padding:7px 14px;border:1.5px solid currentColor;border-radius:999px;font:600 14px/1.2 var(--f-noto-tc)}
+.dock .dk-outline:disabled{opacity:.35;cursor:default}
+.dock .dk-done{padding:8.5px 16px;border-radius:999px;background:var(--pg-bg);color:var(--pg-fg);font:600 14px/1.2 var(--f-noto-tc)}
+.dk-help{position:absolute;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(100% + 10px);width:min(340px,calc(100vw - 24px));padding:12px 14px;border-radius:14px;background:var(--pg-fg);color:var(--pg-bg);box-shadow:0 10px 28px rgba(0,0,0,.28);font:400 13.5px/1.65 var(--f-noto-tc)}
+.dk-help::after{content:"";position:absolute;left:96px;bottom:-6px;width:12px;height:12px;background:inherit;transform:rotate(45deg)}
+.dk-help ol{margin:0;padding-left:1.3em}
+.dk-help li+li{margin-top:4px}
+.dk-help p{margin:6px 0 0;opacity:.75;font-size:12.5px}
+
+/* confirm before restoring defaults */
+.confirm{width:min(320px,calc(100vw - 48px));padding:20px 20px 14px;border:0;border-radius:18px;background:var(--pg-fg);color:var(--pg-bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-family:var(--f-noto-tc)}
+.confirm::backdrop{background:rgba(0,0,0,.4)}
+.confirm h4{margin:0 0 6px;font:700 17px/1.4 var(--f-noto-tc)}
+.confirm p{margin:0;font:400 14px/1.6 var(--f-noto-tc);opacity:.8}
+.cf-acts{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+.cf-acts button{padding:8px 18px;border:1.5px solid currentColor;border-radius:999px;background:none;color:inherit;font:600 14.5px/1.2 var(--f-noto-tc);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cf-acts button[value="ok"]{border-color:var(--pg-bg);background:var(--pg-bg);color:var(--pg-fg)}
+</style></style>
 </head><body>
 
 <div class="sky" aria-hidden="true"></div>
@@ -233,38 +344,72 @@ a{color:inherit}
       <button type="button" class="fbtn ink-a" data-f="en" aria-pressed="false"><span class="pr"><i>English 10</i></span></button>
       <button type="button" class="fbtn ink-a" data-f="ja" aria-pressed="false"><span class="pr"><i>日本語 11</i></span></button>
     </div>
-    <p class="pc colo ink-d" id="colophon" style="--x:6;--y:540;--r:-1;--z:6"><span class="pr"><i>21 首歌詞與解析已收錄，開啟即可練習。翻譯為學習用語境解讀；朗讀使用裝置語音，並非原曲。</i></span></p>
+    <p class="pc colo ink-d" id="colophon" style="--x:6;--y:540;--r:-1;--z:6"><span class="pr"><i>21 首歌詞與解析已收錄，開啟即可練習。點句子用 YouTube 官方音源聽原唱、可單句循環；詞語朗讀使用裝置語音。翻譯為學習用語境解讀，封面取自 Spotify。</i></span></p>
   </div>
 </main>
 
 <section class="song" id="song" hidden>
+  <div class="yt" id="yt" hidden>
+    <div class="yt-frame" id="ytFrame"><div id="ytPlayer"></div></div>
+    <p class="yt-note" id="ytNote" role="status" hidden></p>
+  </div>
+  <a class="back-btn" href="#list" aria-label="回到目錄"><i data-ic="back"></i></a>
+  <div class="toast" id="toast" role="status" hidden></div>
   <div class="song-in">
-    <div class="s-bar">
-      <a class="s-back" href="#list">‹ 目錄</a>
-      <div class="s-tools" id="tools">
-        <button type="button" class="pill" id="speedBtn" aria-label="朗讀速度">1.0×</button>
-        <button type="button" class="pill" id="tgRo" aria-pressed="true">羅馬拼音</button>
-        <button type="button" class="pill" id="tgZh" aria-pressed="true">中文</button>
-        
-      </div>
-    </div>
     <header class="s-head">
-      <img class="s-thumb" id="songThumb" alt="">
+      <!-- the cover links back to its Spotify track, as Spotify asks when its artwork is shown -->
+      <a class="s-cover" id="coverLink" href="https://open.spotify.com/" target="_blank" rel="noopener" aria-label="在 Spotify 開啟這首歌"><img class="s-thumb" id="songThumb" alt=""></a>
       <div class="s-meta">
         <h2 class="s-title" id="songTitle"></h2>
         <p class="s-artist" id="songSub">Fujii Kaze</p>
+        <div class="src-switch" id="srcSwitch" role="group" aria-label="原唱影片" hidden><button type="button" data-src="audio" aria-pressed="true">音源</button><button type="button" data-src="mv" aria-pressed="false">MV</button></div>
       </div>
-      <a class="spot" id="spotBtn" href="https://open.spotify.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#0B0B0B"/><path d="M6.4 9.3c3.9-1.1 8.1-.8 11.3 1.1M7.1 12.5c3.1-.9 6.5-.6 9.2.9M7.8 15.5c2.4-.6 5-.4 7.1.7" fill="none" stroke="#1ED760" stroke-width="1.7" stroke-linecap="round"/></svg><span>在 Spotify 播放</span></a>
     </header>
-    <p class="s-status" id="status" hidden><span class="dot" id="stDot" aria-hidden="true"></span><span id="stMsg" role="status"></span><button type="button" class="pill" id="stBtn" hidden></button></p>
-    <details class="study" id="study"><summary>歌曲解讀與學習筆記</summary><div id="studyContent"></div></details>
+    <div class="alignbar" id="alignBar" hidden><p id="alignTip" role="status"></p><button type="button" class="act main" id="alignBtn">對齊</button></div>
     <ol class="lyrics" id="lyrics" hidden></ol>
   </div>
 </section>
 
-<div class="tip" id="tip" role="tooltip" hidden><span class="tip-t" id="tipText"></span></div>
+<div class="tip" id="tip" role="tooltip" hidden><span class="tip-head"><span class="tip-k" id="tipK" lang="ja"></span><span class="tip-tag" id="tipTag"></span></span><span class="tip-m" id="tipM"></span><dl class="tip-parts" id="tipParts" hidden></dl><p class="tip-g" id="tipG" hidden><b>句型</b><span id="tipGText"></span></p></div>
+<div class="dock" id="dock" hidden>
+  <div class="dk-in">
+    <div class="dk-seek"><span id="dkCur">0:00</span><input type="range" id="dkBar" min="0" max="1000" step="1" value="0" aria-label="播放進度"><span id="dkDur">0:00</span></div>
+    <div class="dk-btns">
+      <button type="button" class="dk-rate" id="dkRate" aria-label="播放速度 1 倍">1x</button>
+      <button type="button" class="dk-sm" id="dkBack" aria-label="倒退 5 秒"><i data-ic="replay5"></i></button>
+      <button type="button" class="dk-main" id="dkPlay" aria-label="播放"></button>
+      <button type="button" class="dk-sm" id="dkFwd" aria-label="快轉 5 秒"><i data-ic="forward5"></i></button>
+      <button type="button" class="dk-tune" id="dkTune" aria-label="調整" aria-haspopup="dialog"><i data-ic="tune"></i></button>
+    </div>
+  </div>
+  <div class="dk-edit" id="calBar" hidden>
+    <div class="dk-edit-in">
+      <span class="dk-edit-label">時間校準中</span>
+      <button type="button" class="dk-help-btn" id="calHelpBtn" aria-label="使用說明" aria-expanded="false" aria-controls="calHelp"><i data-ic="help"></i></button>
+      <button type="button" class="dk-outline" id="calClear">還原預設值</button>
+      <button type="button" class="dk-done" id="calDone">完成編輯</button>
+    </div>
+    <div class="dk-help" id="calHelp" role="tooltip" hidden></div>
+  </div>
+</div>
+<dialog class="confirm" id="resetDialog" aria-labelledby="rdTitle">
+  <form method="dialog">
+    <h4 id="rdTitle">還原預設值？</h4>
+    <p>這首歌在這支影片上調整過的時間會全部清除，回到原本的時間。</p>
+    <div class="cf-acts"><button value="cancel">取消</button><button value="ok">還原</button></div>
+  </form>
+</dialog>
 
-<script src="data/lyrics.js"></script>
+<div class="scrim" id="scrim" hidden></div>
+<section class="sheet" id="tuneSheet" role="dialog" aria-label="調整" hidden><div class="sh-in">
+  <div class="sh-head"><h3>調整</h3><button type="button" class="sh-x" data-close aria-label="關閉"><i data-ic="close"></i></button></div>
+  <button type="button" class="sh-row" id="tgRo" role="switch" aria-checked="true"><i data-ic="abc"></i><span>羅馬拼音</span><b class="sw" aria-hidden="true"></b></button>
+  <button type="button" class="sh-row" id="tgZh" role="switch" aria-checked="true"><i data-ic="translate"></i><span>中文翻譯</span><b class="sw" aria-hidden="true"></b></button>
+  <button type="button" class="sh-row" id="calBtn" aria-haspopup="dialog"><i data-ic="schedule"></i><span>時間校準<small>歌詞和歌聲對不上時</small></span><i data-ic="chevron"></i></button>
+</div></section>
+
+<script src="data/lyrics.js?v=20261028e"></script>
+<script src="data/media.js?v=20261028c"></script>
 <script>
 // Setlist order. `legacy` is the number the song had in the first catalog, so lyrics saved then still load.
 const SONGS = [
@@ -310,14 +455,15 @@ const SCALE = [1,.92,.86,1,.9,1,.95,.88,1,.93,.9,1,.87,.96,1,.9,1,.94,.9,1,.92];
 const CUTS = [1,4,3,2,1,3,5,4,2,6,3,1,2,4,1,5,3,2,4];
 const SLOT_STICKERS = [["bf","c-orange"],["sp","c-paper"],["fl","c-yellow"],["bf","c-pink"],["sp","c-paper"],["bf","c-orchid"],["fl","c-pink"]];
 
-const POS_ZH = {noun:"名詞",pronoun:"代名詞",verb:"動詞",adj:"い形容詞",na:"な形容詞",adv:"副詞",particle:"助詞",aux:"助動詞",conj:"接續詞",interj:"感嘆詞",prenoun:"連體詞",prefix:"接頭詞",suffix:"接尾詞",phrase:"片語／學習單位",en:"英文",other:"其他"};
+const POS_ZH = {noun:"名詞",pronoun:"代名詞",verb:"動詞",adj:"い形容詞",na:"な形容詞",adv:"副詞",particle:"助詞",aux:"助動詞",conj:"接續詞",interj:"感嘆詞",prenoun:"連體詞",prefix:"接頭詞",suffix:"接尾詞",phrase:"慣用語",en:"英文",other:"其他"};
 // Bumped when the parsing rules change; Japanese lines parsed under an older rule can be re-parsed.
 // v2: idioms and set phrases stay together as one tappable word.
 const PARSE_V = 2;
-const PLAY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
-const ARROW_SVG = '<svg viewBox="0 0 24 24"><path d="M4 11h12.2l-4.6-4.6L13 5l7 7-7 7-1.4-1.4 4.6-4.6H4z"/></svg>';
+// Material Symbols, rounded, weight 600 (https://fonts.google.com/icons, Apache 2.0), inlined as path data.
+const ICON = {"play":"M305.87-250.09v-465.82q0-18.53 11.87-29.35 11.86-10.83 27.5-10.83 5.24 0 10.72 1.28 5.47 1.29 11.1 4.38l366.51 234.52q8.97 6.13 13.75 14.39 4.77 8.26 4.77 18.52t-4.77 18.52q-4.78 8.26-13.75 14.39L367.06-215.57q-5.63 3.09-11.12 4.09-5.49 1-10.74 1-15.68 0-27.5-10.41-11.83-10.42-11.83-29.2Z","pause":"M627.81-174q-32.84 0-56.22-23.44-23.37-23.43-23.37-56.34v-452.44q0-32.91 23.38-56.34Q594.99-786 627.83-786h55q32.83 0 56.11 23.44 23.28 23.43 23.28 56.34v452.44q0 32.91-23.29 56.34Q715.64-174 682.81-174h-55Zm-350.44 0q-32.84 0-56.21-23.44-23.38-23.43-23.38-56.34v-452.44q0-32.91 23.39-56.34Q244.55-786 277.39-786h55q32.84 0 56.12 23.44 23.27 23.43 23.27 56.34v452.44q0 32.91-23.28 56.34Q365.21-174 332.37-174h-55Z","replay5":"M523.7-303.78H404.43q-11.56 0-19.13-7.57-7.56-7.56-7.56-18.85 0-11.28 7.85-18.84 7.84-7.57 18.84-7.57h99.18v-55.43h-99.18q-11 0-18.84-7.85-7.85-7.85-7.85-18.85v-104.87q0-11.56 7.85-18.35 7.84-6.78 18.84-6.78h128.14q10 0 17.56 6.78 7.57 6.79 7.57 18.35 0 11.57-7.07 19.13-7.06 7.57-18.06 7.57h-99.74v56.43h99.74q11 0 18.06 7.07 7.07 7.06 7.07 18.06v97.57q0 14-10 24t-24 10ZM333.85-92.17q-68.33-29.13-119.31-80.11-50.98-50.98-80.11-119.02-29.13-68.05-29.13-146.44 0-16.96 11.33-28.28 11.33-11.33 28.28-11.33 16.96 0 28.29 11.33 11.32 11.32 11.32 28.28 0 123.31 86.37 209.11 86.37 85.8 209.11 85.8 122.74 0 209.11-86.08 86.37-86.09 86.37-208.83 0-123.3-83.87-209.11-83.87-85.8-207.18-85.8h-22l46.35 46.35q10.13 10.13 10.13 23.26t-10.13 23.26q-10.13 10.13-23.54 9.85-13.41-.29-23.54-10.42L355.56-746.48q-12.39-11.82-12.39-28.06t12.39-28.07L462.7-910.3q9.13-8.57 23.04-8.85 13.91-.29 23.04 8.85 9.13 9.13 8.85 23.32-.28 14.2-9.41 22.76l-51.79 51.78h23q78.4 0 146.72 29.14 68.33 29.13 119.31 80.1 50.98 50.98 80.11 119.03 29.13 68.04 29.13 146.15t-29.13 146.43q-29.13 68.33-80.11 119.31-50.98 50.98-119.31 80.11Q557.83-63.04 480-63.04q-77.83 0-146.15-29.13Z","forward5":"M333.85-92.17q-68.33-29.13-119.31-80.11-50.98-50.98-80.11-119.31-29.13-68.32-29.13-146.43 0-78.11 29.13-146.15 29.13-68.05 80.11-119.03 50.98-50.97 119.31-80.1 68.32-29.14 146.72-29.14h23l-50.79-50.78q-9.13-8.56-9.41-22.76-.28-14.19 8.85-23.32 9.13-9.14 22.54-9.35 13.41-.22 22.54 8.35L605-802.61q11.83 11.83 11.83 28.07 0 16.24-11.83 28.06L498.3-640.35q-10.13 10.13-23.54 10.42-13.41.28-23.54-9.85-10.13-10.13-10.13-23.26t10.13-23.26l46.91-46.35h-22.56q-123.31 0-207.18 85.8-83.87 85.81-83.87 209.11 0 122.74 86.37 208.83 86.37 86.08 209.11 86.08 122.74 0 209.11-85.8 86.37-85.8 86.37-209.11 0-16.96 11.32-28.28 11.33-11.33 28.29-11.33 16.95 0 28.28 11.33 11.33 11.32 11.33 28.28 0 78.39-29.13 146.44-29.13 68.04-80.11 119.02-50.98 50.98-119.31 80.11Q557.83-63.04 480-63.04q-77.83 0-146.15-29.13ZM523.7-303.78H404.43q-11.56 0-19.13-7.57-7.56-7.56-7.56-18.85 0-11.28 7.85-18.84 7.84-7.57 18.84-7.57h99.18v-55.43h-99.18q-11 0-18.84-7.85-7.85-7.85-7.85-18.85v-104.87q0-11.56 7.85-18.35 7.84-6.78 18.84-6.78h128.14q10 0 17.56 6.78 7.57 6.79 7.57 18.35 0 11.57-7.07 19.13-7.06 7.57-18.06 7.57h-99.74v56.43h99.74q11 0 18.06 7.07 7.07 7.06 7.07 18.06v97.57q0 14-10 24t-24 10Z","tune":"M434.09-117.21q-10.48-10.22-10.48-26.01v-165.56q0-15.79 10.65-26.01Q444.92-345 460.57-345q15.65 0 25.84 10.21 10.2 10.22 10.2 26.01V-262h316.78q15.79 0 26 10.37 10.22 10.37 10.22 26.02t-10.22 26.13q-10.21 10.48-26 10.48H496.61v45.78q0 15.79-10.37 26.01Q475.87-107 460.22-107t-26.13-10.21ZM146.61-189q-15.79 0-26-10.65-10.22-10.66-10.22-26.31 0-15.65 10.22-25.84 10.21-10.2 26-10.2h187.56q15.79 0 26.01 10.37 10.21 10.37 10.21 26.02t-10.21 26.13Q349.96-189 334.17-189H146.61Zm161.26-183.39q-10.48-10.6-10.48-26.18v-45.21H146.61q-15.22 0-25.72-10.66-10.5-10.65-10.5-25.74 0-15.08 10.5-25.56 10.5-10.48 25.72-10.48h150.78V-564q0-15.79 10.65-26 10.66-10.22 26.31-10.22 15.65 0 25.85 10.22 10.19 10.21 10.19 26v166q0 15.79-10.37 26-10.37 10.22-26.02 10.22t-26.13-10.61Zm151.96-71.39q-15.23 0-25.72-10.66-10.5-10.65-10.5-25.74 0-15.08 10.5-25.56 10.49-10.48 25.72-10.48h353.56q15.22 0 25.72 10.66 10.5 10.65 10.5 25.74 0 15.08-10.5 25.56-10.5 10.48-25.72 10.48H459.83Zm140.26-181.43q-10.48-10.22-10.48-26.01v-165.56q0-15.79 10.65-26.01Q610.92-853 626.57-853q15.65 0 25.84 10.21 10.2 10.22 10.2 26.01V-771h150.78q15.79 0 26 10.37 10.22 10.37 10.22 26.02t-10.22 26.13q-10.21 10.48-26 10.48H662.61v46.78q0 15.79-10.37 26.01Q641.87-615 626.22-615t-26.13-10.21ZM146.61-698q-15.79 0-26-10.65-10.22-10.66-10.22-26.31 0-15.65 10.22-25.84 10.21-10.2 26-10.2h353.56q15.79 0 26.01 10.37 10.21 10.37 10.21 26.02t-10.21 26.13Q515.96-698 500.17-698H146.61Z","back":"m382.7-480 308.21 308.22q13.26 13.82 13.55 34.56.28 20.74-13.55 35.57-14.82 14.26-35.56 14.26-20.74 0-35-14.26L297.57-424.43q-11.83-11.83-17.24-26.22-5.42-14.39-5.42-29.35t5.42-29.35q5.41-14.39 17.24-26.22l323.78-323.21q14.26-14.83 34.22-14.61 19.95.22 35.34 15.04 13.26 14.83 13.76 35.07.5 20.24-13.76 35.06L382.7-480Z","close":"M480-424.43 276.78-221.22q-11.82 11.83-27.78 11.83t-27.78-11.83q-11.83-11.82-11.83-27.78t11.83-27.78L424.43-480 221.22-683.22q-11.83-11.82-11.83-27.78t11.83-27.78q11.82-11.83 27.78-11.83t27.78 11.83L480-535.57l203.22-203.21q11.82-11.83 27.78-11.83t27.78 11.83q11.83 11.82 11.83 27.78t-11.83 27.78L535.57-480l203.21 203.22q11.83 11.82 11.83 27.78t-11.83 27.78q-11.82 11.83-27.78 11.83t-27.78-11.83L480-424.43Z","schedule":"M519.22-495.65v-158.87q0-15.64-10.36-25.93t-25.74-10.29q-15.38 0-25.86 10.29-10.48 10.29-10.48 25.93v173.39q0 7.7 2.57 14.31 2.56 6.62 7.69 12.91L594.26-311.7q11.41 11.7 27.1 11.2 15.68-.5 26.94-11.2 11.27-10.69 11.27-26.52 0-15.82-11.27-27.08L519.22-495.65ZM480.08-65.87q-85.47 0-160.94-32.55-75.48-32.56-131.81-88.87T98.44-319.04q-32.57-75.44-32.57-160.9 0-85.45 32.68-160.99 32.67-75.53 88.83-131.69t131.64-89.12Q394.5-894.7 480-894.7q85.5 0 160.98 32.96 75.48 32.96 131.64 89.12 56.16 56.16 89.12 131.64Q894.7-565.5 894.7-480q0 85.5-32.96 160.98-32.96 75.48-89.12 131.64-56.16 56.16-131.61 88.83-75.46 32.68-160.93 32.68ZM480-480Zm-.29 334.91q138.03 0 236.62-98.02 98.58-98.02 98.58-236.61 0-138.58-98.51-236.89-98.51-98.3-236.39-98.3-138.31 0-236.62 98.23-98.3 98.24-98.3 236.68 0 138.87 98.3 236.89 98.3 98.02 236.32 98.02Z","translate":"m582.3-164.78-28.95 73.13q-4.13 11.39-14.18 18.59-10.04 7.19-22.43 7.19-21.09 0-32.91-16.67-11.83-16.68-4.7-36.76l154.35-412.18q5.13-14.95 18.02-24.28 12.89-9.33 28.98-9.33h38.04q15.52 0 28.7 9.33 13.17 9.33 18.3 24.28L919.3-120.43q7.7 20.65-4.41 37.6-12.11 16.96-33.76 16.96-12.83 0-23.43-7.48-10.61-7.48-14.74-19.3l-28.39-72.13H582.3ZM352.83-380.09 183-210.7q-12.39 11.4-28.07 11.61-15.67.22-27.5-12.17-12.39-11.83-12.39-27.78 0-15.96 12.39-27.79l170.39-170.39q-54.95-57.52-90.58-112.58-35.63-55.07-51.94-105.11h89.31q12.61 36.21 39.82 75.95 27.22 39.74 70.53 84.61 44.87-48 82.17-114.39 37.3-66.39 52.61-126.17H62.65q-16.95 0-28.28-11.33-11.33-11.33-11.33-28.28 0-16.96 11.33-28.57t28.28-11.61h250.39v-39.82q0-16.96 11.33-28.57t28.28-11.61q16.96 0 28.57 11.61t11.61 28.57v39.82h249.82q16.96 0 28.57 11.61t11.61 28.57q0 16.95-11.61 28.28-11.61 11.33-28.57 11.33h-67.17q-17.57 75.74-62.91 156.95-45.35 81.22-102.61 141.18l81.65 83.08-31.35 85.05-107.43-111.44Zm256.69 140.53h177.83l-88.92-236.7-88.91 236.7Z","abc":"M396.13-356.61q-7.7 0-13.61-5.91-5.91-5.91-5.91-13.61V-583.3q0-7.59 5.91-13.84t13.61-6.25h156.81q16.43 0 26.94 10.51 10.51 10.51 10.51 27.14v48.09q0 16.63-10.51 27.14Q569.37-480 553-480q16.37 0 26.88 10.51 10.51 10.51 10.51 27.14v48.09q0 16.63-10.51 27.14-10.51 10.51-26.94 10.51H396.13ZM431.39-504h104.22v-44.61H431.39V-504Zm0 92.61h104.22V-456H431.39v44.61Zm-294.17 54.78q-11.53 0-19.18-7.89t-7.65-18.93V-566q0-16.37 10.51-26.88 10.51-10.51 26.88-10.51h139q15.65 0 26.24 10.51 10.59 10.51 10.59 26.88v182.57q0 11.62-7.76 19.22t-19.63 7.6q-11.53 0-19.18-7.89t-7.65-18.93v-50.18H164.61v50.18q0 11.62-7.76 19.22t-19.63 7.6Zm27.39-131.78h104.78v-60.22H164.61v60.22Zm508.61 131.78q-15.65 0-26.24-10.51-10.59-10.51-10.59-26.88v-172q0-16.37 10.59-26.88 10.59-10.51 26.24-10.51h139q16.37 0 26.88 10.51 10.51 10.51 10.51 26.88v26.18q0 11.53-8.08 19.07-8.08 7.53-19.27 7.53-11.2 0-19.03-7.76-7.84-7.76-7.84-19.63v-8H690.61v137.22h104.78v-8q0-11.53 7.88-19.18t19.18-7.65q11.3 0 19.23 7.54t7.93 19.06V-394q0 16.37-10.51 26.88-10.51 10.51-26.88 10.51h-139Z","chevron":"M516.43-481 346.22-651.22q-11.83-11.82-11.33-27.78t12.33-27.78q11.82-11.83 28.28-11.83t28.28 11.83l197.44 197.43q6.13 6.13 9.26 13.39 3.13 7.26 3.13 14.96 0 7.7-3.13 14.96-3.13 7.26-9.26 13.39L402.78-254.22q-11.82 11.83-27.78 11.33t-27.78-12.33q-11.83-11.82-11.83-28.28t11.83-28.28L516.43-481Z","help":"M512.7-259.72q12.69-12.73 12.69-30.19 0-17.47-12.72-29.8-12.73-12.33-30.12-12.33-17.4 0-29.8 12.36-12.4 12.36-12.4 29.82 0 17.47 12.43 30.16Q465.21-247 482.6-247q17.4 0 30.1-12.72ZM480.34-65.87q-86.2 0-161.5-32.39-75.3-32.4-131.74-88.84-56.44-56.44-88.84-131.73-32.39-75.3-32.39-161.59t32.39-161.67q32.4-75.37 88.75-131.34t131.69-88.62q75.34-32.65 161.67-32.65 86.34 0 161.78 32.61 75.45 32.6 131.37 88.5 55.93 55.89 88.55 131.45 32.63 75.56 32.63 161.87 0 86.29-32.65 161.58t-88.62 131.48q-55.97 56.18-131.42 88.76-75.46 32.58-161.67 32.58Zm.16-79.22q139.24 0 236.83-97.73 97.58-97.73 97.58-237.68 0-139.24-97.4-236.83-97.4-97.58-237.79-97.58-139.02 0-236.83 97.4-97.8 97.4-97.8 237.79 0 139.02 97.73 236.83 97.73 97.8 237.68 97.8ZM480-480Zm1.65-170.96q26.79 0 47.27 16.77 20.47 16.76 20.47 42.26 0 24.1-14.23 42.31-14.24 18.22-32.25 33.1-23 19.56-40.28 43.34-17.28 23.78-17.28 52.79 0 12.44 9.58 19.91 9.59 7.48 22.37 7.48 13.7 0 22.99-9.13t13.23-22.26q3.57-19.31 15.13-34.91 11.56-15.6 27.71-28.22 24.21-19.65 39.64-47.28 15.43-27.63 15.43-58.42 0-51.08-36.93-86-36.93-34.91-87.63-34.91-37.68 0-71.4 15.85-33.73 15.85-56.43 45.98-7.56 11.13-6.81 24.31.74 13.17 11.48 21.34 13.11 8.56 27.32 5.28 14.21-3.28 23.49-15.41 11.62-15.64 29.29-24.91t37.84-9.27Z","arrow":"M662.82-440.39H185.48q-16.96 0-28.28-11.33-11.33-11.32-11.33-28.28t11.33-28.28q11.32-11.33 28.28-11.33h477.34l-210.6-210.61q-11.83-11.82-12.11-28.06-.28-16.24 11.54-28.63 11.83-11.83 28.35-11.55 16.52.29 28.35 12.11l278 278q6.13 6.13 9.26 13.39 3.13 7.26 3.13 14.96 0 7.7-3.13 14.96-3.13 7.26-9.26 13.39l-278.57 278q-12.39 12.39-28.35 12.39-15.95 0-27.78-12.39-11.82-11.83-11.82-27.78 0-15.96 11.82-27.79l211.17-211.17Z"};
+const ic = (name) => `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="${ICON[name]}"/></svg>`;
+const PLAY_SVG = ic("play"), PAUSE_SVG = ic("pause"), ARROW_SVG = ic("arrow");
 const JA_RE = /[぀-ヿ㐀-鿿]/;
-const RATES = [1, 0.8, 0.6];
 const CHUNK = 6;
 
 const $ = (s) => document.querySelector(s);
@@ -339,9 +485,10 @@ const state = {
   docs: {}, local: {}, jobs: {}, saveErr: null,
   view: null, editing: false, pasteFor: null, filter: "all",
   lines: [], speaking: -1,
-  rate: RATES.includes(store.get("kaze.rate", 1)) ? store.get("kaze.rate", 1) : 1,
   showRo: store.get("kaze.ro", true), showZh: store.get("kaze.zh", true),
   sel: null,
+  // line = the tapped lyric line; base/win = per-line timing before and after the song's offset; cal = timing mode
+  line: null, base: [], win: [], cal: false,
 };
 let lastRenderedRec = null, catalogY = 0, lastSongKey = null;
 
@@ -382,6 +529,23 @@ function photoEl(key, x, y, w, r, cut, z, extra) {
   const ph = el("div", `ph cut-${cut}${DUO.has(key) ? " duo" : ""}${RAW.has(key) ? " raw" : ""}${extra ? " " + extra : ""}`);
   ph.style.setProperty("--ar", cut === "heart" ? 10 / 9 : PHOTO_AR[key]);
   const img = el("img"); img.src = `img/${key.includes(".") ? key : key + ".jpg"}`; img.alt = ""; img.decoding = "async";
+  ph.append(img); wrap.append(ph);
+  return wrap;
+}
+// The song's streaming cover, whole and in its own colors; the site's own photo only if the image cannot load.
+const mediaOf = (k) => (typeof MEDIA === "object" && MEDIA[k]) || null;
+function setCover(img, key) {
+  const m = mediaOf(key);
+  const local = () => { img.onerror = null; img.src = `img/${SONG_PHOTO[key]}.jpg`; img.classList.add("fallback"); };
+  img.classList.remove("fallback"); img.alt = ""; img.decoding = "async";
+  if (m && m.thumb) { img.onerror = local; img.src = m.thumb; } else local();
+  return img;
+}
+function coverEl(key, x, y, w, r, z) {
+  const wrap = el("div", "pc ph-wrap");
+  wrap.style.cssText = `--x:${x};--y:${y};--w:${w};--r:${r};--z:${z}`;
+  const ph = el("div", "ph cover"); ph.style.setProperty("--ar", 1);
+  const img = setCover(el("img"), key); img.loading = "lazy";
   ph.append(img); wrap.append(ph);
   return wrap;
 }
@@ -435,12 +599,11 @@ function layoutPoster() {
     const side = SIDE[i % SIDE.length];
     const h = fit.lines.length * fit.fs * 1.3 + 1.5;
     board.append(trackEl(s, i, y, fit));
-    // the song's photo cutout on the open side of its strip, sometimes tucked under its end
-    const key = SONG_PHOTO[s.key]; const ar = PHOTO_AR[key];
-    const w = Math.max(18, Math.min(34, 44 * ar));
+    // the song's cover on the open side of its strip, sometimes tucked under its end
+    const w = 26 + jit(i, 0, 6);
     const px = side === "L" ? 100 - w - 2 + jit(i, -5, 5) : -4 + jit(i, 0, 6);
-    const photo = photoEl(key, px.toFixed(1), (y - 6 + jit(i + 3, -2, 6)).toFixed(1), w.toFixed(1), ROTS[(i + 5) % ROTS.length], CUTS[i % CUTS.length], 1, i % 4 === 2 ? "dots" : "");
-    photo.classList.add("dyn"); board.append(photo);
+    const cover = coverEl(s.key, px.toFixed(1), (y - 6 + jit(i + 3, -2, 6)).toFixed(1), w.toFixed(1), ROTS[(i + 5) % ROTS.length] / 2, 1);
+    cover.classList.add("dyn"); board.append(cover);
     // spill past the poster edges every few strips; only seen on wide screens
     if (i % 4 === 1) {
       const sk = SPILL[Math.floor(i / 4) % SPILL.length];
@@ -507,10 +670,10 @@ function showSong(s) {
   const title = $("#songTitle"); title.textContent = s.title; title.lang = JA_RE.test(s.title) ? "ja" : "en";
   const sub = s.sub && !isZhText(s.sub) ? s.sub : "";
   $("#songSub").textContent = sub ? `Fujii Kaze · ${sub}` : "Fujii Kaze";
-  const thumb = $("#songThumb"); const pk = SONG_PHOTO[s.key];
-  thumb.src = `img/${pk}.jpg`; thumb.className = "s-thumb" + (DUO.has(pk) ? " duo" : "");
+  const thumb = $("#songThumb"); thumb.className = "s-thumb cover"; setCover(thumb, s.key);
   $("#tgRo").hidden = !JA_RE.test(getRec(s.key).raw);
-  renderStudy(getRec(s.key));
+  state.line = null; state.cal = false; document.body.classList.remove("cal-on"); loadCal(s.key);
+  setVideo(srcOf(s.key));
   refreshSong(true);
   window.scrollTo(0, 0);
 }
@@ -520,36 +683,19 @@ function refreshSong(force) {
   const rec = getRec(s.key);
   $("#lyrics").hidden = false;
   if (force || rec !== lastRenderedRec) renderLyrics(s, rec);
-  $("#spotBtn").href = spotifyUrl(s, rec);
-  $("#tgRo").setAttribute("aria-pressed", String(state.showRo));
-  $("#tgZh").setAttribute("aria-pressed", String(state.showZh));
-  $("#speedBtn").textContent = state.rate.toFixed(1) + "×";
-  renderStatus();
-}
-function renderStudy(rec) {
-  const box = $("#studyContent"); box.replaceChildren();
-  const p = el("p"); p.textContent = rec.summary; box.append(p);
-  const list = el("ul");
-  rec.notes.forEach(note => {const li=el("li"); li.textContent=note; list.append(li);});
-  box.append(list);
-  const hint=el("p","hint"); hint.textContent="依你提供的歌詞解析；保留原文拼寫。詩意與人物指涉容許不同解讀。點日文詞語可看讀音與詞義，點播放鍵可聽整句。"; box.append(hint);
-  $("#study").open=false;
+  recalcWindows(); decorate(); renderCalControls(); renderCalBar(); renderTune();
+  $("#coverLink").href = spotifyUrl(s, rec);
+  renderSrcSwitch(); renderAlignBar();
 }
 
-// The song's own share link when one was saved, otherwise a Spotify search for it.
+// The song's verified track link, otherwise a Spotify search for it.
 const SPOTIFY_RE = /^https:\/\/open\.spotify\.com\/\S+$/;
 function spotifyUrl(s, rec) {
-  if (rec && typeof rec.spotify === "string" && SPOTIFY_RE.test(rec.spotify)) return rec.spotify;
+  const m = mediaOf(s.key);
+  for (const link of [m && m.spotify, rec && rec.spotify]) if (typeof link === "string" && SPOTIFY_RE.test(link)) return link;
   return "https://open.spotify.com/search/" + encodeURIComponent(`${s.title} Fujii Kaze`);
 }
 
-function renderStatus() {
-  const rec = getRec(state.view);
-  $("#status").hidden = false;
-  $("#stDot").className = "dot idle";
-  $("#stBtn").hidden = true;
-  $("#stMsg").textContent = "解析已收錄 · " + parseLyrics(rec.raw).filter(Boolean).length + " 句" + (typeof speechSynthesis === "undefined" ? " · 此瀏覽器不支援朗讀" : " · 點日文詞語查看解釋");
-}
 
 function renderLyrics(s, rec) {
   lastRenderedRec = rec;
@@ -562,7 +708,7 @@ function renderLyrics(s, rec) {
     if (!text) { const g = el("li", "gap"); g.setAttribute("aria-hidden", "true"); ol.append(g); continue; }
     const n = state.lines.length; const u = rec.uniq.indexOf(text); const a = u >= 0 ? rec.ann[u] : null;
     state.lines.push({ text, u });
-    const li = el("li", "ln" + (a ? "" : running ? " pending" : "")); li.dataset.n = n;
+    const li = el("li", "ln" + (a ? "" : running ? " pending" : "")); li.dataset.n = n; li.tabIndex = 0;
     const body = el("div", "ln-body");
     const src = el("p", "ln-src"); src.lang = lineLang(s, text);
     const split = !!(a && a.tk && a.tk.length && JA_RE.test(text));
@@ -587,8 +733,7 @@ function renderLyrics(s, rec) {
     } else if (running) {
       const zh = el("p", "ln-zh"); zh.textContent = "· · ·"; body.append(zh);
     }
-    const play = el("button", "ln-play"); play.type = "button"; play.setAttribute("aria-label", "朗讀這句"); play.innerHTML = PLAY_SVG; play.disabled = !("speechSynthesis" in window);
-    li.append(body, play); ol.append(li);
+    li.append(body); ol.append(li);
   }
   if (state.speaking >= 0) markSpeaking(state.speaking);
   if (state.sel) {
@@ -597,21 +742,29 @@ function renderLyrics(s, rec) {
   }
 }
 
+// Tap a line: the original plays from its start, and it is lit as the line being sung (nothing else stays lit).
+// Tap a word: its tip and spoken reading. In timing mode the buttons under a line act on that line.
 $("#lyrics").addEventListener("click", (e) => {
   const li = e.target.closest(".ln"); if (!li) return;
-  const n = Number(li.dataset.n); const w = e.target.closest(".w");
+  const n = Number(li.dataset.n);
+  const cb = e.target.closest("[data-cal]"); if (cb) { calAction(n, cb.dataset.cal); return; }
+  if (e.target.closest(".ln-cal")) return;
+  const w = e.target.closest(".w");
   if (w) { tapWord(n, Number(w.dataset.ti), w); return; }
-  hideTip(); sayLine(n);
+  hideTip();
+  if (lineWindow(n)) playLine(n);
+  else if (!srcOf(state.view)) sayLine(n); // no original to play: read it aloud
+  else if (gated()) toast("這支影片還沒對齊，請先按上方的「對齊」。");
+  else toast(state.cal ? "這句還沒有時間：播放到它開唱時按「開始」。" : "這句還沒對到時間，可在「調整 › 時間校準」裡標記。");
 });
 $("#lyrics").addEventListener("keydown", (e) => {
+  if (e.key !== "Enter" && e.key !== " ") return;
   const w = e.target.closest && e.target.closest(".w");
-  if (w && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); w.click(); }
+  if (w) { e.preventDefault(); w.click(); }
+  else if (e.target.classList.contains("ln")) { e.preventDefault(); e.target.querySelector(".ln-body").click(); }
 });
-$("#tgRo").addEventListener("click", () => { state.showRo = !state.showRo; store.set("kaze.ro", state.showRo); $("#tgRo").setAttribute("aria-pressed", String(state.showRo)); $("#lyrics").classList.toggle("hide-ro", !state.showRo); });
-$("#tgZh").addEventListener("click", () => { state.showZh = !state.showZh; store.set("kaze.zh", state.showZh); $("#tgZh").setAttribute("aria-pressed", String(state.showZh)); $("#lyrics").classList.toggle("hide-zh", !state.showZh); });
-$("#speedBtn").addEventListener("click", () => { state.rate = RATES[(RATES.indexOf(state.rate) + 1) % RATES.length]; store.set("kaze.rate", state.rate); $("#speedBtn").textContent = state.rate.toFixed(1) + "×"; });
 
-/* ---------- word tip: tap a word to hear it and see romaji · part of speech · meaning ---------- */
+/* ---------- word tip: tap a chunk to hear it and see its reading, meaning and parts ---------- */
 function tapWord(n, ti, wEl) {
   const s = songByKey(state.view); const rec = getRec(s.key); const L = state.lines[n];
   const a = L && rec ? rec.ann[L.u] : null; const t = a && a.tk ? a.tk[ti] : null;
@@ -621,7 +774,20 @@ function tapWord(n, ti, wEl) {
   state.sel = { n, ti };
   markSpeaking(-1);
   speak(t.k || t.t, t.p === "en" ? "en" : "ja");
-  $("#tipText").textContent = [t.k, t.r, POS_ZH[t.p] || "其他", t.m].filter(Boolean).join(" · ");
+  $("#tipK").textContent = t.k || t.t;
+  // Songs with the newer word notes (tipV 2) list a chunk's parts and tag only 慣用語 / 口語 / 方言.
+  const v2 = rec.tipV >= 2;
+  const tag = v2 ? t.tag || "" : POS_ZH[t.p] || "其他";
+  $("#tipTag").textContent = tag; $("#tipTag").hidden = !tag;
+  $("#tipM").textContent = String(t.m || "").replace(/[；;]\s*慣用語$/, ""); // the tag already says it
+  const parts = $("#tipParts"); parts.replaceChildren();
+  if (v2 && Array.isArray(t.b) && t.b.length > 1) for (const [w, k, m] of t.b) {
+    const dt = el("dt"); dt.lang = "ja"; dt.textContent = w;
+    if (k) { const sm = el("small"); sm.textContent = k; dt.append(sm); }
+    const dd = el("dd"); dd.textContent = m; parts.append(dt, dd);
+  }
+  parts.hidden = !parts.childElementCount;
+  $("#tipGText").textContent = v2 && t.g ? t.g : ""; $("#tipG").hidden = !(v2 && t.g);
   $("#tip").hidden = false;
   tipFor = wEl;
   placeTip();
@@ -635,7 +801,9 @@ function placeTip() {
   if (r.bottom < 0 || r.top > window.innerHeight) { hideTip(); return; }
   const tw = tip.offsetWidth, th = tip.offsetHeight;
   const left = Math.max(12, Math.min(window.innerWidth - tw - 12, r.left + r.width / 2 - tw / 2));
-  let top = r.top - th - 10; const below = top < 8;
+  const ceil = (yt.id ? $("#yt").getBoundingClientRect().bottom : 0) + 8;
+  const floor = $("#dock").hidden ? window.innerHeight : $("#dock").getBoundingClientRect().top + 28;
+  let top = r.top - th - 10; const below = top < ceil && floor - r.bottom > r.top - ceil;
   if (below) top = r.bottom + 10;
   tip.style.left = left + "px"; tip.style.top = top + "px";
   tip.style.setProperty("--ax", (r.left + r.width / 2 - left) + "px");
@@ -667,12 +835,12 @@ function pickVoice(lang) {
 }
 function speak(text, lang, done) {
   if (!synth) return;
+  ytPause(); // the device voice never talks over the original; the song does not resume by itself
   const my = ++speakToken;
   try { synth.cancel(); } catch (e) {}
   const u = new SpeechSynthesisUtterance(text);
   u.lang = lang === "ja" ? "ja-JP" : "en-US";
   const v = pickVoice(lang); if (v) u.voice = v;
-  u.rate = state.rate;
   u.onend = u.onerror = () => { if (my === speakToken && done) done(); };
   currentUtter = u;
   synth.speak(u);
@@ -681,8 +849,8 @@ function speak(text, lang, done) {
 function stopSpeech() { speakToken++; markSpeaking(-1); if (synth) { try { synth.cancel(); } catch (e) {} } }
 function markSpeaking(n) {
   state.speaking = n;
-  document.querySelectorAll(".ln.now").forEach((x) => x.classList.remove("now"));
-  if (n >= 0) { const li = document.querySelector(`.ln[data-n="${n}"]`); if (li) li.classList.add("now"); }
+  document.querySelectorAll(".ln.say").forEach((x) => x.classList.remove("say"));
+  if (n >= 0) { const li = lineEl(n); if (li) li.classList.add("say"); }
 }
 function sayLine(n) {
   const s = songByKey(state.view); const L = state.lines[n]; if (!L) return;
@@ -690,10 +858,362 @@ function sayLine(n) {
   speak(L.text, lineLang(s, L.text), () => { if (state.speaking === n) markSpeaking(-1); });
 }
 
+/* ---------- line timing: published candidates + this browser's corrections ---------- */
+// Corrections are kept per song, video and lyric version, so a different video or edited lyrics never reuse them.
+// Stored times are before the song-wide offset `o`; `l[n]` holds a line's own start/end and whether it was confirmed.
+const cal = { key: null, data: { l: {} } };
+const round2 = (t) => Math.round(t * 100) / 100;
+const lineEl = (n) => document.querySelector(`.ln[data-n="${n}"]`);
+const lineWindow = (n) => state.win[n] || null;
+function fmt(t) { t = round2(Math.max(0, t)); const m = Math.floor(t / 60); return m + ":" + (t - m * 60).toFixed(2).padStart(5, "0"); }
+function timingOf(key) { const m = mediaOf(key); return m && m.timing ? m.timing : null; }
+// The video that plays the original: the studio audio upload or the official video (MV), as last chosen.
+let srcPref = store.get("kaze.src", "audio") === "mv" ? "mv" : "audio";
+function sourcesOf(key) { const m = mediaOf(key); return m && Array.isArray(m.sources) ? m.sources : []; }
+function srcOf(key) { const list = sourcesOf(key); return list.find((x) => x.kind === srcPref) || list[0] || null; }
+function loadCal(key) {
+  const src = srcOf(key); const t = timingOf(key);
+  cal.key = src ? `kaze.timing.${key}.${src.id}.${t ? t.lyricsSha : "none"}` : null;
+  const d = cal.key ? store.get(cal.key, null) : null;
+  cal.data = d && typeof d === "object" && d.l && typeof d.l === "object" ? d : { l: {} };
+}
+// Studio times shift by one song-wide offset onto the video: the listener's own, else the published one.
+// A video without a published offset (an MV with a different intro) needs one alignment before lines play.
+function songOffset() { const src = srcOf(state.view); return typeof cal.data.o === "number" ? cal.data.o : src && typeof src.offset === "number" ? src.offset : 0; }
+function gated() { const src = srcOf(state.view); return !!(src && typeof src.offset !== "number" && typeof cal.data.o !== "number"); }
+function recalcWindows() {
+  const t = timingOf(state.view);
+  // Published times count only when they were made for exactly these lyric lines.
+  const pub = t && t.lines.length === state.lines.length ? t.lines : [];
+  const off = songOffset(); const shut = gated();
+  state.base = state.lines.map((_, n) => {
+    const o = cal.data.l[n] || {}; const p = pub[n];
+    return { s: typeof o.s === "number" ? o.s : p ? p[0] : null, e: typeof o.e === "number" ? o.e : p ? p[1] : null, pub: !!p };
+  });
+  state.win = state.base.map((b, n) => {
+    if (shut || b.s == null) return null;
+    let e = b.e != null && b.e > b.s ? b.e : null;
+    // A start set by hand without a usable end runs to the next line that starts later.
+    for (let k = n + 1; e == null && k < state.base.length; k++) if (state.base[k].s != null && state.base[k].s > b.s) e = state.base[k].s;
+    return e == null ? null : { s: b.s + off, e: Math.max(e, b.s + 0.3) + off };
+  });
+}
+function lineStatus(n) {
+  const o = cal.data.l[n];
+  if (o && o.ok) return "ok";
+  if (o && (typeof o.s === "number" || typeof o.e === "number")) return "edit";
+  return state.base[n] && state.base[n].pub ? "cand" : "none";
+}
+function saveCal() {
+  if (cal.key) store.set(cal.key, cal.data);
+  recalcWindows(); decorate(); renderCalControls(); renderCalBar(); renderAlignBar();
+}
+
+/* ---------- line cards: only the line being sung is lit ---------- */
+function decorate() {
+  if (!state.view) return;
+  document.querySelectorAll("#lyrics .ln").forEach((li) => li.classList.toggle("now", Number(li.dataset.n) === yt.now));
+}
+let toastTimer = 0;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => (t.hidden = true), 2800); }
+
+/* ---------- tune sheet: display and reading settings, and the way into timing mode ---------- */
+function openSheet(open) { hideTip(); $("#tuneSheet").hidden = !open; $("#scrim").hidden = !open; if (open) renderTune(); }
+const closeSheets = () => openSheet(false);
+function renderTune() {
+  $("#tgRo").setAttribute("aria-checked", String(state.showRo));
+  $("#tgZh").setAttribute("aria-checked", String(state.showZh));
+  $("#calBtn").hidden = !srcOf(state.view);
+}
+$("#tgRo").addEventListener("click", () => { state.showRo = !state.showRo; store.set("kaze.ro", state.showRo); $("#lyrics").classList.toggle("hide-ro", !state.showRo); renderTune(); });
+$("#tgZh").addEventListener("click", () => { state.showZh = !state.showZh; store.set("kaze.zh", state.showZh); $("#lyrics").classList.toggle("hide-zh", !state.showZh); renderTune(); });
+$("#calBtn").addEventListener("click", () => { closeSheets(); setCal(true); });
+$("#scrim").addEventListener("click", closeSheets);
+document.querySelectorAll(".sheet [data-close]").forEach((b) => b.addEventListener("click", closeSheets));
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#tuneSheet").hidden) closeSheets(); });
+
+/* ---------- timing mode: buttons on each line; 開始 / 結束 take the video's current time ---------- */
+function setCal(on) {
+  state.cal = on; hideTip(); document.body.classList.toggle("cal-on", on);
+  renderCalControls(); renderCalBar(); renderAlignBar(); updateDock();
+  // Opening on a video that still needs aligning, the first step is not obvious: show how right away.
+  setHelp(on && gated());
+  // Until the video is aligned, the first sung line is the only place to act; bring it into view.
+  if (on && gated()) { const li = lineEl(firstTimed()); if (li) li.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" }); }
+}
+function calButton(act, label, cls) { const b = el("button", cls || ""); b.type = "button"; b.dataset.cal = act; b.textContent = label; return b; }
+function renderCalControls() {
+  document.querySelectorAll("#lyrics .ln-cal").forEach((x) => x.remove());
+  if (!state.cal || !state.view || !srcOf(state.view)) return;
+  const first = firstTimed(); const shut = gated();
+  document.querySelectorAll("#lyrics .ln").forEach((li) => {
+    const n = Number(li.dataset.n);
+    if (shut && n !== first) return;
+    const row = el("div", "ln-cal");
+    if (n === first) row.append(calButton("align", "對齊整首", "main"));
+    else if (state.base[n] && state.base[n].s != null) row.append(calButton("align-from", "從這句起對齊"));
+    if (!shut) {
+      if (!state.win[n]) { const note = el("span"); note.textContent = "還沒有時間"; row.prepend(note); }
+      row.append(calButton("start", "開始"), calButton("end", "結束"));
+    }
+    li.append(row);
+  });
+}
+function renderCalBar() {
+  const on = state.cal && !!srcOf(state.view);
+  $("#calBar").hidden = !on; if (!on) { setHelp(false); return; }
+  $("#calClear").disabled = !Object.keys(cal.data.l).length && typeof cal.data.o !== "number";
+  if (!$("#calHelp").hidden) fillHelp();
+}
+// The help is a short numbered how-to; before the video is aligned it only explains that first step.
+function fillHelp() {
+  const box = $("#calHelp"); box.replaceChildren();
+  const n = firstTimed(); const first = n >= 0 ? state.lines[n].text : "第一句";
+  const steps = gated()
+    ? ["按 ▶ 播放影片（可以先拖時間軸到第一句前面一點）。", `聽到「${first}」開唱的瞬間，按那句的「對齊整首」。`, "對齊後，每一句才會出現「開始」「結束」。"]
+    : ["拖時間軸到要改的句子前面一點，按 ▶ 播放。", "聽到開唱就按那句的「開始」，唱完按「結束」。", "從某句開始整段都偏掉（例如 MV 中途剪接），按那句的「從這句起對齊」。"];
+  const ol = el("ol"); for (const t of steps) { const li = el("li"); li.textContent = t; ol.append(li); }
+  const note = el("p"); note.textContent = gated() ? "之後想重新對齊，一樣在第一句按「對齊整首」。" : "第一句的「對齊整首」會讓整首一起移動。";
+  box.append(ol, note);
+}
+function setHelp(open) {
+  $("#calHelp").hidden = !open; $("#calHelpBtn").setAttribute("aria-expanded", String(open));
+  if (open) fillHelp();
+}
+function calAction(n, act) {
+  if (!videoStarted()) return;
+  if (act === "align") { if (alignSong(n)) toast("已對齊整首"); return; }
+  if (act === "align-from") { if (alignFrom(n)) toast("已從這句起重新對齊"); return; }
+  const now = round2(Math.max(0, ytTime() - songOffset()));
+  const o = cal.data.l[n] || (cal.data.l[n] = {});
+  if (act === "start") {
+    o.s = now; delete o.ok;
+    // The line before ends where this one starts, when it ran past it or had no end.
+    const pb = state.base[n - 1];
+    if (pb && pb.s != null && pb.s < now && (pb.e == null || pb.e > now)) { const po = cal.data.l[n - 1] || (cal.data.l[n - 1] = {}); po.e = now; delete po.ok; }
+    saveCal(); toast("已設定這句的開始");
+  } else if (act === "end") {
+    const st = state.base[n] && state.base[n].s;
+    if (st == null || now <= st) { if (!Object.keys(o).length) delete cal.data.l[n]; toast("先在這句開唱時按「開始」"); return; }
+    o.e = now; delete o.ok; saveCal(); toast("已設定這句的結束");
+  }
+}
+function restoreDefaults() { cal.data = { l: {} }; store.del(cal.key); saveCal(); toast("已還原預設值"); }
+$("#calHelpBtn").addEventListener("click", () => setHelp($("#calHelp").hidden));
+document.addEventListener("pointerdown", (e) => { if (!$("#calHelp").hidden && !e.target.closest("#calHelp, #calHelpBtn")) setHelp(false); });
+$("#calDone").addEventListener("click", () => setCal(false));
+$("#calClear").addEventListener("click", () => {
+  const d = $("#resetDialog");
+  if (typeof d.showModal !== "function") { if (confirm("還原預設值？這首歌在這支影片上調整過的時間會全部清除。")) restoreDefaults(); return; }
+  d.returnValue = ""; d.showModal();
+});
+$("#resetDialog").addEventListener("close", () => { if ($("#resetDialog").returnValue === "ok") restoreDefaults(); });
+
+/* ---------- aligning a video: one tap while the song plays ---------- */
+const firstTimed = () => state.base.findIndex((x) => x.s != null);
+function alignHint() {
+  const src = srcOf(state.view); const n = firstTimed();
+  return `第一次用這支${src && src.kind === "mv" ? " MV " : "影片"}要對齊一次：先按影片的 ▶ 播放，聽到「${n >= 0 ? state.lines[n].text : "第一句"}」開唱的瞬間按「對齊」。`;
+}
+function videoStarted() { if (yt.playing || ytTime() > 0) return true; toast("先按 ▶ 播放，在這句開唱的瞬間再按。"); return false; }
+// Shift the whole song so line n (by default the first timed one) starts at the video's current time.
+function alignSong(n) {
+  if (n == null || n < 0 || !state.base[n] || state.base[n].s == null) n = firstTimed();
+  if (n < 0 || !videoStarted()) return false;
+  cal.data.o = round2(ytTime() - state.base[n].s); saveCal();
+  return true;
+}
+// An MV cut partway through: move line n and every line after it so n starts now; earlier lines stay.
+function alignFrom(n) {
+  if (!state.base[n] || state.base[n].s == null || !videoStarted()) return false;
+  const delta = ytTime() - songOffset() - state.base[n].s;
+  for (let k = n; k < state.base.length; k++) {
+    const b = state.base[k]; if (b.s == null) continue;
+    const o = cal.data.l[k] || (cal.data.l[k] = {});
+    o.s = round2(b.s + delta); if (b.e != null) o.e = round2(b.e + delta); delete o.ok;
+  }
+  saveCal();
+  return true;
+}
+let alignedUntil = 0;
+function renderAlignBar() {
+  const src = srcOf(state.view); const show = !!src && !state.cal && (gated() || Date.now() < alignedUntil);
+  $("#alignBar").hidden = !show; if (!show) return;
+  const done = !gated();
+  $("#alignTip").textContent = done ? `已對齊（整首偏移 ${songOffset() >= 0 ? "+" : "−"}${Math.abs(songOffset()).toFixed(2)} 秒）。點句子就能聽；不準的話可在「調整 › 時間校準」裡微調。` : alignHint();
+  $("#alignBtn").hidden = done;
+}
+/* ---------- audio / MV switch: shown when a song has both; the choice carries over to other songs ---------- */
+function renderSrcSwitch() {
+  const kinds = sourcesOf(state.view).map((x) => x.kind); const cur = srcOf(state.view);
+  $("#srcSwitch").hidden = !(kinds.includes("audio") && kinds.includes("mv"));
+  $("#srcSwitch").querySelectorAll("[data-src]").forEach((b) => b.setAttribute("aria-pressed", String(!!cur && b.dataset.src === cur.kind)));
+}
+$("#srcSwitch").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-src]"); if (!b || b.getAttribute("aria-pressed") === "true") return;
+  srcPref = b.dataset.src; store.set("kaze.src", srcPref);
+  // Each video keeps its own alignment and corrections.
+  ytPause(); loadCal(state.view); setVideo(srcOf(state.view));
+  recalcWindows(); decorate(); renderCalControls(); renderCalBar(); renderSrcSwitch(); renderAlignBar();
+});
+$("#alignBtn").addEventListener("click", () => {
+  if (!alignSong()) return;
+  alignedUntil = Date.now() + 6000; renderAlignBar();
+  setTimeout(renderAlignBar, 6100);
+});
+/* ---------- original vocals: YouTube IFrame player, jump to a line ---------- */
+// Lines start a touch early so the seek does not clip the first syllable.
+const PREROLL = 0.12;
+const yt = { api: null, player: null, ready: false, id: null, state: -1, unlocked: false, playing: false, pending: null, now: -1, stopAt: null, quietUntil: 0, noteTimer: 0 };
+function ytApi() {
+  if (!yt.api) yt.api = new Promise((resolve) => {
+    window.onYouTubeIframeAPIReady = () => resolve(window.YT);
+    const sc = document.createElement("script"); sc.src = "https://www.youtube.com/iframe_api"; sc.onerror = () => resolve(null);
+    document.head.append(sc);
+  });
+  return yt.api;
+}
+async function setVideo(src) {
+  const id = src ? src.id : null;
+  yt.pending = null; yt.stopAt = null; yt.now = -1; hideYtNote(); updateDock();
+  $("#yt").hidden = !id; $("#song").classList.toggle("yt-off", !id);
+  if (!id) { ytPause(); yt.id = null; return; }
+  if (yt.id === id) return;
+  yt.id = id; yt.playing = false;
+  const YT = await ytApi();
+  if (!YT) { showYtNote("YouTube 播放器載入失敗，請確認網路後重新整理。"); return; }
+  if (yt.id !== id) return;
+  if (yt.player) { if (yt.ready) yt.player.cueVideoById(id); return; }
+  const vars = { playsinline: 1, rel: 0 };
+  if (/^https?:/.test(location.origin)) vars.origin = location.origin;
+  yt.player = new YT.Player("ytPlayer", {
+    videoId: id, playerVars: vars,
+    events: {
+      onReady: () => {
+        yt.ready = true; applyRate();
+        if (yt.id && yt.id !== id) yt.player.cueVideoById(yt.id);
+        if (yt.pending != null) { const t = yt.pending; yt.pending = null; seekPlay(t); }
+      },
+      onStateChange: onYtState,
+      onError: () => showYtNote("這支影片目前無法在此播放，可改用 Spotify 連結聽原曲。"),
+    },
+  });
+}
+function onYtState(e) {
+  const S = window.YT.PlayerState;
+  yt.state = e.data;
+  if (e.data === S.PLAYING) {
+    yt.playing = true; yt.unlocked = true; clearTimeout(yt.noteTimer); hideYtNote(); stopSpeech(); applyRate();
+    if (yt.pending != null) { const t = yt.pending; yt.pending = null; seekTo(t); }
+  } else if (e.data !== S.BUFFERING) yt.playing = false;
+  updateDock();
+}
+function seekTo(t) { yt.quietUntil = performance.now() + 450; try { yt.player.seekTo(Math.max(0, t - PREROLL), true); } catch (e) {} }
+function seekPlay(t) {
+  if (!yt.player || !yt.ready) { yt.pending = t; return; }
+  seekTo(t);
+  try { yt.player.playVideo(); } catch (e) {}
+  clearTimeout(yt.noteTimer);
+  // iPhone lets an embedded video start only from a tap on the player itself; after that, lines play directly.
+  // Buffering means the start was accepted; a blocked start stays unstarted, cued or paused.
+  if (!yt.unlocked) yt.noteTimer = setTimeout(() => { if (yt.state !== 1 && yt.state !== 3) { yt.pending = t; showYtNote("iPhone 需要先點一次影片中的 ▶，之後點句子就會直接播放。"); } }, 1500);
+}
+function ytPause() { if (yt.player && yt.ready && yt.playing) { try { yt.player.pauseVideo(); } catch (e) {} } }
+function ytTime() { try { return yt.player && yt.ready ? yt.player.getCurrentTime() || 0 : 0; } catch (e) { return 0; } }
+// once: play just this line and pause at its end (checking a timing).
+function playLine(n, once) {
+  const w = lineWindow(n); if (!w) return;
+  yt.stopAt = once ? w.e : null;
+  seekPlay(w.s); setNow(n); decorate(); updateDock();
+}
+function lineAt(t) {
+  for (let n = 0; n < state.win.length; n++) { const w = state.win[n]; if (w && t >= w.s - PREROLL && t < w.e) return n; }
+  return -1;
+}
+function lineAtOrBefore(t) {
+  let hit = -1;
+  for (let n = 0; n < state.win.length; n++) { const w = state.win[n]; if (w && w.s - PREROLL <= t) hit = n; }
+  return hit >= 0 ? hit : state.win.findIndex(Boolean);
+}
+function setNow(n) {
+  if (n === yt.now) return;
+  yt.now = n; decorate();
+  follow(n);
+}
+
+/* ---------- lyrics follow the song: the line being sung glides to a reading spot under the video ---------- */
+// Scrolling by hand pauses the following for a moment; seeking with the timeline or ±5s follows at once.
+let followHold = 0;
+["wheel", "touchmove"].forEach((ev) => window.addEventListener(ev, () => { followHold = Date.now() + 3000; }, { passive: true }));
+function follow(n, force) {
+  if (n == null || n < 0 || state.cal || !state.view || (!force && Date.now() < followHold)) return;
+  const li = lineEl(n); if (!li) return;
+  const top = yt.id ? Math.max(0, $("#yt").getBoundingClientRect().bottom) : 0;
+  const bottom = window.innerHeight - ($("#dock").hidden ? 0 : $("#dock").offsetHeight);
+  const dy = li.getBoundingClientRect().top - (top + (bottom - top) * 0.28);
+  if (Math.abs(dy) > 4) window.scrollBy({ top: dy, behavior: reduceMotion ? "auto" : "smooth" });
+}
+// Runs while paused too, so dragging YouTube's own timeline also brings the lyrics along.
+setInterval(() => {
+  if (!state.view || !yt.ready || !yt.id) return;
+  const t = ytTime(); const settled = performance.now() > yt.quietUntil;
+  if (yt.playing && settled && yt.stopAt != null && t >= yt.stopAt) { yt.stopAt = null; ytPause(); }
+  if (settled) setNow(lineAt(t));
+  updateDock(t);
+}, 100);
+
+function showYtNote(msg) { $("#ytNote").textContent = msg; $("#ytNote").hidden = false; updateDock(); }
+function hideYtNote() { $("#ytNote").hidden = true; }
+
+/* ---------- bottom player: timeline, speed, −5s, play / pause, +5s, tune ---------- */
+const VRATES = [1, 0.75, 0.5];
+let vrate = VRATES.includes(store.get("kaze.vrate", 1)) ? store.get("kaze.vrate", 1) : 1;
+let seeking = false, seekLine = -1;
+const clock = (t) => { t = Math.max(0, Math.floor(t)); return Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0"); };
+const ytDur = () => { try { return yt.player && yt.ready ? yt.player.getDuration() || 0 : 0; } catch (e) { return 0; } };
+function applyRate() { try { if (yt.player && yt.ready && yt.player.getPlaybackRate() !== vrate) yt.player.setPlaybackRate(vrate); } catch (e) {} }
+function updateDock(t) {
+  const show = !!(state.view && yt.id);
+  $("#dock").hidden = !show; if (!show) return;
+  const play = $("#dkPlay"); const mode = yt.playing ? "pause" : "play";
+  if (play.dataset.mode !== mode) { play.dataset.mode = mode; play.innerHTML = yt.playing ? PAUSE_SVG : PLAY_SVG; play.setAttribute("aria-label", yt.playing ? "暫停" : "播放"); }
+  const rate = $("#dkRate"); if (rate.textContent !== vrate + "x") { rate.textContent = vrate + "x"; rate.setAttribute("aria-label", `播放速度 ${vrate} 倍`); }
+  const dur = ytDur(); const bar = $("#dkBar");
+  if (t == null) t = ytTime();
+  if (!seeking) { const v = dur ? Math.round((t / dur) * 1000) : 0; if (Number(bar.value) !== v) bar.value = v; bar.style.setProperty("--p", v / 10 + "%"); }
+  const cur = clock(seeking ? (bar.value / 1000) * dur : t); if ($("#dkCur").textContent !== cur) $("#dkCur").textContent = cur;
+  const total = clock(dur); if ($("#dkDur").textContent !== total) $("#dkDur").textContent = total;
+}
+// Jump the video, then bring the lyrics to the line at that point right away.
+function jumpTo(t, final) {
+  if (!yt.ready) return;
+  t = Math.max(0, Math.min(t, ytDur() || t));
+  yt.quietUntil = performance.now() + 450;
+  try { yt.player.seekTo(t, final); } catch (e) {}
+  setNow(lineAt(t));
+  const n = lineAtOrBefore(t); if (final || n !== seekLine) { seekLine = n; follow(n, true); }
+}
+$("#dkBar").addEventListener("input", () => {
+  seeking = true; const bar = $("#dkBar"); bar.style.setProperty("--p", bar.value / 10 + "%");
+  jumpTo((bar.value / 1000) * ytDur(), false); updateDock();
+});
+$("#dkBar").addEventListener("change", () => { followHold = 0; jumpTo(($("#dkBar").value / 1000) * ytDur(), true); seeking = false; seekLine = -1; updateDock(); });
+$("#dkBack").addEventListener("click", () => { followHold = 0; jumpTo(ytTime() - 5, true); });
+$("#dkFwd").addEventListener("click", () => { followHold = 0; jumpTo(ytTime() + 5, true); });
+$("#dkRate").addEventListener("click", () => { vrate = VRATES[(VRATES.indexOf(vrate) + 1) % VRATES.length]; store.set("kaze.vrate", vrate); applyRate(); updateDock(); });
+$("#dkTune").addEventListener("click", () => openSheet(true));
+function togglePlay() {
+  if (yt.playing) { ytPause(); return; }
+  if (!yt.unlocked) seekPlay(ytTime() + PREROLL); // goes through the iPhone first-tap check
+  else { try { yt.player.playVideo(); } catch (e) {} }
+}
+$("#dkPlay").addEventListener("click", togglePlay);
+
 /* ---------- routing ---------- */
 function showCatalog() {
   stopSpeech(); hideTip();
-  state.view = null; state.lines = [];
+  ytPause(); yt.stopAt = null; closeSheets(); setCal(false);
+  state.view = null; state.lines = []; updateDock();
   document.body.className = "";
   $("#song").hidden = true; $("#catalog").hidden = false;
   window.scrollTo(0, catalogY);
@@ -706,6 +1226,7 @@ function route() {
   if (s) showSong(s); else showCatalog();
 }
 
+document.querySelectorAll("[data-ic]").forEach((n) => { n.outerHTML = ic(n.dataset.ic); });
 renderHead();
 const savedFilter = store.get("kaze.filter", "all");
 setFilter(["all", "en", "ja"].includes(savedFilter) ? savedFilter : "all");

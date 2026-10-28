@@ -1,0 +1,630 @@
+{
+ "casket-girl": {
+  "title": "Casket Girl",
+  "lines": 60,
+  "sources": [
+   {
+    "id": "cf2krp4Gl9E",
+    "kind": "audio",
+    "title": "Casket Girl",
+    "offset": 0
+   },
+   {
+    "id": "gFOu5r-OuQ4",
+    "kind": "mv",
+    "title": "Casket Girl",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 34071868,
+   "album": "Billboard JAPAN Hot 100 (2025-09-24)",
+   "duration": 245.0,
+   "timed": 60,
+   "low": [
+    [
+     51,
+     "Find a way to make it better",
+     0.78
+    ]
+   ],
+   "untimed": []
+  }
+ },
+ "its-alright": {
+  "title": "It's Alright",
+  "lines": 30,
+  "sources": [
+   {
+    "id": "UE3xC7W7u9I",
+    "kind": "audio",
+    "title": "It's Alright",
+    "offset": 0
+   },
+   {
+    "id": "HA3WzXw8vM8",
+    "kind": "mv",
+    "title": "It’s Alright",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 33079783,
+   "album": "Pre: Prema",
+   "duration": 203.0,
+   "timed": 26,
+   "low": [],
+   "untimed": [
+    [
+     13,
+     "Give it up, kama"
+    ],
+    [
+     14,
+     "Bring it on, Prema"
+    ],
+    [
+     28,
+     "Give it up, kama"
+    ],
+    [
+     29,
+     "Bring it on, Prema"
+    ]
+   ]
+  }
+ },
+ "i-need-u-back": {
+  "title": "I Need U Back",
+  "lines": 38,
+  "sources": [
+   {
+    "id": "O7-0WvsNFiA",
+    "kind": "audio",
+    "title": "I Need U Back",
+    "offset": 0
+   },
+   {
+    "id": "ud0lMojStCs",
+    "kind": "mv",
+    "title": "I Need U Back",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 24709697,
+   "album": "Prema",
+   "duration": 186.0,
+   "timed": 38,
+   "low": [
+    [
+     23,
+     "It wasn't nice I know but I learned a lot",
+     0.78
+    ]
+   ],
+   "untimed": []
+  }
+ },
+ "nan-nan": {
+  "title": "Nan-Nan",
+  "lines": 48,
+  "sources": [
+   {
+    "id": "V8KLgLrU280",
+    "kind": "audio",
+    "title": "Nan-Nan",
+    "offset": 0
+   },
+   {
+    "id": "Nt6ZwuVzOS4",
+    "kind": "mv",
+    "title": "Nan-Nan",
+    "offset": 5.38,
+    "offsetBasis": "LRCLIB records [36887790, 15844884] synced to this video"
+   }
+  ],
+  "lrclib": {
+   "id": 22876221,
+   "album": "Best of Fujii Kaze 2020-2024",
+   "duration": 320.64,
+   "timed": 48,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "shinunoga-e-wa": {
+  "title": "Shinunoga E-Wa",
+  "lines": 50,
+  "sources": [
+   {
+    "id": "3zh9Wb1KuW8",
+    "kind": "audio",
+    "title": "Shinunoga E-Wa",
+    "offset": 0
+   },
+   {
+    "id": "dawrQnvwMTY",
+    "kind": "mv",
+    "title": "Shinunoga E-Wa (Not a MV)",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 17865695,
+   "album": "unknown",
+   "duration": 185.0,
+   "timed": 39,
+   "low": [],
+   "untimed": [
+    [
+     0,
+     "Huh-ha"
+    ],
+    [
+     1,
+     "Hey"
+    ],
+    [
+     2,
+     "Hey, yeah, hey"
+    ],
+    [
+     31,
+     "Ayy, ah-dadan-eh"
+    ],
+    [
+     32,
+     "Ah-dan, da-dan, dobi-dobi-ooh"
+    ],
+    [
+     33,
+     "Babadan-ba, labada-ah"
+    ],
+    [
+     34,
+     "Badaba-dan, badaba-dan, baba ay"
+    ],
+    [
+     35,
+     "Ayy, badaba-dan ay"
+    ],
+    [
+     36,
+     "Balabalalalalabalalan-lan"
+    ],
+    [
+     37,
+     "Babadan-ba, lalalalalala"
+    ],
+    [
+     38,
+     "Balalan, nalalan, lalala yeah"
+    ]
+   ]
+  }
+ },
+ "garden": {
+  "title": "Garden",
+  "lines": 48,
+  "sources": [
+   {
+    "id": "53rIic2lvKc",
+    "kind": "audio",
+    "title": "Garden",
+    "offset": 0
+   },
+   {
+    "id": "vkPfKnUaq5k",
+    "kind": "mv",
+    "title": "Garden (Not a MV)",
+    "offset": 0,
+    "offsetBasis": "same length as the studio track"
+   }
+  ],
+  "lrclib": {
+   "id": 7227836,
+   "album": "Top Japan 2023",
+   "duration": 229.0,
+   "timed": 48,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "kirari": {
+  "title": "Kirari",
+  "lines": 37,
+  "sources": [
+   {
+    "id": "IFCDLIKSArs",
+    "kind": "audio",
+    "title": "Kirari",
+    "offset": 0
+   },
+   {
+    "id": "TcLLpZBWsck",
+    "kind": "mv",
+    "title": "Kirari",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 36072829,
+   "album": "Japan Top 50",
+   "duration": 227.0,
+   "timed": 36,
+   "low": [],
+   "untimed": [
+    [
+     29,
+     "Ah ah ah ah"
+    ]
+   ]
+  }
+ },
+ "hana": {
+  "title": "Hana",
+  "lines": 40,
+  "sources": [
+   {
+    "id": "SfPkl7lol7g",
+    "kind": "mv",
+    "title": "Hana",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 21333031,
+   "album": "Best of Fujii Kaze 2020-2024",
+   "duration": 246.699887,
+   "timed": 40,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "it-aint-over": {
+  "title": "It Ain't Over",
+  "lines": 36,
+  "sources": [
+   {
+    "id": "a2iohBRFrlc",
+    "kind": "audio",
+    "title": "It Ain't Over",
+    "offset": 0
+   },
+   {
+    "id": "BKFxq3D_dGU",
+    "kind": "mv",
+    "title": "It Ain’t Over",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 24025678,
+   "album": "Prema",
+   "duration": 299.492833,
+   "timed": 36,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "love-like-this": {
+  "title": "Love Like This",
+  "lines": 57,
+  "sources": [
+   {
+    "id": "jY_rYnvfKO0",
+    "kind": "audio",
+    "title": "Love Like This",
+    "offset": 0
+   },
+   {
+    "id": "RoY_ZoWe-eI",
+    "kind": "mv",
+    "title": "Love Like This",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 33886679,
+   "album": "Billboard JAPAN Hot 100 (2025-10-29)",
+   "duration": 260.0,
+   "timed": 56,
+   "low": [
+    [
+     5,
+     "I've been suffering",
+     0.73
+    ]
+   ],
+   "untimed": [
+    [
+     56,
+     "Never love like this"
+    ]
+   ]
+  }
+ },
+ "you": {
+  "title": "You",
+  "lines": 63,
+  "sources": [
+   {
+    "id": "x_aUuenkk30",
+    "kind": "audio",
+    "title": "You",
+    "offset": 0
+   },
+   {
+    "id": "s4UW__ysPEM",
+    "kind": "mv",
+    "title": "You",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 23969296,
+   "album": "Prema",
+   "duration": 281.766667,
+   "timed": 63,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "workin-hard": {
+  "title": "Workin' Hard",
+  "lines": 51,
+  "sources": [
+   {
+    "id": "CuuXh88pCeM",
+    "kind": "audio",
+    "title": "Workin' Hard",
+    "offset": 0
+   },
+   {
+    "id": "88wHgiUAKoI",
+    "kind": "mv",
+    "title": "Workin’ Hard",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 28003666,
+   "album": "Prema",
+   "duration": 242.0,
+   "timed": 51,
+   "low": [
+    [
+     38,
+     "All we gonna do is, all we gonna do is",
+     0.67
+    ],
+    [
+     39,
+     "To make you, make you feel alive",
+     0.78
+    ]
+   ],
+   "untimed": []
+  }
+ },
+ "damn": {
+  "title": "damn",
+  "lines": 47,
+  "sources": [
+   {
+    "id": "b-ll2MY1YsY",
+    "kind": "audio",
+    "title": "damn",
+    "offset": 0
+   },
+   {
+    "id": "yP7K2lXr6GA",
+    "kind": "mv",
+    "title": "damn",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 32214771,
+   "album": "LOVE ALL SERVE ALL",
+   "duration": 259.0,
+   "timed": 47,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "tabiji": {
+  "title": "Tabiji",
+  "lines": 43,
+  "sources": [
+   {
+    "id": "z8WaWyJDVjo",
+    "kind": "audio",
+    "title": "Tabiji",
+    "offset": 0
+   },
+   {
+    "id": "29p8FvT_puU",
+    "kind": "mv",
+    "title": "Tabiji",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 23391612,
+   "album": "Best of Fujii Kaze 2020-2024",
+   "duration": 277.0266669,
+   "timed": 43,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "michi-teyu-ku": {
+  "title": "満ちてゆく",
+  "lines": 37,
+  "sources": [
+   {
+    "id": "ptiK8U4WlSc",
+    "kind": "mv",
+    "title": "Michi Teyu Ku (Overflowing)",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 28003698,
+   "album": "Prema",
+   "duration": 315.0,
+   "timed": 35,
+   "low": [],
+   "untimed": [
+    [
+     35,
+     "Oh, ayy-ayy, ayy, ayy, ayy, ayy"
+    ],
+    [
+     36,
+     "Ayy, ayy, ayy, yeah-ooh"
+    ]
+   ]
+  }
+ },
+ "prema": {
+  "title": "Prema",
+  "lines": 43,
+  "sources": [
+   {
+    "id": "Qxp-TYiShH0",
+    "kind": "audio",
+    "title": "Prema",
+    "offset": 0
+   },
+   {
+    "id": "UJgPpzZcxGU",
+    "kind": "mv",
+    "title": "Prema",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 24517270,
+   "album": "Prema",
+   "duration": 262.840104,
+   "timed": 43,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "okay-goodbye": {
+  "title": "Okay, Goodbye",
+  "lines": 68,
+  "sources": [
+   {
+    "id": "EAtRDZQLsgk",
+    "kind": "audio",
+    "title": "Okay, Goodbye",
+    "offset": 0
+   }
+  ],
+  "lrclib": {
+   "id": 24029989,
+   "album": "Prema",
+   "duration": 231.0,
+   "timed": 68,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "matsuri": {
+  "title": "Matsuri",
+  "lines": 55,
+  "sources": [
+   {
+    "id": "HMqhXxH5-RQ",
+    "kind": "audio",
+    "title": "Matsuri",
+    "offset": 0
+   },
+   {
+    "id": "NwOvu-j_WjY",
+    "kind": "mv",
+    "title": "Matsuri",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 3698400,
+   "album": "Matsuri",
+   "duration": 226.0,
+   "timed": 55,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "hachiko": {
+  "title": "Hachikō",
+  "lines": 61,
+  "sources": [
+   {
+    "id": "QLAif0S_ud8",
+    "kind": "audio",
+    "title": "Hachikō",
+    "offset": 0
+   },
+   {
+    "id": "OodEsjZ88TQ",
+    "kind": "mv",
+    "title": "Hachikō",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 34564033,
+   "album": "夏の朝にききたいおしゃれな洋楽",
+   "duration": 271.0,
+   "timed": 61,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "forever-young": {
+  "title": "Forever Young",
+  "lines": 51,
+  "sources": [
+   {
+    "id": "tU953HcYdxU",
+    "kind": "audio",
+    "title": "Forever Young",
+    "offset": 0
+   }
+  ],
+  "lrclib": {
+   "id": 24040288,
+   "album": "Prema",
+   "duration": 353.671837,
+   "timed": 51,
+   "low": [],
+   "untimed": []
+  }
+ },
+ "masshiro": {
+  "title": "真っ白",
+  "lines": 26,
+  "sources": [
+   {
+    "id": "XwgL4C2WaU8",
+    "kind": "audio",
+    "title": "\"真っ白\" (Official Audio)",
+    "offset": null
+   }
+  ],
+  "lrclib": {
+   "id": 35278852,
+   "album": "masshiro (pure white) - Single",
+   "duration": 294.0,
+   "timed": 26,
+   "low": [],
+   "untimed": []
+  }
+ }
+}
