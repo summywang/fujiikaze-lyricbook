@@ -280,7 +280,7 @@ a{color:inherit}
 /* bottom sheets, in the tip's inverted colors */
 .scrim{position:fixed;inset:0;z-index:19;background:rgba(0,0,0,.3)}
 body{--yt-h:max(200px,min(56.25vw,46vh))}
-.sheet{--soft:color-mix(in srgb,var(--pg-bg) 9%,transparent);--rule:color-mix(in srgb,var(--pg-bg) 16%,transparent);position:fixed;z-index:20;left:0;right:0;bottom:0;max-height:min(72vh,600px,calc(100vh - var(--yt-h) - 130px));overflow-y:auto;overscroll-behavior:contain;padding:8px max(18px,env(safe-area-inset-left,0px)) calc(16px + env(safe-area-inset-bottom,0px));border-radius:20px 20px 0 0;background:var(--pg-fg);color:var(--pg-bg);box-shadow:0 -10px 30px rgba(0,0,0,.25);font-family:var(--f-noto-tc)}
+.sheet{--soft:color-mix(in srgb,var(--pg-bg) 9%,transparent);--rule:color-mix(in srgb,var(--pg-bg) 16%,transparent);position:fixed;z-index:20;left:0;right:0;bottom:0;max-height:calc(100vh - 12px - env(safe-area-inset-top,0px));max-height:calc(100dvh - 12px - env(safe-area-inset-top,0px));overflow-y:auto;overscroll-behavior:contain;padding:8px max(18px,env(safe-area-inset-left,0px)) calc(16px + env(safe-area-inset-bottom,0px));border-radius:20px 20px 0 0;background:var(--pg-fg);color:var(--pg-bg);box-shadow:0 -10px 30px rgba(0,0,0,.25);font-family:var(--f-noto-tc)}
 .sheet::before{content:"";display:block;width:36px;height:4px;margin:0 auto 4px;border-radius:2px;background:currentColor;opacity:.22}
 .sh-in{max-width:560px;margin-inline:auto}
 :where(.sheet button){font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -291,6 +291,7 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
 .sh-row{display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:6px 2px;border:0;border-top:1px solid var(--rule);background:none;text-align:left;font:500 16px/1.3 var(--f-noto-tc)}
 .sh-row>span{flex:1}
 .sh-row small{display:block;margin-top:2px;font:400 12.5px/1.3 var(--f-noto-tc);opacity:.65}
+@media(max-height:420px){.sheet{padding-top:4px;padding-bottom:8px}.sh-head{min-height:38px}.sh-row{min-height:44px;padding-block:4px;font-size:14px}.sh-row small{font-size:11px}}
 .sw{position:relative;flex:none;width:46px;height:28px;border-radius:999px;background:color-mix(in srgb,var(--pg-bg) 24%,transparent);transition:background-color .15s}
 .sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--pg-fg);box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s}
 .sh-row[aria-checked="true"] .sw{background:var(--pg-bg)}
@@ -319,6 +320,8 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
 .cf-acts{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
 .cf-acts button{padding:8px 18px;border:1.5px solid currentColor;border-radius:999px;background:none;color:inherit;font:600 14.5px/1.2 var(--f-noto-tc);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .cf-acts button[value="ok"]{border-color:var(--pg-bg);background:var(--pg-bg);color:var(--pg-fg)}
+.cal-export{width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto}
+.cal-export textarea{display:block;width:100%;height:150px;margin-top:12px;padding:10px;border:1px solid currentColor;border-radius:8px;background:var(--pg-bg);color:var(--pg-fg);font:12px/1.5 monospace}
 </style></style>
 </head><body>
 
@@ -405,7 +408,13 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
   <button type="button" class="sh-row" id="tgRo" role="switch" aria-checked="true"><i data-ic="abc"></i><span>羅馬拼音</span><b class="sw" aria-hidden="true"></b></button>
   <button type="button" class="sh-row" id="tgZh" role="switch" aria-checked="true"><i data-ic="translate"></i><span>中文翻譯</span><b class="sw" aria-hidden="true"></b></button>
   <button type="button" class="sh-row" id="calBtn" aria-haspopup="dialog"><i data-ic="schedule"></i><span>時間校準<small>歌詞和歌聲對不上時</small></span><i data-ic="chevron"></i></button>
+  <button type="button" class="sh-row" id="calExportBtn" aria-haspopup="dialog"><i data-ic="schedule"></i><span>匯出校準<small>備份這個瀏覽器的時間調整</small></span><i data-ic="chevron"></i></button>
 </div></section>
+<dialog class="confirm cal-export" id="calExportDialog" aria-labelledby="calExportTitle">
+  <h4 id="calExportTitle">匯出校準</h4><p id="calExportSummary"></p>
+  <textarea id="calExportData" aria-label="校準備份 JSON" readonly spellcheck="false"></textarea>
+  <form method="dialog" class="cf-acts"><button type="button" id="calDownload">下載備份</button><button value="close">關閉</button></form>
+</dialog>
 
 <script src="data/lyrics.js?v=20261028e"></script>
 <script src="data/media.js?v=20261028f"></script>
@@ -800,7 +809,8 @@ document.querySelector(".filters").addEventListener("click", (e) => {
 
 /* ---------- song view ---------- */
 function showSong(s) {
-  followHold = 0; lastFollowTarget = null;
+  ytPause(); closeSheets();
+  followEnabled = false; followHold = 0; lastFollowTarget = null;
   if (!$("#catalog").hidden) catalogY = window.scrollY;
   stopSpeech(); hideTip();
   state.view = s.key; lastSongKey = s.key; state.editing = false; state.pasteFor = null; lastRenderedRec = null;
@@ -814,7 +824,10 @@ function showSong(s) {
   state.line = null; state.cal = false; document.body.classList.remove("cal-on"); loadCal(s.key);
   setVideo(srcOf(s.key));
   refreshSong(true);
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: "instant" });
+  requestAnimationFrame(() => {
+    if (state.view === s.key && !followEnabled) window.scrollTo({ top: 0, behavior: "instant" });
+  });
 }
 
 function refreshSong(force) {
@@ -1001,11 +1014,16 @@ function timingOf(key) { const m = mediaOf(key); return m && m.timing ? m.timing
 let srcPref = store.get("kaze.src", "audio") === "mv" ? "mv" : "audio";
 function sourcesOf(key) { const m = mediaOf(key); return m && Array.isArray(m.sources) ? m.sources : []; }
 function srcOf(key) { const list = sourcesOf(key); return list.find((x) => x.kind === srcPref) || list[0] || null; }
+function defaultCal(key) {
+  const src = srcOf(key); const t = timingOf(key); const c = src && src.calibration;
+  return c && t && c.lyricsSha === t.lyricsSha && c.data && c.data.l
+    ? JSON.parse(JSON.stringify(c.data)) : { l: {} };
+}
 function loadCal(key) {
   const src = srcOf(key); const t = timingOf(key);
   cal.key = src ? `kaze.timing.${key}.${src.id}.${t ? t.lyricsSha : "none"}` : null;
   const d = cal.key ? store.get(cal.key, null) : null;
-  cal.data = d && typeof d === "object" && d.l && typeof d.l === "object" ? d : { l: {} };
+  cal.data = d && typeof d === "object" && d.l && typeof d.l === "object" ? d : defaultCal(key);
 }
 // Studio times shift by one song-wide offset onto the video: the listener's own, else the published one.
 // A video without a published offset (an MV with a different intro) needs one alignment before lines play.
@@ -1034,8 +1052,8 @@ function lineStatus(n) {
   if (o && (typeof o.s === "number" || typeof o.e === "number")) return "edit";
   return state.base[n] && state.base[n].pub ? "cand" : "none";
 }
-function saveCal() {
-  if (cal.key) store.set(cal.key, cal.data);
+function saveCal(persist = true) {
+  if (persist && cal.key) store.set(cal.key, cal.data);
   recalcWindows(); decorate(); renderCalControls(); renderCalBar(); renderAlignBar();
 }
 
@@ -1048,7 +1066,7 @@ let toastTimer = 0;
 function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => (t.hidden = true), 2800); }
 
 /* ---------- tune sheet: display and reading settings, and the way into timing mode ---------- */
-function openSheet(open) { hideTip(); $("#tuneSheet").hidden = !open; $("#scrim").hidden = !open; if (open) renderTune(); }
+function openSheet(open) { hideTip(); $("#tuneSheet").hidden = !open; $("#scrim").hidden = !open; if (open) { renderTune(); $("#tuneSheet").scrollTop = 0; } }
 const closeSheets = () => openSheet(false);
 function renderTune() {
   $("#tgFuri").setAttribute("aria-checked", String(state.showFuri));
@@ -1060,6 +1078,26 @@ $("#tgFuri").addEventListener("click", () => { state.showFuri = !state.showFuri;
 $("#tgRo").addEventListener("click", () => { state.showRo = !state.showRo; store.set("kaze.ro", state.showRo); $("#lyrics").classList.toggle("hide-ro", !state.showRo); renderTune(); });
 $("#tgZh").addEventListener("click", () => { state.showZh = !state.showZh; store.set("kaze.zh", state.showZh); $("#lyrics").classList.toggle("hide-zh", !state.showZh); renderTune(); });
 $("#calBtn").addEventListener("click", () => { closeSheets(); setCal(true); });
+// Export only this app's known timing records, never unrelated browser storage.
+$("#calExportBtn").addEventListener("click", () => {
+  const records = [];
+  for (const song of SONGS) {
+    const t = timingOf(song.key); if (!t) continue;
+    for (const src of sourcesOf(song.key)) {
+      const d = store.get(`kaze.timing.${song.key}.${src.id}.${t.lyricsSha}`, null);
+      if (!d || !d.l || (typeof d.o !== "number" && !Object.keys(d.l).length)) continue;
+      records.push({ song: song.key, videoId: src.id, lyricsSha: t.lyricsSha, data: d });
+    }
+  }
+  $("#calExportData").value = JSON.stringify({ format: "kaze-calibration", version: 1, exportedAt: new Date().toISOString(), records }, null, 2);
+  $("#calExportSummary").textContent = `共 ${new Set(records.map(r => r.song)).size} 首歌、${records.length} 組影片校準。下載備份不會清除或更改你的調整。`;
+  closeSheets(); $("#calExportDialog").showModal();
+});
+$("#calDownload").addEventListener("click", () => {
+  const url = URL.createObjectURL(new Blob([$("#calExportData").value], { type: "application/json" }));
+  const a = document.createElement("a"); a.href = url; a.download = `kaze-calibration-${new Date().toISOString().slice(0,10)}.json`;
+  a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
 $("#scrim").addEventListener("click", closeSheets);
 document.querySelectorAll(".sheet [data-close]").forEach((b) => b.addEventListener("click", closeSheets));
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#tuneSheet").hidden) closeSheets(); });
@@ -1094,7 +1132,8 @@ function renderCalControls() {
 function renderCalBar() {
   const on = state.cal && !!srcOf(state.view);
   $("#calBar").hidden = !on; if (!on) { setHelp(false); return; }
-  $("#calClear").disabled = !Object.keys(cal.data.l).length && typeof cal.data.o !== "number";
+  const local = store.get(cal.key, null);
+  $("#calClear").disabled = !local || (!Object.keys(local.l || {}).length && typeof local.o !== "number");
   if (!$("#calHelp").hidden) fillHelp();
 }
 // The help is a short numbered how-to; before the video is aligned it only explains that first step.
@@ -1130,7 +1169,7 @@ function calAction(n, act) {
     o.e = now; delete o.ok; saveCal(); toast("已設定這句的結束");
   }
 }
-function restoreDefaults() { cal.data = { l: {} }; store.del(cal.key); saveCal(); toast("已還原預設值"); }
+function restoreDefaults() { cal.data = defaultCal(state.view); store.del(cal.key); saveCal(false); toast("已還原預設值"); }
 $("#calHelpBtn").addEventListener("click", () => setHelp($("#calHelp").hidden));
 document.addEventListener("pointerdown", (e) => { if (!$("#calHelp").hidden && !e.target.closest("#calHelp, #calHelpBtn")) setHelp(false); });
 $("#calDone").addEventListener("click", () => setCal(false));
@@ -1237,6 +1276,7 @@ function onYtState(e) {
   const S = window.YT.PlayerState;
   yt.state = e.data;
   if (e.data === S.PLAYING) {
+    followEnabled = true;
     yt.playing = true; yt.unlocked = true; clearTimeout(yt.noteTimer); hideYtNote(); stopSpeech(); applyRate();
     if (yt.pending != null) { const t = yt.pending; yt.pending = null; seekTo(t); }
   } else if (e.data !== S.BUFFERING) yt.playing = false;
@@ -1258,7 +1298,7 @@ function ytTime() { try { return yt.player && yt.ready ? yt.player.getCurrentTim
 function playLine(n, once) {
   const w = lineWindow(n); if (!w) return;
   yt.stopAt = once ? w.e : null;
-  followHold = 0; lastFollowTarget = null;
+  followEnabled = true; followHold = 0; lastFollowTarget = null;
   seekPlay(w.s); setNow(n); decorate(); updateDock();
   follow(n, true);
 }
@@ -1279,12 +1319,12 @@ function setNow(n) {
 
 /* ---------- lyrics follow the song: center the current card between the video and controls ---------- */
 // Scrolling by hand pauses the following for a moment; seeking with the timeline or ±5s follows at once.
-let followHold = 0, lastFollowTarget = null;
+let followEnabled = false, followHold = 0, lastFollowTarget = null;
 ["wheel", "touchmove"].forEach((ev) => window.addEventListener(ev, () => {
   followHold = Date.now() + 3000; lastFollowTarget = null;
 }, { passive: true }));
 function follow(n, force) {
-  if (n == null || n < 0 || state.cal || !state.view || (!force && Date.now() < followHold)) return;
+  if (n == null || n < 0 || state.cal || !state.view || !$("#tuneSheet").hidden || (!force && (!followEnabled || Date.now() < followHold))) return;
   const li = lineEl(n); if (!li) return;
   const viewport = window.visualViewport;
   const viewportTop = viewport ? viewport.offsetTop : 0;
@@ -1335,6 +1375,7 @@ function updateDock(t) {
 // Jump the video, then bring the lyrics to the line at that point right away.
 function jumpTo(t, final) {
   if (!yt.ready) return;
+  followEnabled = true;
   t = Math.max(0, Math.min(t, ytDur() || t));
   yt.quietUntil = performance.now() + 450;
   try { yt.player.seekTo(t, final); } catch (e) {}
