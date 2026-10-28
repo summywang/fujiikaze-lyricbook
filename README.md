@@ -29,6 +29,8 @@ python3 -m http.server 8000 --directory dist
 
 然後開啟 http://localhost:8000 。網站不需要安裝套件或建置，可直接將 `dist/` 部署至靜態網站服務。
 
+> 請用 `localhost` 開，不要用 `127.0.0.1`。藤井風的影片在 `127.0.0.1` 上會被 YouTube 拒絕播放（錯誤碼 150，頁面顯示「無法播放這部影片」）；同一支影片在 `localhost` 和公開網址都能播。
+
 ## 更新網站解析資料
 
 修改 `dist/data/lyrics.json` 後，將同一份資料同步至網站使用的 JavaScript：
@@ -45,9 +47,14 @@ PY
 
 ## 原唱與逐句時間
 
-- 播放使用 YouTube 官方 IFrame 播放器，不下載或轉存音訊。每首最多兩個來源，歌名下方可切換「音源 / MV」，選擇會套用到其他歌曲：
-  - 音源：藤井風頻道上的官方音源（「Provided to YouTube by …」，與 Spotify 錄音室版長度相同），時間直接可用。
+- 播放使用 YouTube 官方 IFrame 播放器，不下載或轉存音訊。每首最多兩個來源，網站只播 MV；沒有 MV 的歌（真っ白、Okay, Goodbye、Forever Young）才播音源。頁面上沒有切換鈕：
+  - 音源：藤井風頻道上的官方音源（「Provided to YouTube by …」，與 Spotify 錄音室版長度相同），時間直接可用。創作者在網址加上 `?src=audio`（例如 `http://localhost:8000/?src=audio`）就會改播音源，只影響那個分頁。
   - MV：官方影片（含 Not a MV）。MV 的前奏長度和錄音室版不同，第一次需按一次「對齊」；何なんw（LRCLIB 有兩筆依 MV 同步的紀錄，晚 5.38 秒）與 Garden（長度相同）已預先對齊。
+
+> **匯入新的歌詞影片時，要先校對音源版本。** 逐句時間是依音源（錄音室版）產生的，MV 的時間是從音源版平移、再逐句修正而來；音源版的時間錯了，MV 也會跟著錯。步驟：
+> 1. 開 `?src=audio`，進入「調整 › 時間校準」，把新歌的音源版逐句對好，再用「匯出校準」備份，`python3 work/import_calibration.py <備份路徑>` 寫入。
+> 2. 回到一般網址（MV），用第一句的「對齊整首」對齊，有剪接的地方用「從這句起對齊」，再匯出、寫入一次。
+> 3. 更新 `media.js` 的版本號後發佈。
 - 逐句時間取自 [LRCLIB](https://lrclib.net) 中長度相同的同步歌詞，依順序比對到本站歌詞；只保存時間，不保存 LRCLIB 的歌詞文字。比對不到的句子沒有時間（校準模式顯示「還沒有時間」），不推算。
 - 花、満ちてゆく 只有 MV；真っ白 只有官方音源（長度和 Spotify 版不同），三首第一次都要對齊。Okay, Goodbye、Forever Young 沒有 MV。
 - 重新產生（需要網路；快取放在儲存庫外的 `../work/timing/cache`）：
