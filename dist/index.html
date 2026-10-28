@@ -90,6 +90,11 @@ a{color:inherit}
 .c-orange{color:var(--orange)} .c-pink{color:var(--pink)} .c-orchid{color:var(--orchid)} .c-yellow{color:var(--yellow)} .c-paper{color:var(--paper)} .c-rose{color:var(--rose)}
 
 .sign{display:block;height:auto;pointer-events:none;filter:drop-shadow(0 .3cqw .8cqw rgba(120,40,30,.4))}
+/* signature sparkle: a gold glint sweeps through the ink (masked to the strokes) while small stars twinkle around it */
+.sign-shine{display:block;width:calc(var(--w)*1cqw);aspect-ratio:1000/579;pointer-events:none;-webkit-mask:url(img/sign.png) center/100% 100% no-repeat;mask:url(img/sign.png) center/100% 100% no-repeat;background:linear-gradient(110deg,transparent 0 38%,rgba(255,206,92,.95) 46%,#fff 50%,rgba(255,206,92,.95) 54%,transparent 62% 100%) 100% 0/300% 100% no-repeat;animation:sheen 5s ease-in-out 1s infinite}
+@keyframes sheen{0%{background-position:100% 0}45%,100%{background-position:0 0}}
+.glint{position:absolute;left:calc(var(--gx)*1cqw);top:calc(var(--gy)*1cqw);z-index:9;width:calc(var(--gs)*1cqw);height:calc(var(--gs)*1cqw);overflow:visible;pointer-events:none;opacity:0;filter:drop-shadow(0 0 .7cqw rgba(255,240,200,.95));animation:twinkle var(--t,2.8s) ease-in-out var(--d,0s) infinite}
+@keyframes twinkle{0%{opacity:0;transform:scale(.1) rotate(0deg)}30%{opacity:1;transform:scale(1) rotate(45deg)}60%,100%{opacity:0;transform:scale(.1) rotate(90deg)}}
 .title-ja{font:900 9cqw/1.25 var(--f-mincho);white-space:nowrap}
 .title-en{font:italic 500 6cqw/1.4 var(--f-serif);white-space:nowrap}
 .filters{display:flex;gap:2.4cqw}
@@ -185,6 +190,8 @@ a{color:inherit}
   .tk{transition:none}
   .tk-go{transition:none}
   .s-status .dot,.ln.pending .ln-ro,.ln.pending .ln-zh{animation:none}
+  .sign-shine{display:none}
+  .glint{animation:none;opacity:.85;transform:scale(.8) rotate(45deg)}
 }
 
 .study{margin:16px 0 30px;border:1px solid var(--pg-line);border-radius:16px;padding:18px 20px;color:var(--pg-fg);font-family:var(--f-zh);line-height:1.8;font-size:16px}
@@ -210,6 +217,15 @@ a{color:inherit}
   <h1 class="sr-only">風の歌詞帳</h1>
   <div class="board" id="board">
     <img class="pc sign" src="img/sign.png" alt="" style="--x:1;--y:4;--w:86;--r:-4;--z:7">
+    <span class="pc sign-shine" aria-hidden="true" style="--x:1;--y:4;--w:86;--r:-4;--z:8"></span>
+    <svg class="glint c-paper" aria-hidden="true" style="--gx:1;--gy:1;--gs:5;--d:0s;--t:3s"><use href="#sp"/></svg>
+    <svg class="glint c-yellow" aria-hidden="true" style="--gx:84;--gy:0;--gs:4;--d:.7s;--t:2.6s"><use href="#sp"/></svg>
+    <svg class="glint c-paper" aria-hidden="true" style="--gx:46;--gy:12;--gs:3;--d:1.5s;--t:2.4s"><use href="#sp"/></svg>
+    <svg class="glint c-paper" aria-hidden="true" style="--gx:66;--gy:20;--gs:6;--d:.3s;--t:3.4s"><use href="#sp"/></svg>
+    <svg class="glint c-yellow" aria-hidden="true" style="--gx:2;--gy:34;--gs:4;--d:1.1s;--t:2.9s"><use href="#sp"/></svg>
+    <svg class="glint c-paper" aria-hidden="true" style="--gx:60;--gy:33;--gs:2.6;--d:2s;--t:2.2s"><use href="#sp"/></svg>
+    <svg class="glint c-paper" aria-hidden="true" style="--gx:90;--gy:29;--gs:3.5;--d:1.8s;--t:3.1s"><use href="#sp"/></svg>
+    <svg class="glint c-yellow" aria-hidden="true" style="--gx:55;--gy:47;--gs:4;--d:.9s;--t:2.7s"><use href="#sp"/></svg>
     <p class="pc title-ja ink-g" style="--x:4;--y:54;--r:-3;--z:8" aria-hidden="true"><span class="pr"><i>の歌詞帳</i></span></p>
     <p class="pc title-en ink-a" style="--x:6;--y:67;--r:3;--z:8" lang="en"><span class="pr"><i>lyric notebook</i></span></p>
     <div class="pc filters" style="--x:5;--y:80;--r:-2;--z:8" role="group" aria-label="篩選語言">
