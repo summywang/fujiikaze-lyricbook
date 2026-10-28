@@ -11,7 +11,7 @@
 - `dist/img/`：網站圖片。
 - `dist/data/lyrics.js`：網站載入的固定解析資料。
 - `dist/data/lyrics.json`：可閱讀及備份的同一份資料。逐首解讀筆記（`summary`、`notes`）仍保存在資料中，目前頁面不顯示。
-- `dist/data/media.js`、`media.json`：每首歌的 Spotify 封面與連結、YouTube 原唱影片、逐句時間（由 `work/build_media_timing.py` 產生）。
+- `dist/data/media.js`、`media.json`：每首歌的 YouTube 原唱影片與照片（`photo`，取自 MV，沒有 MV 時取自官方音源）、Spotify 連結、逐句時間（由 `work/build_media_timing.py` 產生）。
 - `work/lyrics/`、`work/analysis/`：歌詞與逐首解析原始資料。
 - `work/breakdown/`：點詞組時提示裡的拆解（白話說明、句型、慣用語／口語／方言標籤），用 `python3 work/apply_breakdown.py <歌曲 key>` 寫入網站資料。21 首都已完成；同一個助詞的固定說法見 `work/breakdown/README.md`。
 - `work/media/`：Spotify 與 YouTube 的核對資料、已找到的 YouTube 官方音源（`art-tracks.json`）、逐首時間對齊報告（`timing-report.json`）。
@@ -58,7 +58,7 @@ python3 work/build_media_timing.py
 
 ## 時間校準
 
-影片固定在歌詞頁最上方。點任一句會直接從那句播放，只有正在唱的那句會亮起。底部播放列：時間軸、播放速度（1x / 0.75x / 0.5x）、倒退／快轉 5 秒、播放／暫停，以及「調整」（羅馬拼音、中文翻譯、時間校準）。播放或拖動時間軸時，歌詞會自動捲到正在唱的那句；手動捲動後約 3 秒才恢復跟隨。
+影片固定在歌詞頁最上方。點任一句會直接從那句播放，只有正在唱的那句會亮起。底部播放列：時間軸、播放速度（1x / 0.75x / 0.5x）、倒退／快轉 5 秒、播放／暫停，以及「調整」（振假名、羅馬拼音、中文翻譯、時間校準）。播放或拖動時間軸時，歌詞會自動捲到正在唱的那句；手動捲動後約 3 秒才恢復跟隨。
 
 「調整 › 時間校準」進入校準模式，每句歌詞下方會出現按鈕，畫面不顯示秒數；最底部是「時間校準中」列，點旁邊的 ? 可看使用說明。播放歌曲，在句子開唱的瞬間按：
 

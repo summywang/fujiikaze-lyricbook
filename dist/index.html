@@ -90,9 +90,7 @@ a{color:inherit}
 .c-orange{color:var(--orange)} .c-pink{color:var(--pink)} .c-orchid{color:var(--orchid)} .c-yellow{color:var(--yellow)} .c-paper{color:var(--paper)} .c-rose{color:var(--rose)}
 
 .sign{display:block;height:auto;pointer-events:none;filter:drop-shadow(0 .3cqw .8cqw rgba(120,40,30,.4))}
-/* signature sparkle: a gold glint sweeps through the ink (masked to the strokes) while small stars twinkle around it */
-.sign-shine{display:block;width:calc(var(--w)*1cqw);aspect-ratio:1000/579;pointer-events:none;-webkit-mask:url(img/sign.png) center/100% 100% no-repeat;mask:url(img/sign.png) center/100% 100% no-repeat;background:linear-gradient(110deg,transparent 0 38%,rgba(255,206,92,.95) 46%,#fff 50%,rgba(255,206,92,.95) 54%,transparent 62% 100%) 100% 0/300% 100% no-repeat;animation:sheen 5s ease-in-out 1s infinite}
-@keyframes sheen{0%{background-position:100% 0}45%,100%{background-position:0 0}}
+/* small stars twinkle over the title cluster */
 .glint{position:absolute;left:calc(var(--gx)*1cqw);top:calc(var(--gy)*1cqw);z-index:9;width:calc(var(--gs)*1cqw);height:calc(var(--gs)*1cqw);overflow:visible;pointer-events:none;opacity:0;filter:drop-shadow(0 0 .7cqw rgba(255,240,200,.95));animation:twinkle var(--t,2.8s) ease-in-out var(--d,0s) infinite}
 @keyframes twinkle{0%{opacity:0;transform:scale(.1) rotate(0deg)}30%{opacity:1;transform:scale(1) rotate(45deg)}60%,100%{opacity:0;transform:scale(.1) rotate(90deg)}}
 .title-ja{font:900 9cqw/1.25 var(--f-mincho);white-space:nowrap}
@@ -169,12 +167,15 @@ a{color:inherit}
 .ln-body{min-width:0}
 .ln-src{margin:0;font:700 clamp(22px,4.6vw,30px)/1.42 var(--f-noto-ja);overflow-wrap:anywhere}
 .ln-src:lang(en){font-family:var(--f-noto)}
-.ln-src.split{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;column-gap:.12em;row-gap:.3em}
+.ln-src.split{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;column-gap:.12em;row-gap:.3em}
 .seg{display:inline-flex;flex-direction:column;align-items:center;padding:0 .04em}
 .seg-jp{line-height:1.3}
 .seg-ro{margin-top:2px;font:400 16px/1.35 var(--f-noto);color:var(--pg-soft);white-space:nowrap}
 .sp-gap{width:.3em}
 .lyrics.hide-ro .seg-ro{display:none}
+/* furigana over the kanji of each word */
+.seg-jp rt{padding-bottom:3px;font:400 16px/1.35 var(--f-noto);color:var(--pg-soft);letter-spacing:0} /* same type as the romaji, a little air above the kanji */
+.lyrics.hide-furi rt{display:none}
 .ln-ro{margin:4px 0 0;font:400 16px/1.5 var(--f-noto);color:var(--pg-soft)}
 .ln-zh{margin:3px 0 0;font:400 16px/1.55 var(--f-noto-tc);color:var(--pg-soft)}
 .ln.pending .ln-ro,.ln.pending .ln-zh{animation:pulse 1.4s ease-in-out infinite}
@@ -205,16 +206,13 @@ a{color:inherit}
   .tk{transition:none}
   .tk-go{transition:none}
   .s-status .dot,.ln.pending .ln-ro,.ln.pending .ln-zh{animation:none}
-  .sign-shine{display:none}
   .glint{animation:none;opacity:.85;transform:scale(.8) rotate(45deg)}
 }
 
 .ln-src{overflow-wrap:anywhere}.tip{max-width:min(360px,calc(100vw - 24px));line-height:1.6}.s-tools{flex-wrap:wrap}.s-status{line-height:1.6}
 @media(max-width:520px){.s-bar{align-items:flex-start}.s-tools{gap:4px}.pill{padding:7px 8px;font-size:13px}.s-tools .pill.icon{width:32px}}
 
-/* ---------- official cover art: the whole square in its own colors, no film tone or cutout ---------- */
-.ph.cover img{filter:none}
-.ph.cover::before{display:none}
+/* ---------- each song's photo: a frame from its YouTube video ---------- */
 .s-thumb.cover{width:76px;height:76px;filter:none;box-shadow:0 4px 14px rgba(40,10,20,.22)}
 .s-cover{flex:none;line-height:0}
 
@@ -239,6 +237,14 @@ a{color:inherit}
 /* one-tap alignment for a video whose intro differs from the studio track */
 .alignbar{display:flex;align-items:center;gap:12px;margin:-8px 0 20px;padding:12px 14px;border-radius:14px;background:var(--pg-field)}
 .alignbar p{flex:1;margin:0;font:500 14px/1.55 var(--f-noto-tc)}
+/* aligned: the same bar turns into a short confirmation, then goes */
+.alignbar.done{background:var(--pg-fg);color:var(--pg-bg);animation:aligned .3s ease-out}
+.alignbar.done p{display:flex;align-items:center;gap:10px;font-weight:700}
+.alignbar svg{flex:none;fill:currentColor}
+.alignbar.done p>svg{width:24px;height:24px}
+.alignbar.done p span svg{width:19px;height:19px;margin:0 2px;vertical-align:-4px}
+@keyframes aligned{from{transform:scale(.97);opacity:.4}}
+@media (prefers-reduced-motion:reduce){.alignbar.done{animation:none}}
 .alignbar .act{flex:none;padding:8px 18px;border:0;border-radius:999px;background:var(--pg-fg);color:var(--pg-bg);font:600 15px/1.3 var(--f-noto-tc);cursor:pointer;-webkit-tap-highlight-color:transparent}
 
 /* player controls on the page itself (no panel behind them): timeline, then speed · −5 · play · +5 · tune */
@@ -328,15 +334,6 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
   <h1 class="sr-only">風の歌詞帳</h1>
   <div class="board" id="board">
     <img class="pc sign" src="img/sign.png" alt="" style="--x:1;--y:4;--w:86;--r:-4;--z:7">
-    <span class="pc sign-shine" aria-hidden="true" style="--x:1;--y:4;--w:86;--r:-4;--z:8"></span>
-    <svg class="glint c-paper" aria-hidden="true" style="--gx:1;--gy:1;--gs:5;--d:0s;--t:3s"><use href="#sp"/></svg>
-    <svg class="glint c-yellow" aria-hidden="true" style="--gx:84;--gy:0;--gs:4;--d:.7s;--t:2.6s"><use href="#sp"/></svg>
-    <svg class="glint c-paper" aria-hidden="true" style="--gx:46;--gy:12;--gs:3;--d:1.5s;--t:2.4s"><use href="#sp"/></svg>
-    <svg class="glint c-paper" aria-hidden="true" style="--gx:66;--gy:20;--gs:6;--d:.3s;--t:3.4s"><use href="#sp"/></svg>
-    <svg class="glint c-yellow" aria-hidden="true" style="--gx:2;--gy:34;--gs:4;--d:1.1s;--t:2.9s"><use href="#sp"/></svg>
-    <svg class="glint c-paper" aria-hidden="true" style="--gx:60;--gy:33;--gs:2.6;--d:2s;--t:2.2s"><use href="#sp"/></svg>
-    <svg class="glint c-paper" aria-hidden="true" style="--gx:90;--gy:29;--gs:3.5;--d:1.8s;--t:3.1s"><use href="#sp"/></svg>
-    <svg class="glint c-yellow" aria-hidden="true" style="--gx:55;--gy:47;--gs:4;--d:.9s;--t:2.7s"><use href="#sp"/></svg>
     <p class="pc title-ja ink-g" style="--x:4;--y:54;--r:-3;--z:8" aria-hidden="true"><span class="pr"><i>の歌詞帳</i></span></p>
     <p class="pc title-en ink-a" style="--x:6;--y:67;--r:3;--z:8" lang="en"><span class="pr"><i>lyric notebook</i></span></p>
     <div class="pc filters" style="--x:5;--y:80;--r:-2;--z:8" role="group" aria-label="篩選語言">
@@ -344,7 +341,7 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
       <button type="button" class="fbtn ink-a" data-f="en" aria-pressed="false"><span class="pr"><i>English 10</i></span></button>
       <button type="button" class="fbtn ink-a" data-f="ja" aria-pressed="false"><span class="pr"><i>日本語 11</i></span></button>
     </div>
-    <p class="pc colo ink-d" id="colophon" style="--x:6;--y:540;--r:-1;--z:6"><span class="pr"><i>21 首歌詞與解析已收錄，開啟即可練習。點句子用 YouTube 官方音源聽原唱、可單句循環；詞語朗讀使用裝置語音。翻譯為學習用語境解讀，封面取自 Spotify。</i></span></p>
+    <p class="pc colo ink-d" id="colophon" style="--x:6;--y:540;--r:-1;--z:6"><span class="pr"><i>21 首歌詞與解析已收錄，開啟即可練習。點句子用 YouTube 官方音源聽原唱、可單句循環；詞語朗讀使用裝置語音。翻譯為學習用語境解讀，照片取自各曲的 YouTube 影片。</i></span></p>
   </div>
 </main>
 
@@ -357,8 +354,7 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
   <div class="toast" id="toast" role="status" hidden></div>
   <div class="song-in">
     <header class="s-head">
-      <!-- the cover links back to its Spotify track, as Spotify asks when its artwork is shown -->
-      <a class="s-cover" id="coverLink" href="https://open.spotify.com/" target="_blank" rel="noopener" aria-label="在 Spotify 開啟這首歌"><img class="s-thumb" id="songThumb" alt=""></a>
+      <span class="s-cover"><img class="s-thumb" id="songThumb" alt=""></span>
       <div class="s-meta">
         <h2 class="s-title" id="songTitle"></h2>
         <p class="s-artist" id="songSub">Fujii Kaze</p>
@@ -403,13 +399,14 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
 <div class="scrim" id="scrim" hidden></div>
 <section class="sheet" id="tuneSheet" role="dialog" aria-label="調整" hidden><div class="sh-in">
   <div class="sh-head"><h3>調整</h3><button type="button" class="sh-x" data-close aria-label="關閉"><i data-ic="close"></i></button></div>
+  <button type="button" class="sh-row" id="tgFuri" role="switch" aria-checked="true"><i data-ic="furi"></i><span>振假名</span><b class="sw" aria-hidden="true"></b></button>
   <button type="button" class="sh-row" id="tgRo" role="switch" aria-checked="true"><i data-ic="abc"></i><span>羅馬拼音</span><b class="sw" aria-hidden="true"></b></button>
   <button type="button" class="sh-row" id="tgZh" role="switch" aria-checked="true"><i data-ic="translate"></i><span>中文翻譯</span><b class="sw" aria-hidden="true"></b></button>
   <button type="button" class="sh-row" id="calBtn" aria-haspopup="dialog"><i data-ic="schedule"></i><span>時間校準<small>歌詞和歌聲對不上時</small></span><i data-ic="chevron"></i></button>
 </div></section>
 
 <script src="data/lyrics.js?v=20261028e"></script>
-<script src="data/media.js?v=20261028c"></script>
+<script src="data/media.js?v=20261028f"></script>
 <script>
 // Setlist order. `legacy` is the number the song had in the first catalog, so lyrics saved then still load.
 const SONGS = [
@@ -452,6 +449,8 @@ const SIDE = "LRLLRLRRLRLRRLLRLRLRL";
 const ROTS = [-5,4,-3,6,-4,3,-6,5,-2,4,-5,3,-4,6,-3,5,-6,2,-4,5,-3];
 const INSET = [6,5,9,4,7,12,5,6,10,4,7,5,8,6,4,9,5,7,6,8,5];
 const SCALE = [1,.92,.86,1,.9,1,.95,.88,1,.93,.9,1,.87,.96,1,.9,1,.94,.9,1,.92];
+// Width / height of each strip's photo crop, so the collage does not repeat one shape.
+const PHOTO_CROP = [1.2, .85, 1, 1.35, .9, 1.1, .8];
 const CUTS = [1,4,3,2,1,3,5,4,2,6,3,1,2,4,1,5,3,2,4];
 const SLOT_STICKERS = [["bf","c-orange"],["sp","c-paper"],["fl","c-yellow"],["bf","c-pink"],["sp","c-paper"],["bf","c-orchid"],["fl","c-pink"]];
 
@@ -460,7 +459,7 @@ const POS_ZH = {noun:"名詞",pronoun:"代名詞",verb:"動詞",adj:"い形容�
 // v2: idioms and set phrases stay together as one tappable word.
 const PARSE_V = 2;
 // Material Symbols, rounded, weight 600 (https://fonts.google.com/icons, Apache 2.0), inlined as path data.
-const ICON = {"play":"M305.87-250.09v-465.82q0-18.53 11.87-29.35 11.86-10.83 27.5-10.83 5.24 0 10.72 1.28 5.47 1.29 11.1 4.38l366.51 234.52q8.97 6.13 13.75 14.39 4.77 8.26 4.77 18.52t-4.77 18.52q-4.78 8.26-13.75 14.39L367.06-215.57q-5.63 3.09-11.12 4.09-5.49 1-10.74 1-15.68 0-27.5-10.41-11.83-10.42-11.83-29.2Z","pause":"M627.81-174q-32.84 0-56.22-23.44-23.37-23.43-23.37-56.34v-452.44q0-32.91 23.38-56.34Q594.99-786 627.83-786h55q32.83 0 56.11 23.44 23.28 23.43 23.28 56.34v452.44q0 32.91-23.29 56.34Q715.64-174 682.81-174h-55Zm-350.44 0q-32.84 0-56.21-23.44-23.38-23.43-23.38-56.34v-452.44q0-32.91 23.39-56.34Q244.55-786 277.39-786h55q32.84 0 56.12 23.44 23.27 23.43 23.27 56.34v452.44q0 32.91-23.28 56.34Q365.21-174 332.37-174h-55Z","replay5":"M523.7-303.78H404.43q-11.56 0-19.13-7.57-7.56-7.56-7.56-18.85 0-11.28 7.85-18.84 7.84-7.57 18.84-7.57h99.18v-55.43h-99.18q-11 0-18.84-7.85-7.85-7.85-7.85-18.85v-104.87q0-11.56 7.85-18.35 7.84-6.78 18.84-6.78h128.14q10 0 17.56 6.78 7.57 6.79 7.57 18.35 0 11.57-7.07 19.13-7.06 7.57-18.06 7.57h-99.74v56.43h99.74q11 0 18.06 7.07 7.07 7.06 7.07 18.06v97.57q0 14-10 24t-24 10ZM333.85-92.17q-68.33-29.13-119.31-80.11-50.98-50.98-80.11-119.02-29.13-68.05-29.13-146.44 0-16.96 11.33-28.28 11.33-11.33 28.28-11.33 16.96 0 28.29 11.33 11.32 11.32 11.32 28.28 0 123.31 86.37 209.11 86.37 85.8 209.11 85.8 122.74 0 209.11-86.08 86.37-86.09 86.37-208.83 0-123.3-83.87-209.11-83.87-85.8-207.18-85.8h-22l46.35 46.35q10.13 10.13 10.13 23.26t-10.13 23.26q-10.13 10.13-23.54 9.85-13.41-.29-23.54-10.42L355.56-746.48q-12.39-11.82-12.39-28.06t12.39-28.07L462.7-910.3q9.13-8.57 23.04-8.85 13.91-.29 23.04 8.85 9.13 9.13 8.85 23.32-.28 14.2-9.41 22.76l-51.79 51.78h23q78.4 0 146.72 29.14 68.33 29.13 119.31 80.1 50.98 50.98 80.11 119.03 29.13 68.04 29.13 146.15t-29.13 146.43q-29.13 68.33-80.11 119.31-50.98 50.98-119.31 80.11Q557.83-63.04 480-63.04q-77.83 0-146.15-29.13Z","forward5":"M333.85-92.17q-68.33-29.13-119.31-80.11-50.98-50.98-80.11-119.31-29.13-68.32-29.13-146.43 0-78.11 29.13-146.15 29.13-68.05 80.11-119.03 50.98-50.97 119.31-80.1 68.32-29.14 146.72-29.14h23l-50.79-50.78q-9.13-8.56-9.41-22.76-.28-14.19 8.85-23.32 9.13-9.14 22.54-9.35 13.41-.22 22.54 8.35L605-802.61q11.83 11.83 11.83 28.07 0 16.24-11.83 28.06L498.3-640.35q-10.13 10.13-23.54 10.42-13.41.28-23.54-9.85-10.13-10.13-10.13-23.26t10.13-23.26l46.91-46.35h-22.56q-123.31 0-207.18 85.8-83.87 85.81-83.87 209.11 0 122.74 86.37 208.83 86.37 86.08 209.11 86.08 122.74 0 209.11-85.8 86.37-85.8 86.37-209.11 0-16.96 11.32-28.28 11.33-11.33 28.29-11.33 16.95 0 28.28 11.33 11.33 11.32 11.33 28.28 0 78.39-29.13 146.44-29.13 68.04-80.11 119.02-50.98 50.98-119.31 80.11Q557.83-63.04 480-63.04q-77.83 0-146.15-29.13ZM523.7-303.78H404.43q-11.56 0-19.13-7.57-7.56-7.56-7.56-18.85 0-11.28 7.85-18.84 7.84-7.57 18.84-7.57h99.18v-55.43h-99.18q-11 0-18.84-7.85-7.85-7.85-7.85-18.85v-104.87q0-11.56 7.85-18.35 7.84-6.78 18.84-6.78h128.14q10 0 17.56 6.78 7.57 6.79 7.57 18.35 0 11.57-7.07 19.13-7.06 7.57-18.06 7.57h-99.74v56.43h99.74q11 0 18.06 7.07 7.07 7.06 7.07 18.06v97.57q0 14-10 24t-24 10Z","tune":"M434.09-117.21q-10.48-10.22-10.48-26.01v-165.56q0-15.79 10.65-26.01Q444.92-345 460.57-345q15.65 0 25.84 10.21 10.2 10.22 10.2 26.01V-262h316.78q15.79 0 26 10.37 10.22 10.37 10.22 26.02t-10.22 26.13q-10.21 10.48-26 10.48H496.61v45.78q0 15.79-10.37 26.01Q475.87-107 460.22-107t-26.13-10.21ZM146.61-189q-15.79 0-26-10.65-10.22-10.66-10.22-26.31 0-15.65 10.22-25.84 10.21-10.2 26-10.2h187.56q15.79 0 26.01 10.37 10.21 10.37 10.21 26.02t-10.21 26.13Q349.96-189 334.17-189H146.61Zm161.26-183.39q-10.48-10.6-10.48-26.18v-45.21H146.61q-15.22 0-25.72-10.66-10.5-10.65-10.5-25.74 0-15.08 10.5-25.56 10.5-10.48 25.72-10.48h150.78V-564q0-15.79 10.65-26 10.66-10.22 26.31-10.22 15.65 0 25.85 10.22 10.19 10.21 10.19 26v166q0 15.79-10.37 26-10.37 10.22-26.02 10.22t-26.13-10.61Zm151.96-71.39q-15.23 0-25.72-10.66-10.5-10.65-10.5-25.74 0-15.08 10.5-25.56 10.49-10.48 25.72-10.48h353.56q15.22 0 25.72 10.66 10.5 10.65 10.5 25.74 0 15.08-10.5 25.56-10.5 10.48-25.72 10.48H459.83Zm140.26-181.43q-10.48-10.22-10.48-26.01v-165.56q0-15.79 10.65-26.01Q610.92-853 626.57-853q15.65 0 25.84 10.21 10.2 10.22 10.2 26.01V-771h150.78q15.79 0 26 10.37 10.22 10.37 10.22 26.02t-10.22 26.13q-10.21 10.48-26 10.48H662.61v46.78q0 15.79-10.37 26.01Q641.87-615 626.22-615t-26.13-10.21ZM146.61-698q-15.79 0-26-10.65-10.22-10.66-10.22-26.31 0-15.65 10.22-25.84 10.21-10.2 26-10.2h353.56q15.79 0 26.01 10.37 10.21 10.37 10.21 26.02t-10.21 26.13Q515.96-698 500.17-698H146.61Z","back":"m382.7-480 308.21 308.22q13.26 13.82 13.55 34.56.28 20.74-13.55 35.57-14.82 14.26-35.56 14.26-20.74 0-35-14.26L297.57-424.43q-11.83-11.83-17.24-26.22-5.42-14.39-5.42-29.35t5.42-29.35q5.41-14.39 17.24-26.22l323.78-323.21q14.26-14.83 34.22-14.61 19.95.22 35.34 15.04 13.26 14.83 13.76 35.07.5 20.24-13.76 35.06L382.7-480Z","close":"M480-424.43 276.78-221.22q-11.82 11.83-27.78 11.83t-27.78-11.83q-11.83-11.82-11.83-27.78t11.83-27.78L424.43-480 221.22-683.22q-11.83-11.82-11.83-27.78t11.83-27.78q11.82-11.83 27.78-11.83t27.78 11.83L480-535.57l203.22-203.21q11.82-11.83 27.78-11.83t27.78 11.83q11.83 11.82 11.83 27.78t-11.83 27.78L535.57-480l203.21 203.22q11.83 11.82 11.83 27.78t-11.83 27.78q-11.82 11.83-27.78 11.83t-27.78-11.83L480-424.43Z","schedule":"M519.22-495.65v-158.87q0-15.64-10.36-25.93t-25.74-10.29q-15.38 0-25.86 10.29-10.48 10.29-10.48 25.93v173.39q0 7.7 2.57 14.31 2.56 6.62 7.69 12.91L594.26-311.7q11.41 11.7 27.1 11.2 15.68-.5 26.94-11.2 11.27-10.69 11.27-26.52 0-15.82-11.27-27.08L519.22-495.65ZM480.08-65.87q-85.47 0-160.94-32.55-75.48-32.56-131.81-88.87T98.44-319.04q-32.57-75.44-32.57-160.9 0-85.45 32.68-160.99 32.67-75.53 88.83-131.69t131.64-89.12Q394.5-894.7 480-894.7q85.5 0 160.98 32.96 75.48 32.96 131.64 89.12 56.16 56.16 89.12 131.64Q894.7-565.5 894.7-480q0 85.5-32.96 160.98-32.96 75.48-89.12 131.64-56.16 56.16-131.61 88.83-75.46 32.68-160.93 32.68ZM480-480Zm-.29 334.91q138.03 0 236.62-98.02 98.58-98.02 98.58-236.61 0-138.58-98.51-236.89-98.51-98.3-236.39-98.3-138.31 0-236.62 98.23-98.3 98.24-98.3 236.68 0 138.87 98.3 236.89 98.3 98.02 236.32 98.02Z","translate":"m582.3-164.78-28.95 73.13q-4.13 11.39-14.18 18.59-10.04 7.19-22.43 7.19-21.09 0-32.91-16.67-11.83-16.68-4.7-36.76l154.35-412.18q5.13-14.95 18.02-24.28 12.89-9.33 28.98-9.33h38.04q15.52 0 28.7 9.33 13.17 9.33 18.3 24.28L919.3-120.43q7.7 20.65-4.41 37.6-12.11 16.96-33.76 16.96-12.83 0-23.43-7.48-10.61-7.48-14.74-19.3l-28.39-72.13H582.3ZM352.83-380.09 183-210.7q-12.39 11.4-28.07 11.61-15.67.22-27.5-12.17-12.39-11.83-12.39-27.78 0-15.96 12.39-27.79l170.39-170.39q-54.95-57.52-90.58-112.58-35.63-55.07-51.94-105.11h89.31q12.61 36.21 39.82 75.95 27.22 39.74 70.53 84.61 44.87-48 82.17-114.39 37.3-66.39 52.61-126.17H62.65q-16.95 0-28.28-11.33-11.33-11.33-11.33-28.28 0-16.96 11.33-28.57t28.28-11.61h250.39v-39.82q0-16.96 11.33-28.57t28.28-11.61q16.96 0 28.57 11.61t11.61 28.57v39.82h249.82q16.96 0 28.57 11.61t11.61 28.57q0 16.95-11.61 28.28-11.61 11.33-28.57 11.33h-67.17q-17.57 75.74-62.91 156.95-45.35 81.22-102.61 141.18l81.65 83.08-31.35 85.05-107.43-111.44Zm256.69 140.53h177.83l-88.92-236.7-88.91 236.7Z","abc":"M396.13-356.61q-7.7 0-13.61-5.91-5.91-5.91-5.91-13.61V-583.3q0-7.59 5.91-13.84t13.61-6.25h156.81q16.43 0 26.94 10.51 10.51 10.51 10.51 27.14v48.09q0 16.63-10.51 27.14Q569.37-480 553-480q16.37 0 26.88 10.51 10.51 10.51 10.51 27.14v48.09q0 16.63-10.51 27.14-10.51 10.51-26.94 10.51H396.13ZM431.39-504h104.22v-44.61H431.39V-504Zm0 92.61h104.22V-456H431.39v44.61Zm-294.17 54.78q-11.53 0-19.18-7.89t-7.65-18.93V-566q0-16.37 10.51-26.88 10.51-10.51 26.88-10.51h139q15.65 0 26.24 10.51 10.59 10.51 10.59 26.88v182.57q0 11.62-7.76 19.22t-19.63 7.6q-11.53 0-19.18-7.89t-7.65-18.93v-50.18H164.61v50.18q0 11.62-7.76 19.22t-19.63 7.6Zm27.39-131.78h104.78v-60.22H164.61v60.22Zm508.61 131.78q-15.65 0-26.24-10.51-10.59-10.51-10.59-26.88v-172q0-16.37 10.59-26.88 10.59-10.51 26.24-10.51h139q16.37 0 26.88 10.51 10.51 10.51 10.51 26.88v26.18q0 11.53-8.08 19.07-8.08 7.53-19.27 7.53-11.2 0-19.03-7.76-7.84-7.76-7.84-19.63v-8H690.61v137.22h104.78v-8q0-11.53 7.88-19.18t19.18-7.65q11.3 0 19.23 7.54t7.93 19.06V-394q0 16.37-10.51 26.88-10.51 10.51-26.88 10.51h-139Z","chevron":"M516.43-481 346.22-651.22q-11.83-11.82-11.33-27.78t12.33-27.78q11.82-11.83 28.28-11.83t28.28 11.83l197.44 197.43q6.13 6.13 9.26 13.39 3.13 7.26 3.13 14.96 0 7.7-3.13 14.96-3.13 7.26-9.26 13.39L402.78-254.22q-11.82 11.83-27.78 11.33t-27.78-12.33q-11.83-11.82-11.83-28.28t11.83-28.28L516.43-481Z","help":"M512.7-259.72q12.69-12.73 12.69-30.19 0-17.47-12.72-29.8-12.73-12.33-30.12-12.33-17.4 0-29.8 12.36-12.4 12.36-12.4 29.82 0 17.47 12.43 30.16Q465.21-247 482.6-247q17.4 0 30.1-12.72ZM480.34-65.87q-86.2 0-161.5-32.39-75.3-32.4-131.74-88.84-56.44-56.44-88.84-131.73-32.39-75.3-32.39-161.59t32.39-161.67q32.4-75.37 88.75-131.34t131.69-88.62q75.34-32.65 161.67-32.65 86.34 0 161.78 32.61 75.45 32.6 131.37 88.5 55.93 55.89 88.55 131.45 32.63 75.56 32.63 161.87 0 86.29-32.65 161.58t-88.62 131.48q-55.97 56.18-131.42 88.76-75.46 32.58-161.67 32.58Zm.16-79.22q139.24 0 236.83-97.73 97.58-97.73 97.58-237.68 0-139.24-97.4-236.83-97.4-97.58-237.79-97.58-139.02 0-236.83 97.4-97.8 97.4-97.8 237.79 0 139.02 97.73 236.83 97.73 97.8 237.68 97.8ZM480-480Zm1.65-170.96q26.79 0 47.27 16.77 20.47 16.76 20.47 42.26 0 24.1-14.23 42.31-14.24 18.22-32.25 33.1-23 19.56-40.28 43.34-17.28 23.78-17.28 52.79 0 12.44 9.58 19.91 9.59 7.48 22.37 7.48 13.7 0 22.99-9.13t13.23-22.26q3.57-19.31 15.13-34.91 11.56-15.6 27.71-28.22 24.21-19.65 39.64-47.28 15.43-27.63 15.43-58.42 0-51.08-36.93-86-36.93-34.91-87.63-34.91-37.68 0-71.4 15.85-33.73 15.85-56.43 45.98-7.56 11.13-6.81 24.31.74 13.17 11.48 21.34 13.11 8.56 27.32 5.28 14.21-3.28 23.49-15.41 11.62-15.64 29.29-24.91t37.84-9.27Z","arrow":"M662.82-440.39H185.48q-16.96 0-28.28-11.33-11.33-11.32-11.33-28.28t11.33-28.28q11.32-11.33 28.28-11.33h477.34l-210.6-210.61q-11.83-11.82-12.11-28.06-.28-16.24 11.54-28.63 11.83-11.83 28.35-11.55 16.52.29 28.35 12.11l278 278q6.13 6.13 9.26 13.39 3.13 7.26 3.13 14.96 0 7.7-3.13 14.96-3.13 7.26-9.26 13.39l-278.57 278q-12.39 12.39-28.35 12.39-15.95 0-27.78-12.39-11.82-11.83-11.82-27.78 0-15.96 11.82-27.79l211.17-211.17Z"};
+const ICON = {"check":"m419.87-403.7-87.26-87.26q-11.26-11.26-27.72-11.26-16.45 0-29.15 12.26-11.26 11.83-11.26 28.22t11.82 27.65l115.22 116.22q12.08 11.83 28.2 11.83 16.11 0 28.5-11.83l232.21-232.78q12.83-12.26 12.83-28.43 0-16.18-12.83-28.88-12.26-11.26-29.21-10.76-16.95.5-28.66 11.76L419.87-403.7Zm60.21 337.83q-85.47 0-161.01-32.39-75.53-32.4-131.97-88.84-56.44-56.44-88.84-131.89-32.39-75.46-32.39-160.93 0-86.47 32.39-162.01 32.4-75.53 88.75-131.5t131.85-88.62q75.5-32.65 161.01-32.65 86.52 0 162.12 32.61 75.61 32.6 131.53 88.5 55.93 55.89 88.55 131.45Q894.7-566.58 894.7-480q0 85.55-32.65 161.07-32.65 75.53-88.62 131.9-55.97 56.37-131.42 88.77-75.46 32.39-161.93 32.39Z","furi":"M293.05-162.05q-16.62-16.19-16.62-40.04v-499.04H122.65q-24.03 0-40.41-16.45-16.37-16.44-16.37-40.32 0-23.87 16.37-40.33 16.38-16.47 40.41-16.47h421.7q23.66 0 40.22 16.72 16.56 16.71 16.56 40.58 0 23.88-16.56 40.07-16.56 16.2-40.22 16.2H389.43v498.48q0 24.03-16.18 40.41-16.18 16.37-39.88 16.37-23.71 0-40.32-16.18Zm374.41 0q-16.33-16.19-16.33-40.04v-285.47h-73.78q-23.66 0-40.22-16.45t-16.56-40.32q0-23.88 16.18-40.06 16.18-16.18 40.03-16.18h261.13q23.66 0 40.22 16.3 16.57 16.3 16.57 40.17 0 23.88-16.57 40.21-16.56 16.33-40.22 16.33h-73.78v284.91q0 24.03-16.3 40.41-16.29 16.37-40.17 16.37-23.87 0-40.2-16.18Z","play":"M305.87-250.09v-465.82q0-18.53 11.87-29.35 11.86-10.83 27.5-10.83 5.24 0 10.72 1.28 5.47 1.29 11.1 4.38l366.51 234.52q8.97 6.13 13.75 14.39 4.77 8.26 4.77 18.52t-4.77 18.52q-4.78 8.26-13.75 14.39L367.06-215.57q-5.63 3.09-11.12 4.09-5.49 1-10.74 1-15.68 0-27.5-10.41-11.83-10.42-11.83-29.2Z","pause":"M627.81-174q-32.84 0-56.22-23.44-23.37-23.43-23.37-56.34v-452.44q0-32.91 23.38-56.34Q594.99-786 627.83-786h55q32.83 0 56.11 23.44 23.28 23.43 23.28 56.34v452.44q0 32.91-23.29 56.34Q715.64-174 682.81-174h-55Zm-350.44 0q-32.84 0-56.21-23.44-23.38-23.43-23.38-56.34v-452.44q0-32.91 23.39-56.34Q244.55-786 277.39-786h55q32.84 0 56.12 23.44 23.27 23.43 23.27 56.34v452.44q0 32.91-23.28 56.34Q365.21-174 332.37-174h-55Z","replay5":"M523.7-303.78H404.43q-11.56 0-19.13-7.57-7.56-7.56-7.56-18.85 0-11.28 7.85-18.84 7.84-7.57 18.84-7.57h99.18v-55.43h-99.18q-11 0-18.84-7.85-7.85-7.85-7.85-18.85v-104.87q0-11.56 7.85-18.35 7.84-6.78 18.84-6.78h128.14q10 0 17.56 6.78 7.57 6.79 7.57 18.35 0 11.57-7.07 19.13-7.06 7.57-18.06 7.57h-99.74v56.43h99.74q11 0 18.06 7.07 7.07 7.06 7.07 18.06v97.57q0 14-10 24t-24 10ZM333.85-92.17q-68.33-29.13-119.31-80.11-50.98-50.98-80.11-119.02-29.13-68.05-29.13-146.44 0-16.96 11.33-28.28 11.33-11.33 28.28-11.33 16.96 0 28.29 11.33 11.32 11.32 11.32 28.28 0 123.31 86.37 209.11 86.37 85.8 209.11 85.8 122.74 0 209.11-86.08 86.37-86.09 86.37-208.83 0-123.3-83.87-209.11-83.87-85.8-207.18-85.8h-22l46.35 46.35q10.13 10.13 10.13 23.26t-10.13 23.26q-10.13 10.13-23.54 9.85-13.41-.29-23.54-10.42L355.56-746.48q-12.39-11.82-12.39-28.06t12.39-28.07L462.7-910.3q9.13-8.57 23.04-8.85 13.91-.29 23.04 8.85 9.13 9.13 8.85 23.32-.28 14.2-9.41 22.76l-51.79 51.78h23q78.4 0 146.72 29.14 68.33 29.13 119.31 80.1 50.98 50.98 80.11 119.03 29.13 68.04 29.13 146.15t-29.13 146.43q-29.13 68.33-80.11 119.31-50.98 50.98-119.31 80.11Q557.83-63.04 480-63.04q-77.83 0-146.15-29.13Z","forward5":"M333.85-92.17q-68.33-29.13-119.31-80.11-50.98-50.98-80.11-119.31-29.13-68.32-29.13-146.43 0-78.11 29.13-146.15 29.13-68.05 80.11-119.03 50.98-50.97 119.31-80.1 68.32-29.14 146.72-29.14h23l-50.79-50.78q-9.13-8.56-9.41-22.76-.28-14.19 8.85-23.32 9.13-9.14 22.54-9.35 13.41-.22 22.54 8.35L605-802.61q11.83 11.83 11.83 28.07 0 16.24-11.83 28.06L498.3-640.35q-10.13 10.13-23.54 10.42-13.41.28-23.54-9.85-10.13-10.13-10.13-23.26t10.13-23.26l46.91-46.35h-22.56q-123.31 0-207.18 85.8-83.87 85.81-83.87 209.11 0 122.74 86.37 208.83 86.37 86.08 209.11 86.08 122.74 0 209.11-85.8 86.37-85.8 86.37-209.11 0-16.96 11.32-28.28 11.33-11.33 28.29-11.33 16.95 0 28.28 11.33 11.33 11.32 11.33 28.28 0 78.39-29.13 146.44-29.13 68.04-80.11 119.02-50.98 50.98-119.31 80.11Q557.83-63.04 480-63.04q-77.83 0-146.15-29.13ZM523.7-303.78H404.43q-11.56 0-19.13-7.57-7.56-7.56-7.56-18.85 0-11.28 7.85-18.84 7.84-7.57 18.84-7.57h99.18v-55.43h-99.18q-11 0-18.84-7.85-7.85-7.85-7.85-18.85v-104.87q0-11.56 7.85-18.35 7.84-6.78 18.84-6.78h128.14q10 0 17.56 6.78 7.57 6.79 7.57 18.35 0 11.57-7.07 19.13-7.06 7.57-18.06 7.57h-99.74v56.43h99.74q11 0 18.06 7.07 7.07 7.06 7.07 18.06v97.57q0 14-10 24t-24 10Z","tune":"M434.09-117.21q-10.48-10.22-10.48-26.01v-165.56q0-15.79 10.65-26.01Q444.92-345 460.57-345q15.65 0 25.84 10.21 10.2 10.22 10.2 26.01V-262h316.78q15.79 0 26 10.37 10.22 10.37 10.22 26.02t-10.22 26.13q-10.21 10.48-26 10.48H496.61v45.78q0 15.79-10.37 26.01Q475.87-107 460.22-107t-26.13-10.21ZM146.61-189q-15.79 0-26-10.65-10.22-10.66-10.22-26.31 0-15.65 10.22-25.84 10.21-10.2 26-10.2h187.56q15.79 0 26.01 10.37 10.21 10.37 10.21 26.02t-10.21 26.13Q349.96-189 334.17-189H146.61Zm161.26-183.39q-10.48-10.6-10.48-26.18v-45.21H146.61q-15.22 0-25.72-10.66-10.5-10.65-10.5-25.74 0-15.08 10.5-25.56 10.5-10.48 25.72-10.48h150.78V-564q0-15.79 10.65-26 10.66-10.22 26.31-10.22 15.65 0 25.85 10.22 10.19 10.21 10.19 26v166q0 15.79-10.37 26-10.37 10.22-26.02 10.22t-26.13-10.61Zm151.96-71.39q-15.23 0-25.72-10.66-10.5-10.65-10.5-25.74 0-15.08 10.5-25.56 10.49-10.48 25.72-10.48h353.56q15.22 0 25.72 10.66 10.5 10.65 10.5 25.74 0 15.08-10.5 25.56-10.5 10.48-25.72 10.48H459.83Zm140.26-181.43q-10.48-10.22-10.48-26.01v-165.56q0-15.79 10.65-26.01Q610.92-853 626.57-853q15.65 0 25.84 10.21 10.2 10.22 10.2 26.01V-771h150.78q15.79 0 26 10.37 10.22 10.37 10.22 26.02t-10.22 26.13q-10.21 10.48-26 10.48H662.61v46.78q0 15.79-10.37 26.01Q641.87-615 626.22-615t-26.13-10.21ZM146.61-698q-15.79 0-26-10.65-10.22-10.66-10.22-26.31 0-15.65 10.22-25.84 10.21-10.2 26-10.2h353.56q15.79 0 26.01 10.37 10.21 10.37 10.21 26.02t-10.21 26.13Q515.96-698 500.17-698H146.61Z","back":"m382.7-480 308.21 308.22q13.26 13.82 13.55 34.56.28 20.74-13.55 35.57-14.82 14.26-35.56 14.26-20.74 0-35-14.26L297.57-424.43q-11.83-11.83-17.24-26.22-5.42-14.39-5.42-29.35t5.42-29.35q5.41-14.39 17.24-26.22l323.78-323.21q14.26-14.83 34.22-14.61 19.95.22 35.34 15.04 13.26 14.83 13.76 35.07.5 20.24-13.76 35.06L382.7-480Z","close":"M480-424.43 276.78-221.22q-11.82 11.83-27.78 11.83t-27.78-11.83q-11.83-11.82-11.83-27.78t11.83-27.78L424.43-480 221.22-683.22q-11.83-11.82-11.83-27.78t11.83-27.78q11.82-11.83 27.78-11.83t27.78 11.83L480-535.57l203.22-203.21q11.82-11.83 27.78-11.83t27.78 11.83q11.83 11.82 11.83 27.78t-11.83 27.78L535.57-480l203.21 203.22q11.83 11.82 11.83 27.78t-11.83 27.78q-11.82 11.83-27.78 11.83t-27.78-11.83L480-424.43Z","schedule":"M519.22-495.65v-158.87q0-15.64-10.36-25.93t-25.74-10.29q-15.38 0-25.86 10.29-10.48 10.29-10.48 25.93v173.39q0 7.7 2.57 14.31 2.56 6.62 7.69 12.91L594.26-311.7q11.41 11.7 27.1 11.2 15.68-.5 26.94-11.2 11.27-10.69 11.27-26.52 0-15.82-11.27-27.08L519.22-495.65ZM480.08-65.87q-85.47 0-160.94-32.55-75.48-32.56-131.81-88.87T98.44-319.04q-32.57-75.44-32.57-160.9 0-85.45 32.68-160.99 32.67-75.53 88.83-131.69t131.64-89.12Q394.5-894.7 480-894.7q85.5 0 160.98 32.96 75.48 32.96 131.64 89.12 56.16 56.16 89.12 131.64Q894.7-565.5 894.7-480q0 85.5-32.96 160.98-32.96 75.48-89.12 131.64-56.16 56.16-131.61 88.83-75.46 32.68-160.93 32.68ZM480-480Zm-.29 334.91q138.03 0 236.62-98.02 98.58-98.02 98.58-236.61 0-138.58-98.51-236.89-98.51-98.3-236.39-98.3-138.31 0-236.62 98.23-98.3 98.24-98.3 236.68 0 138.87 98.3 236.89 98.3 98.02 236.32 98.02Z","translate":"m582.3-164.78-28.95 73.13q-4.13 11.39-14.18 18.59-10.04 7.19-22.43 7.19-21.09 0-32.91-16.67-11.83-16.68-4.7-36.76l154.35-412.18q5.13-14.95 18.02-24.28 12.89-9.33 28.98-9.33h38.04q15.52 0 28.7 9.33 13.17 9.33 18.3 24.28L919.3-120.43q7.7 20.65-4.41 37.6-12.11 16.96-33.76 16.96-12.83 0-23.43-7.48-10.61-7.48-14.74-19.3l-28.39-72.13H582.3ZM352.83-380.09 183-210.7q-12.39 11.4-28.07 11.61-15.67.22-27.5-12.17-12.39-11.83-12.39-27.78 0-15.96 12.39-27.79l170.39-170.39q-54.95-57.52-90.58-112.58-35.63-55.07-51.94-105.11h89.31q12.61 36.21 39.82 75.95 27.22 39.74 70.53 84.61 44.87-48 82.17-114.39 37.3-66.39 52.61-126.17H62.65q-16.95 0-28.28-11.33-11.33-11.33-11.33-28.28 0-16.96 11.33-28.57t28.28-11.61h250.39v-39.82q0-16.96 11.33-28.57t28.28-11.61q16.96 0 28.57 11.61t11.61 28.57v39.82h249.82q16.96 0 28.57 11.61t11.61 28.57q0 16.95-11.61 28.28-11.61 11.33-28.57 11.33h-67.17q-17.57 75.74-62.91 156.95-45.35 81.22-102.61 141.18l81.65 83.08-31.35 85.05-107.43-111.44Zm256.69 140.53h177.83l-88.92-236.7-88.91 236.7Z","abc":"M396.13-356.61q-7.7 0-13.61-5.91-5.91-5.91-5.91-13.61V-583.3q0-7.59 5.91-13.84t13.61-6.25h156.81q16.43 0 26.94 10.51 10.51 10.51 10.51 27.14v48.09q0 16.63-10.51 27.14Q569.37-480 553-480q16.37 0 26.88 10.51 10.51 10.51 10.51 27.14v48.09q0 16.63-10.51 27.14-10.51 10.51-26.94 10.51H396.13ZM431.39-504h104.22v-44.61H431.39V-504Zm0 92.61h104.22V-456H431.39v44.61Zm-294.17 54.78q-11.53 0-19.18-7.89t-7.65-18.93V-566q0-16.37 10.51-26.88 10.51-10.51 26.88-10.51h139q15.65 0 26.24 10.51 10.59 10.51 10.59 26.88v182.57q0 11.62-7.76 19.22t-19.63 7.6q-11.53 0-19.18-7.89t-7.65-18.93v-50.18H164.61v50.18q0 11.62-7.76 19.22t-19.63 7.6Zm27.39-131.78h104.78v-60.22H164.61v60.22Zm508.61 131.78q-15.65 0-26.24-10.51-10.59-10.51-10.59-26.88v-172q0-16.37 10.59-26.88 10.59-10.51 26.24-10.51h139q16.37 0 26.88 10.51 10.51 10.51 10.51 26.88v26.18q0 11.53-8.08 19.07-8.08 7.53-19.27 7.53-11.2 0-19.03-7.76-7.84-7.76-7.84-19.63v-8H690.61v137.22h104.78v-8q0-11.53 7.88-19.18t19.18-7.65q11.3 0 19.23 7.54t7.93 19.06V-394q0 16.37-10.51 26.88-10.51 10.51-26.88 10.51h-139Z","chevron":"M516.43-481 346.22-651.22q-11.83-11.82-11.33-27.78t12.33-27.78q11.82-11.83 28.28-11.83t28.28 11.83l197.44 197.43q6.13 6.13 9.26 13.39 3.13 7.26 3.13 14.96 0 7.7-3.13 14.96-3.13 7.26-9.26 13.39L402.78-254.22q-11.82 11.83-27.78 11.33t-27.78-12.33q-11.83-11.82-11.83-28.28t11.83-28.28L516.43-481Z","help":"M512.7-259.72q12.69-12.73 12.69-30.19 0-17.47-12.72-29.8-12.73-12.33-30.12-12.33-17.4 0-29.8 12.36-12.4 12.36-12.4 29.82 0 17.47 12.43 30.16Q465.21-247 482.6-247q17.4 0 30.1-12.72ZM480.34-65.87q-86.2 0-161.5-32.39-75.3-32.4-131.74-88.84-56.44-56.44-88.84-131.73-32.39-75.3-32.39-161.59t32.39-161.67q32.4-75.37 88.75-131.34t131.69-88.62q75.34-32.65 161.67-32.65 86.34 0 161.78 32.61 75.45 32.6 131.37 88.5 55.93 55.89 88.55 131.45 32.63 75.56 32.63 161.87 0 86.29-32.65 161.58t-88.62 131.48q-55.97 56.18-131.42 88.76-75.46 32.58-161.67 32.58Zm.16-79.22q139.24 0 236.83-97.73 97.58-97.73 97.58-237.68 0-139.24-97.4-236.83-97.4-97.58-237.79-97.58-139.02 0-236.83 97.4-97.8 97.4-97.8 237.79 0 139.02 97.73 236.83 97.73 97.8 237.68 97.8ZM480-480Zm1.65-170.96q26.79 0 47.27 16.77 20.47 16.76 20.47 42.26 0 24.1-14.23 42.31-14.24 18.22-32.25 33.1-23 19.56-40.28 43.34-17.28 23.78-17.28 52.79 0 12.44 9.58 19.91 9.59 7.48 22.37 7.48 13.7 0 22.99-9.13t13.23-22.26q3.57-19.31 15.13-34.91 11.56-15.6 27.71-28.22 24.21-19.65 39.64-47.28 15.43-27.63 15.43-58.42 0-51.08-36.93-86-36.93-34.91-87.63-34.91-37.68 0-71.4 15.85-33.73 15.85-56.43 45.98-7.56 11.13-6.81 24.31.74 13.17 11.48 21.34 13.11 8.56 27.32 5.28 14.21-3.28 23.49-15.41 11.62-15.64 29.29-24.91t37.84-9.27Z","arrow":"M662.82-440.39H185.48q-16.96 0-28.28-11.33-11.33-11.32-11.33-28.28t11.33-28.28q11.32-11.33 28.28-11.33h477.34l-210.6-210.61q-11.83-11.82-12.11-28.06-.28-16.24 11.54-28.63 11.83-11.83 28.35-11.55 16.52.29 28.35 12.11l278 278q6.13 6.13 9.26 13.39 3.13 7.26 3.13 14.96 0 7.7-3.13 14.96-3.13 7.26-9.26 13.39l-278.57 278q-12.39 12.39-28.35 12.39-15.95 0-27.78-12.39-11.82-11.83-11.82-27.78 0-15.96 11.82-27.79l211.17-211.17Z"};
 const ic = (name) => `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="${ICON[name]}"/></svg>`;
 const PLAY_SVG = ic("play"), PAUSE_SVG = ic("pause"), ARROW_SVG = ic("arrow");
 const JA_RE = /[぀-ヿ㐀-鿿]/;
@@ -485,7 +484,7 @@ const state = {
   docs: {}, local: {}, jobs: {}, saveErr: null,
   view: null, editing: false, pasteFor: null, filter: "all",
   lines: [], speaking: -1,
-  showRo: store.get("kaze.ro", true), showZh: store.get("kaze.zh", true),
+  showRo: store.get("kaze.ro", true), showZh: store.get("kaze.zh", true), showFuri: store.get("kaze.furi", true),
   sel: null,
   // line = the tapped lyric line; base/win = per-line timing before and after the song's offset; cal = timing mode
   line: null, base: [], win: [], cal: false,
@@ -522,6 +521,39 @@ function segment(line, tk) {
   return out;
 }
 
+// Furigana: each run of kanji gets its slice of the kana reading, found by matching the kana around it.
+const KANJI_RE = /[\u3400-\u9fff々〆ヶ0-9０-９]/;
+const RUN_RE = /[\u3400-\u9fff々〆ヶ0-9０-９]+|[^\u3400-\u9fff々〆ヶ0-9０-９]+/g;
+const toHira = (s) => s.replace(/[\u30a1-\u30f6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
+const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function furi(text, reading) {
+  const runs = text.match(RUN_RE) || [];
+  if (!runs.some((r) => KANJI_RE.test(r))) return runs.map((r) => [r, null]);
+  if (!reading) return null;
+  let src = "^";
+  for (const r of runs) src += KANJI_RE.test(r) ? "(.+?)" : reEsc(toHira(r).replace(/[\s・]/g, ""));
+  const m = new RegExp(src + "$").exec(toHira(reading).replace(/[\s・]/g, ""));
+  if (!m) return null;
+  let g = 1; return runs.map((r) => (KANJI_RE.test(r) ? [r, m[g++]] : [r, null]));
+}
+// A chunk's pieces with readings; its listed parts (when they spell it) keep each reading on the right word.
+function chunkFuri(t) {
+  if (Array.isArray(t.b) && t.b.map((p) => p[0]).join("") === t.t) {
+    const out = [];
+    for (const [w, k] of t.b) { const f = furi(w, k || w); if (!f) return furi(t.t, t.k); out.push(...f); }
+    return out;
+  }
+  return furi(t.t, t.k);
+}
+function fillJp(node, text, t) {
+  const pieces = t && t.p !== "en" && t.t === text ? chunkFuri(t) : null;
+  if (!pieces) { node.textContent = text; return; }
+  for (const [piece, rt] of pieces) {
+    if (!rt) { node.append(piece); continue; }
+    const ruby = el("ruby"); ruby.append(piece); const r = el("rt"); r.textContent = rt; ruby.append(r); node.append(ruby);
+  }
+}
+
 /* ---------- poster ---------- */
 function photoEl(key, x, y, w, r, cut, z, extra) {
   const wrap = el("div", "pc ph-wrap");
@@ -532,19 +564,20 @@ function photoEl(key, x, y, w, r, cut, z, extra) {
   ph.append(img); wrap.append(ph);
   return wrap;
 }
-// The song's streaming cover, whole and in its own colors; the site's own photo only if the image cannot load.
+// Each song's photo is a frame from its YouTube video (its MV when there is one); the site's own photo if it cannot load.
 const mediaOf = (k) => (typeof MEDIA === "object" && MEDIA[k]) || null;
 function setCover(img, key) {
   const m = mediaOf(key);
   const local = () => { img.onerror = null; img.src = `img/${SONG_PHOTO[key]}.jpg`; img.classList.add("fallback"); };
   img.classList.remove("fallback"); img.alt = ""; img.decoding = "async";
-  if (m && m.thumb) { img.onerror = local; img.src = m.thumb; } else local();
+  if (m && m.photo) { img.onerror = local; img.src = m.photo; } else local();
   return img;
 }
-function coverEl(key, x, y, w, r, z) {
+// In the catalog the photo is cropped into one of the collage's cut shapes, in the poster's film tone.
+function coverEl(key, x, y, w, r, z, cut, ar, extra) {
   const wrap = el("div", "pc ph-wrap");
   wrap.style.cssText = `--x:${x};--y:${y};--w:${w};--r:${r};--z:${z}`;
-  const ph = el("div", "ph cover"); ph.style.setProperty("--ar", 1);
+  const ph = el("div", `ph cut-${cut}${extra ? " " + extra : ""}`); ph.style.setProperty("--ar", ar);
   const img = setCover(el("img"), key); img.loading = "lazy";
   ph.append(img); wrap.append(ph);
   return wrap;
@@ -599,10 +632,10 @@ function layoutPoster() {
     const side = SIDE[i % SIDE.length];
     const h = fit.lines.length * fit.fs * 1.3 + 1.5;
     board.append(trackEl(s, i, y, fit));
-    // the song's cover on the open side of its strip, sometimes tucked under its end
-    const w = 26 + jit(i, 0, 6);
+    // the song's photo on the open side of its strip, sometimes tucked under its end
+    const ar = PHOTO_CROP[i % PHOTO_CROP.length]; const w = 26 + jit(i, 0, 8);
     const px = side === "L" ? 100 - w - 2 + jit(i, -5, 5) : -4 + jit(i, 0, 6);
-    const cover = coverEl(s.key, px.toFixed(1), (y - 6 + jit(i + 3, -2, 6)).toFixed(1), w.toFixed(1), ROTS[(i + 5) % ROTS.length] / 2, 1);
+    const cover = coverEl(s.key, px.toFixed(1), (y - 6 + jit(i + 3, -2, 6)).toFixed(1), w.toFixed(1), ROTS[(i + 5) % ROTS.length], 1, CUTS[i % CUTS.length], ar, i % 4 === 2 ? "dots" : "");
     cover.classList.add("dyn"); board.append(cover);
     // spill past the poster edges every few strips; only seen on wide screens
     if (i % 4 === 1) {
@@ -641,8 +674,20 @@ function updateFocus() {
 const queueFocus = () => { if (!focusRaf) focusRaf = requestAnimationFrame(updateFocus); };
 window.addEventListener("scroll", queueFocus, { passive: true });
 window.addEventListener("resize", queueFocus);
+// Lots of small stars over the signature and title, each on its own beat (placed by a fixed seed, so every load matches).
+function addGlints(board) {
+  const rand = (i) => { const x = Math.sin(i * 12.9898 + 4.1) * 43758.5453; return x - Math.floor(x); };
+  for (let i = 0; i < 64; i++) {
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    g.setAttribute("class", "glint " + (i % 3 === 1 ? "c-yellow" : "c-paper")); g.setAttribute("aria-hidden", "true");
+    g.style.cssText = `--gx:${(rand(i) * 96).toFixed(1)};--gy:${(rand(i + 500) * 62).toFixed(1)};--gs:${(1 + rand(i + 1000) * 1.7).toFixed(2)};--d:${(rand(i + 1500) * 3.6).toFixed(2)}s;--t:${(1.8 + rand(i + 2000) * 2).toFixed(2)}s`;
+    g.innerHTML = '<use href="#sp"/>';
+    board.append(g);
+  }
+}
 function renderHead() {
   const board = $("#board");
+  addGlints(board);
   for (const p of HEAD_PHOTOS) board.append(photoEl(...p));
   for (const st of HEAD_STICKERS) board.append(stickerEl(...st));
 }
@@ -671,7 +716,7 @@ function showSong(s) {
   const sub = s.sub && !isZhText(s.sub) ? s.sub : "";
   $("#songSub").textContent = sub ? `Fujii Kaze · ${sub}` : "Fujii Kaze";
   const thumb = $("#songThumb"); thumb.className = "s-thumb cover"; setCover(thumb, s.key);
-  $("#tgRo").hidden = !JA_RE.test(getRec(s.key).raw);
+  $("#tgRo").hidden = $("#tgFuri").hidden = !JA_RE.test(getRec(s.key).raw);
   state.line = null; state.cal = false; document.body.classList.remove("cal-on"); loadCal(s.key);
   setVideo(srcOf(s.key));
   refreshSong(true);
@@ -684,24 +729,15 @@ function refreshSong(force) {
   $("#lyrics").hidden = false;
   if (force || rec !== lastRenderedRec) renderLyrics(s, rec);
   recalcWindows(); decorate(); renderCalControls(); renderCalBar(); renderTune();
-  $("#coverLink").href = spotifyUrl(s, rec);
   renderSrcSwitch(); renderAlignBar();
 }
-
-// The song's verified track link, otherwise a Spotify search for it.
-const SPOTIFY_RE = /^https:\/\/open\.spotify\.com\/\S+$/;
-function spotifyUrl(s, rec) {
-  const m = mediaOf(s.key);
-  for (const link of [m && m.spotify, rec && rec.spotify]) if (typeof link === "string" && SPOTIFY_RE.test(link)) return link;
-  return "https://open.spotify.com/search/" + encodeURIComponent(`${s.title} Fujii Kaze`);
-}
-
 
 function renderLyrics(s, rec) {
   lastRenderedRec = rec;
   const ol = $("#lyrics"); ol.replaceChildren();
   ol.classList.toggle("hide-ro", !state.showRo);
   ol.classList.toggle("hide-zh", !state.showZh);
+  ol.classList.toggle("hide-furi", !state.showFuri);
   const job = state.jobs[s.key]; const running = !!(job && job.running);
   state.lines = [];
   for (const text of parseLyrics(rec.raw)) {
@@ -719,7 +755,7 @@ function renderLyrics(s, rec) {
         if (!seg.text.trim()) { src.append(el("span", "sp-gap")); continue; }
         const t = seg.ti == null ? null : a.tk[seg.ti];
         const box = el("span", t ? "seg w" : "seg");
-        const jp = el("span", "seg-jp"); jp.textContent = seg.text.trim();
+        const jp = el("span", "seg-jp"); fillJp(jp, seg.text.trim(), t);
         const ro = el("span", "seg-ro"); ro.lang = "ja-Latn"; ro.textContent = (t && t.p !== "en" && t.r) || " ";
         box.append(jp, ro);
         if (t) { box.dataset.ti = seg.ti; box.tabIndex = 0; box.setAttribute("role", "button"); }
@@ -921,10 +957,12 @@ function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = fal
 function openSheet(open) { hideTip(); $("#tuneSheet").hidden = !open; $("#scrim").hidden = !open; if (open) renderTune(); }
 const closeSheets = () => openSheet(false);
 function renderTune() {
+  $("#tgFuri").setAttribute("aria-checked", String(state.showFuri));
   $("#tgRo").setAttribute("aria-checked", String(state.showRo));
   $("#tgZh").setAttribute("aria-checked", String(state.showZh));
   $("#calBtn").hidden = !srcOf(state.view);
 }
+$("#tgFuri").addEventListener("click", () => { state.showFuri = !state.showFuri; store.set("kaze.furi", state.showFuri); $("#lyrics").classList.toggle("hide-furi", !state.showFuri); renderTune(); });
 $("#tgRo").addEventListener("click", () => { state.showRo = !state.showRo; store.set("kaze.ro", state.showRo); $("#lyrics").classList.toggle("hide-ro", !state.showRo); renderTune(); });
 $("#tgZh").addEventListener("click", () => { state.showZh = !state.showZh; store.set("kaze.zh", state.showZh); $("#lyrics").classList.toggle("hide-zh", !state.showZh); renderTune(); });
 $("#calBtn").addEventListener("click", () => { closeSheets(); setCal(true); });
@@ -1039,8 +1077,10 @@ let alignedUntil = 0;
 function renderAlignBar() {
   const src = srcOf(state.view); const show = !!src && !state.cal && (gated() || Date.now() < alignedUntil);
   $("#alignBar").hidden = !show; if (!show) return;
-  const done = !gated();
-  $("#alignTip").textContent = done ? `已對齊（整首偏移 ${songOffset() >= 0 ? "+" : "−"}${Math.abs(songOffset()).toFixed(2)} 秒）。點句子就能聽；不準的話可在「調整 › 時間校準」裡微調。` : alignHint();
+  const done = !gated(); const tip = $("#alignTip");
+  $("#alignBar").classList.toggle("done", done);
+  if (done) tip.innerHTML = ic("check") + `<span>已對齊，後續可在 ${ic("tune")} 調整中校準</span>`; // fixed text and icons only
+  else tip.textContent = alignHint();
   $("#alignBtn").hidden = done;
 }
 /* ---------- audio / MV switch: shown when a song has both; the choice carries over to other songs ---------- */

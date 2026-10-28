@@ -110,6 +110,16 @@ def find_art_track(key, title, seconds):
     return None
 
 
+def video_photo(video_id):
+    """The video's widest thumbnail without letterbox bars: maxresdefault when it exists, else mqdefault (320x180)."""
+    url = f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg"
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, method="HEAD", headers={"User-Agent": UA_BROWSER}), timeout=20):
+            return url
+    except urllib.error.HTTPError:
+        return f"https://i.ytimg.com/vi/{video_id}/mqdefault.jpg"
+
+
 def video_seconds(video_id):
     page = fetch(f"https://www.youtube.com/watch?v={video_id}", UA_BROWSER, f"yt-watch-{video_id}.html")
     m = re.search(r'"lengthSeconds":"(\d+)"', page)
@@ -357,6 +367,10 @@ def main():
         for src in entry["sources"]:
             src.pop("seconds", None)
             rep["sources"].append(dict(src))
+        # The song's photo on the site: a frame from its official video, else from its audio upload.
+        pick = next((x for x in entry["sources"] if x["kind"] == "mv"), entry["sources"][0] if entry["sources"] else None)
+        if pick:
+            entry["photo"] = video_photo(pick["id"])
         out[key] = entry
         report[key] = rep
         srcs = " ".join(f"{s['kind']}:{s['id']}@{s['offset']}" for s in entry["sources"]) or "-"
