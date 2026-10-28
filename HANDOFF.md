@@ -31,16 +31,14 @@
 ## 時間資料狀態（`dist/data/media.json`）
 
 - 989 句中 970 句有自動對好的時間（未人工逐句確認）。沒有時間的多是即興哼唱，例如死ぬのがいいわ中段的 scat。
-- 打開就能用（音源，不需對齊）：除下列三首外的 18 首。
-- 需要使用者先按一次「對齊整首」：花、満ちてゆく（只有 MV）、真っ白（官方音源長度和 Spotify 版不同）。
-- MV：何なんw（+5.38 秒，有 LRCLIB 依 MV 同步的紀錄佐證）和 Garden（Not a MV，長度相同）已預先對齊；其他 MV 第一次都要對齊。Okay, Goodbye、Forever Young 沒有官方 MV。
+- 21 首的所有音源和 MV（共 37 組影片）打開就能用，不會再出現「第一次用這支 MV 要對齊」：音源有預設偏移，Garden 的 MV 長度相同，其他 18 組（17 支 MV＋真っ白的音源）用使用者的校準當預設值。Okay, Goodbye、Forever Young 沒有官方 MV。
 - 有 13 句的播放區間超過 12 秒（66 句超過 8 秒），多半是拖到了間奏或長音，可用校準的「結束」修正。
 
 ## 還沒做或沒驗證的
 
 1. **還沒在 iPhone 實機測過**。所有測試都是在電腦瀏覽器模擬 iPhone 尺寸。要確認的重點：第一次播放需先點影片的 ▶（iOS 限制，網頁會提示）、點句跳轉、自動捲動、時間校準按鈕。
 2. **公開網站由 Codex Sites 部署**。`https://kaze-lyrics-notebook-1028.summy5677.chatgpt.site` 使用 `.openai/hosting.json` 的既有 project_id；修改後需重新部署 `dist/`。
-3. **2026-10-28 已保存前五首 MV 的使用者校準**（5 組影片偏移、99 句個別時間）。來源備份在 `work/media/calibrations/2026-10-28-first-five.json`；其他影片／歌曲仍以自動候選時間為主。重建 `media` 後需重新套用校準備份，不能誤套到音源版。
+3. **2026-10-28 已保存使用者校準當預設值**，備份在 `work/media/calibrations/`：`2026-10-28-first-five.json`（前五首 MV）和 `2026-10-28-remaining.json`（其餘 12 支 MV 和真っ白的音源）。第二次匯出時，Casket Girl 和死ぬのがいいわ也有不同的紀錄，但 Casket Girl 那筆第二句比第一句早約 28 秒，所以兩首都保留第一次的預設值。英文歌多半只有整首對齊，還沒逐句校準。`build_media_timing.py` 重建時不會保留校準，重建後要依日期順序重新跑 `import_calibration.py`。
 4. 舊的歌曲解讀筆記（`lyrics.json` 的 `summary`、`notes`）仍在資料裡，頁面已不顯示。
 
 ## 怎麼更新
