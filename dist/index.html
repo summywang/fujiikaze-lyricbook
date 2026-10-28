@@ -800,6 +800,7 @@ document.querySelector(".filters").addEventListener("click", (e) => {
 
 /* ---------- song view ---------- */
 function showSong(s) {
+  followHold = 0; lastFollowTarget = null;
   if (!$("#catalog").hidden) catalogY = window.scrollY;
   stopSpeech(); hideTip();
   state.view = s.key; lastSongKey = s.key; state.editing = false; state.pasteFor = null; lastRenderedRec = null;
@@ -1257,7 +1258,9 @@ function ytTime() { try { return yt.player && yt.ready ? yt.player.getCurrentTim
 function playLine(n, once) {
   const w = lineWindow(n); if (!w) return;
   yt.stopAt = once ? w.e : null;
+  followHold = 0; lastFollowTarget = null;
   seekPlay(w.s); setNow(n); decorate(); updateDock();
+  follow(n, true);
 }
 function lineAt(t) {
   for (let n = 0; n < state.win.length; n++) { const w = state.win[n]; if (w && t >= w.s - PREROLL && t < w.e) return n; }
@@ -1269,22 +1272,34 @@ function lineAtOrBefore(t) {
   return hit >= 0 ? hit : state.win.findIndex(Boolean);
 }
 function setNow(n) {
-  if (n === yt.now) return;
+  if (n === yt.now) { if (yt.playing) follow(n); return; }
   yt.now = n; decorate();
   follow(n);
 }
 
-/* ---------- lyrics follow the song: the line being sung glides to a reading spot under the video ---------- */
+/* ---------- lyrics follow the song: center the current card between the video and controls ---------- */
 // Scrolling by hand pauses the following for a moment; seeking with the timeline or ±5s follows at once.
-let followHold = 0;
-["wheel", "touchmove"].forEach((ev) => window.addEventListener(ev, () => { followHold = Date.now() + 3000; }, { passive: true }));
+let followHold = 0, lastFollowTarget = null;
+["wheel", "touchmove"].forEach((ev) => window.addEventListener(ev, () => {
+  followHold = Date.now() + 3000; lastFollowTarget = null;
+}, { passive: true }));
 function follow(n, force) {
   if (n == null || n < 0 || state.cal || !state.view || (!force && Date.now() < followHold)) return;
   const li = lineEl(n); if (!li) return;
-  const top = yt.id ? Math.max(0, $("#yt").getBoundingClientRect().bottom) : 0;
-  const bottom = window.innerHeight - ($("#dock").hidden ? 0 : $("#dock").offsetHeight);
-  const dy = li.getBoundingClientRect().top - (top + (bottom - top) * 0.28);
-  if (Math.abs(dy) > 4) window.scrollBy({ top: dy, behavior: reduceMotion ? "auto" : "smooth" });
+  const viewport = window.visualViewport;
+  const viewportTop = viewport ? viewport.offsetTop : 0;
+  const viewportBottom = viewportTop + (viewport ? viewport.height : window.innerHeight);
+  const top = Math.max(viewportTop, yt.id ? $("#yt").getBoundingClientRect().bottom : 0);
+  const bottom = Math.min(viewportBottom, $("#dock").hidden ? viewportBottom : $("#dock").getBoundingClientRect().top);
+  if (bottom <= top) return;
+  const rect = li.getBoundingClientRect();
+  const target = Math.max(0, Math.min(document.documentElement.scrollHeight - window.innerHeight,
+    window.scrollY + rect.top + rect.height / 2 - (top + bottom) / 2));
+  // Polling also resumes after a manual scroll and adapts to changing card/viewport sizes.
+  // Do not restart the smooth animation every 100ms when its destination is unchanged.
+  if (lastFollowTarget != null && Math.abs(target - lastFollowTarget) < 2) return;
+  lastFollowTarget = target;
+  if (Math.abs(target - window.scrollY) > 2) window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
 }
 // Runs while paused too, so dragging YouTube's own timeline also brings the lyrics along.
 setInterval(() => {
