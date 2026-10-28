@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans:wght@400;500;700&family=Zen+Old+Mincho:wght@700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;0,700&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans:wght@400;500;700&family=Zen+Old+Mincho:wght@700;900&display=swap">
 <style>
 /* Layout: catalog = one tall collage poster on a pink-to-orange sky, sized in container units; song titles are screen-printed strips that re-flow with the language filter. Song view = a clean Spotify-style lyric card filling the screen in that song's strip color. One committed light look, no dark switch. */
 :root{
@@ -36,8 +36,8 @@
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
-body{color:var(--plum);font:16px/1.65 var(--f-zh);background:var(--sky-salmon)}
-body.on-song{margin:0;background:var(--pg-bg)}
+body{margin:0;color:var(--plum);font:16px/1.65 var(--f-zh);background:var(--sky-salmon)}
+body.on-song{background:var(--pg-bg)}
 .sky{position:fixed;inset:0;z-index:-1;pointer-events:none;background:
   radial-gradient(70% 45% at 8% 0%,var(--sky-pink) 0%,transparent 70%),
   radial-gradient(60% 50% at 96% 14%,var(--sky-apricot) 0%,transparent 70%),
@@ -65,7 +65,7 @@ a{color:inherit}
 .ink-d .pr{padding-inline:0}
 
 /* ---------- poster ---------- */
-.poster{overflow:hidden;padding-block:6px 30px}
+.poster{overflow:hidden;padding-bottom:30px}
 .board{position:relative;container-type:inline-size;width:min(100%,700px);margin-inline:auto;aspect-ratio:100/560}
 .pc{position:absolute;left:calc(var(--x)*1cqw);top:calc(var(--y)*1cqw);transform:rotate(calc(var(--r,0)*1deg));z-index:var(--z,1);margin:0}
 .ph-wrap,.stk,.sign{width:calc(var(--w)*1cqw)}
@@ -87,6 +87,9 @@ a{color:inherit}
 .cut-6{clip-path:polygon(3% 2%,18% 0,34% 3%,52% 0,70% 2.5%,88% 0,100% 3%,98% 22%,100% 41%,97.5% 60%,100% 79%,98% 100%,80% 97.5%,61% 100%,43% 97%,24% 100%,6% 97.5%,0 100%,2% 78%,0 58%,2.5% 39%,0 20%)}
 .cut-heart{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90' preserveAspectRatio='none'%3E%3Cpath d='M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90' preserveAspectRatio='none'%3E%3Cpath d='M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
 .stk{display:block;height:auto;pointer-events:none}
+/* flowers by the signature and by each song strip (70px at most, never past the poster edge); each spins three turns and grows into place */
+.flw{position:absolute;left:clamp(0px,calc(var(--x)*1cqw - var(--s)/2),calc(100cqw - var(--s)));top:max(0px,calc(var(--y)*1cqw - var(--s)/2));z-index:var(--z,3);width:var(--s);aspect-ratio:1;pointer-events:none;opacity:0;transform:rotate(calc(var(--r)*1deg - 1080deg)) scale(.12);filter:drop-shadow(0 0 3px rgba(110,30,22,.35))}
+.flw.in{opacity:1;transform:rotate(calc(var(--r)*1deg)) scale(1);transition:transform var(--t,1.6s) cubic-bezier(.17,.84,.3,1) var(--d,0s),opacity .35s ease var(--d,0s)}
 .c-orange{color:var(--orange)} .c-pink{color:var(--pink)} .c-orchid{color:var(--orchid)} .c-yellow{color:var(--yellow)} .c-paper{color:var(--paper)} .c-rose{color:var(--rose)}
 
 .sign{display:block;height:auto;pointer-events:none;filter:drop-shadow(0 .3cqw .8cqw rgba(120,40,30,.4))}
@@ -94,9 +97,9 @@ a{color:inherit}
 .glint{position:absolute;left:calc(var(--gx)*1cqw);top:calc(var(--gy)*1cqw);z-index:9;width:calc(var(--gs)*1cqw);height:calc(var(--gs)*1cqw);overflow:visible;pointer-events:none;opacity:0;filter:drop-shadow(0 0 .7cqw rgba(255,240,200,.95));animation:twinkle var(--t,2.8s) ease-in-out var(--d,0s) infinite}
 @keyframes twinkle{0%{opacity:0;transform:scale(.1) rotate(0deg)}30%{opacity:1;transform:scale(1) rotate(45deg)}60%,100%{opacity:0;transform:scale(.1) rotate(90deg)}}
 .title-ja{font:900 9cqw/1.25 var(--f-mincho);white-space:nowrap}
-.title-en{font:italic 500 6cqw/1.4 var(--f-serif);white-space:nowrap}
-.filters{display:flex;gap:2.4cqw}
-.fbtn{padding:0;border:0;background:none;cursor:pointer;font:700 4cqw/1.5 var(--f-zh)}
+.title-en{font:600 6cqw/1.4 var(--f-serif);white-space:nowrap}
+.filters{display:flex;gap:2.9cqw}
+.fbtn{padding:0;border:0;background:none;cursor:pointer;font:600 4.8cqw/1.5 var(--f-serif)}
 .fbtn:nth-child(2){transform:rotate(3deg)} .fbtn:nth-child(3){transform:rotate(-2deg)}
 .colo{width:86cqw;font:400 3.3cqw/1.75 var(--f-zh)}
 
@@ -105,8 +108,9 @@ a{color:inherit}
 .tk:hover,.tk:focus-visible,.tk.on{transform:rotate(0deg) scale(1.2);z-index:30}
 .tk-ti{display:block;white-space:nowrap;line-height:1.3}
 .tk-ti:lang(ja){font-family:var(--f-mincho);font-weight:900}
-.tk-ti:lang(en){font-family:var(--f-serif);font-weight:700}
-.tk-no{position:absolute;top:-2.9cqw;left:-1.6cqw;padding:.45cqw .9cqw .35cqw;background:var(--no-bar);color:var(--no-ink);font:700 3.1cqw/1 var(--f-serif);transform:rotate(-8deg)}
+/* every bit of English on the poster is EB Garamond 600, including Latin letters inside Japanese titles */
+#catalog [lang=en]{font-family:var(--f-serif);font-weight:600}
+.tk-no{position:absolute;top:-2.9cqw;left:-1.6cqw;padding:.45cqw .9cqw .35cqw;background:var(--no-bar);color:var(--no-ink);font:600 3.1cqw/1 var(--f-serif);transform:rotate(-8deg)}
 .tk.ra .tk-no{left:auto;right:-1.6cqw;transform:rotate(7deg)}
 .tk-go{position:absolute;top:50%;left:100%;margin-left:.2em;display:grid;place-items:center;width:max(.62em,6cqw);height:max(.62em,6cqw);border-radius:50%;background:var(--bar);color:var(--ink-c);opacity:0;transform:translate(-.25em,-50%);transition:opacity .2s ease,transform .28s ease;pointer-events:none}
 .tk.ra .tk-go{left:auto;right:100%;margin-left:0;margin-right:.2em;transform:translate(.25em,-50%)}
@@ -207,6 +211,8 @@ a{color:inherit}
   .tk-go{transition:none}
   .s-status .dot,.ln.pending .ln-ro,.ln.pending .ln-zh{animation:none}
   .glint{animation:none;opacity:.85;transform:scale(.8) rotate(45deg)}
+  .flw{opacity:1;transform:rotate(calc(var(--r)*1deg))}
+  .flw.in{transition:none}
 }
 
 .ln-src{overflow-wrap:anywhere}.tip{max-width:min(360px,calc(100vw - 24px));line-height:1.6}.s-tools{flex-wrap:wrap}.s-status{line-height:1.6}
@@ -325,8 +331,6 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
       <feComponentTransfer><feFuncR type="table" tableValues=".24 .69 .95"/><feFuncG type="table" tableValues=".15 .49 .89"/><feFuncB type="table" tableValues=".13 .40 .79"/></feComponentTransfer>
     </filter>
   </defs>
-  <symbol id="bf" viewBox="-20 -14 40 28"><g fill="currentColor" stroke="#561A30" stroke-width="1.3"><path d="M-1-1C-6-13-19-12-17-3-16 2-8 2-1 0z"/><path d="M1-1C6-13 19-12 17-3 16 2 8 2 1 0z"/><path d="M-1 1C-8 3-13 11-7 12-3 12-1 6-1 1z"/><path d="M1 1C8 3 13 11 7 12 3 12 1 6 1 1z"/></g><rect x="-1" y="-6" width="2" height="16" rx="1" fill="#561A30"/></symbol>
-  <symbol id="fl" viewBox="-12 -12 24 24"><g fill="currentColor"><ellipse rx="3.4" ry="6" cy="-5.4"/><ellipse rx="3.4" ry="6" cy="-5.4" transform="rotate(60)"/><ellipse rx="3.4" ry="6" cy="-5.4" transform="rotate(120)"/><ellipse rx="3.4" ry="6" cy="-5.4" transform="rotate(180)"/><ellipse rx="3.4" ry="6" cy="-5.4" transform="rotate(240)"/><ellipse rx="3.4" ry="6" cy="-5.4" transform="rotate(300)"/></g><circle r="2.8" fill="#FFF3C4"/></symbol>
   <symbol id="sp" viewBox="-10 -10 20 20"><path fill="currentColor" d="M0-10C1-2 2-1 10 0 2 1 1 2 0 10-1 2-2 1-10 0-2-1-1-2 0-10z"/></symbol>
 </svg>
 
@@ -341,7 +345,7 @@ body{--yt-h:max(200px,min(56.25vw,46vh))}
       <button type="button" class="fbtn ink-a" data-f="en" aria-pressed="false"><span class="pr"><i>English 10</i></span></button>
       <button type="button" class="fbtn ink-a" data-f="ja" aria-pressed="false"><span class="pr"><i>日本語 11</i></span></button>
     </div>
-    <p class="pc colo ink-d" id="colophon" style="--x:6;--y:540;--r:-1;--z:6"><span class="pr"><i>21 首歌詞與解析已收錄，開啟即可練習。點句子用 YouTube 官方音源聽原唱、可單句循環；詞語朗讀使用裝置語音。翻譯為學習用語境解讀，照片取自各曲的 YouTube 影片。</i></span></p>
+    <p class="pc colo ink-d" id="colophon" style="--x:6;--y:540;--r:-1;--z:6"><span class="pr"><i>21 首歌詞與解析已收錄，開啟即可練習。點句子用 <span lang="en">YouTube</span> 官方音源聽原唱、可單句循環；詞語朗讀使用裝置語音。翻譯為學習用語境解讀，照片取自各曲的 <span lang="en">YouTube</span> 影片。</i></span></p>
   </div>
 </main>
 
@@ -442,17 +446,24 @@ const SONG_PHOTO = {"casket-girl":"m1","its-alright":"m4","i-need-u-back":"k3","
 const SPILL = ["b","k7","a","k2","n4"];
 // Fixed pieces of the title cluster: [key, x, y, width, rotation, cut, z]
 const HEAD_PHOTOS = [["kaze.gif",58,4,40,4,"heart",2], ["a",62,44,36,5,6,1]];
-const HEAD_STICKERS = [["bf","c-orange",50,72,8,18], ["sp","c-paper",54,44,4,0], ["fl","c-pink",92,80,6,0]];
+const HEAD_STICKERS = [["sp","c-paper",54,44,4,0]];
+// Areas of the title cluster a flower's middle stays out of: the titles, the filters and the middle of the photos [x, y, width, height].
+const HEAD_CLEAR = [[4,53,40,13], [6,66,44,10], [5,79,82,9], [64,9,28,26], [67,48,26,21]];
+// Flowers by the signature, on its corners and edges only: [x, y, size in px] (x, y = middle of the flower)
+const HEAD_FLOWERS = [[7,5.5,44], [17,2.5,20], [4,30,29], [61,47,51], [54,52,24], [93,41,57], [88,3,26]];
+// What grows by each song strip, by slot: C a cluster of three, P two apart, S one, - none (33 in all; 40 with the signature's).
+const BLOOMS = "CSP-CSPC-SCP-SCP-CSP-";
+// img/fl1.webp … fl10.webp
+const FLOWER_N = 10;
 // Per-slot variety for the track strips; slot i is the i-th visible song after filtering.
 const TOP = 97;
 const SIDE = "LRLLRLRRLRLRRLLRLRLRL";
 const ROTS = [-5,4,-3,6,-4,3,-6,5,-2,4,-5,3,-4,6,-3,5,-6,2,-4,5,-3];
 const INSET = [6,5,9,4,7,12,5,6,10,4,7,5,8,6,4,9,5,7,6,8,5];
-const SCALE = [1,.92,.86,1,.9,1,.95,.88,1,.93,.9,1,.87,.96,1,.9,1,.94,.9,1,.92];
+const SCALE = [1,1.1,.86,1,.9,1,.95,.88,1,.93,.9,1,.87,.96,1,.9,1,.94,.9,1,.92];
 // Width / height of each strip's photo crop, so the collage does not repeat one shape.
 const PHOTO_CROP = [1.2, .85, 1, 1.35, .9, 1.1, .8];
 const CUTS = [1,4,3,2,1,3,5,4,2,6,3,1,2,4,1,5,3,2,4];
-const SLOT_STICKERS = [["bf","c-orange"],["sp","c-paper"],["fl","c-yellow"],["bf","c-pink"],["sp","c-paper"],["bf","c-orchid"],["fl","c-pink"]];
 
 const POS_ZH = {noun:"名詞",pronoun:"代名詞",verb:"動詞",adj:"い形容詞",na:"な形容詞",adv:"副詞",particle:"助詞",aux:"助動詞",conj:"接續詞",interj:"感嘆詞",prenoun:"連體詞",prefix:"接頭詞",suffix:"接尾詞",phrase:"慣用語",en:"英文",other:"其他"};
 // Bumped when the parsing rules change; Japanese lines parsed under an older rule can be re-parsed.
@@ -478,6 +489,7 @@ const store = {
 function el(tag, cls) { const e = document.createElement(tag); if (cls) e.className = cls; return e; }
 function str(v) { return typeof v === "string" ? v.trim() : ""; }
 function jit(i, a, b) { return a + ((i * 37 + 11) % 97) / 97 * (b - a); }
+function rand(i) { const x = Math.sin(i * 12.9898 + 4.1) * 43758.5453; return x - Math.floor(x); }
 
 const state = {
   db: null, sample: null, capsSettled: false,
@@ -615,7 +627,14 @@ function trackEl(s, i, y, fit) {
   const no = el("span", "tk-no"); no.textContent = pad(s.n);
   const ti = el("span", "tk-ti"); ti.lang = JA_RE.test(s.title) ? "ja" : "en";
   const pr = el("span", "pr"); const inner = el("i");
-  fit.lines.forEach((line, k) => { if (k) inner.append(el("br")); inner.append(line); });
+  fit.lines.forEach((line, k) => {
+    if (k) inner.append(el("br"));
+    // Latin letters inside a Japanese title (何なんw) print in the poster's English face
+    for (const part of ti.lang === "ja" ? line.split(/([A-Za-z]+)/) : [line]) {
+      if (!/^[A-Za-z]+$/.test(part)) { if (part) inner.append(part); continue; }
+      const en = el("span"); en.lang = "en"; en.textContent = part; inner.append(en);
+    }
+  });
   pr.append(inner); ti.append(pr);
   const go = el("span", "tk-go"); go.setAttribute("aria-hidden", "true"); go.innerHTML = ARROW_SVG;
   a.append(no, ti, go);
@@ -625,58 +644,136 @@ function layoutPoster() {
   const board = $("#board");
   board.querySelectorAll(".dyn").forEach((n) => n.remove());
   const list = SONGS.filter((s) => state.filter === "all" || s.lang === state.filter);
+  const clear = [...HEAD_CLEAR], strips = [];
   let y = TOP;
   list.forEach((s, i) => {
     if (s.gapBefore && i > 0 && list[i - 1].n === s.n - 1) y += 10;
     const fit = titleFit(s, i);
     const side = SIDE[i % SIDE.length];
     const h = fit.lines.length * fit.fs * 1.3 + 1.5;
+    const inset = INSET[i % INSET.length];
     board.append(trackEl(s, i, y, fit));
+    const strip = [side === "L" ? inset : 100 - inset - fit.width, y - 3, fit.width, h + 3];
+    clear.push(strip); strips.push({ key: s.key, rect: strip, plan: BLOOMS[i % BLOOMS.length] });
     // the song's photo on the open side of its strip, sometimes tucked under its end
     const ar = PHOTO_CROP[i % PHOTO_CROP.length]; const w = 26 + jit(i, 0, 8);
     const px = side === "L" ? 100 - w - 2 + jit(i, -5, 5) : -4 + jit(i, 0, 6);
-    const cover = coverEl(s.key, px.toFixed(1), (y - 6 + jit(i + 3, -2, 6)).toFixed(1), w.toFixed(1), ROTS[(i + 5) % ROTS.length], 1, CUTS[i % CUTS.length], ar, i % 4 === 2 ? "dots" : "");
+    const py = y - 6 + jit(i + 3, -2, 6);
+    const cover = coverEl(s.key, px.toFixed(1), py.toFixed(1), w.toFixed(1), ROTS[(i + 5) % ROTS.length], 1, CUTS[i % CUTS.length], ar, i % 4 === 2 ? "dots" : "");
     cover.classList.add("dyn"); board.append(cover);
+    clear.push([px + w * .15, py + w / ar * .15, w * .7, w / ar * .7]);
     // spill past the poster edges every few strips; only seen on wide screens
     if (i % 4 === 1) {
       const sk = SPILL[Math.floor(i / 4) % SPILL.length];
       const spill = photoEl(sk, side === "L" ? -44 : 106, y.toFixed(1), 34, ROTS[(i + 2) % ROTS.length], CUTS[(i + 3) % CUTS.length], 0);
       spill.classList.add("dyn"); board.append(spill);
     }
-    if (i % 3 === 0) {
-      const [sym, color] = SLOT_STICKERS[(i / 3) % SLOT_STICKERS.length];
-      const inset = INSET[i % INSET.length];
+    if (i % 9 === 3) {
       const sx = side === "L" ? Math.min(88, inset + fit.width + 2) : Math.max(2, 100 - inset - fit.width - 10);
-      const st = stickerEl(sym, color, sx.toFixed(1), (y - 4).toFixed(1), sym === "sp" ? 4 : 8, ROTS[(i + 1) % ROTS.length] * 3);
+      const st = stickerEl("sp", "c-paper", sx.toFixed(1), (y - 4).toFixed(1), 4, ROTS[(i + 1) % ROTS.length] * 3);
       st.classList.add("dyn"); board.append(st);
     }
     y += h + 8 + (i % 3);
   });
   $("#colophon").style.setProperty("--y", (y + 10).toFixed(1));
+  clear.push([4, y + 8, 90, 30]);
+  scatterFlowers(board, strips, clear, y + 34);
   board.style.aspectRatio = `100 / ${Math.ceil(y + 34)}`;
+  lastLine = null;
   updateFocus();
 }
-// The strip nearest the middle of the screen grows and straightens, as on hover.
-let focusRaf = 0;
+// Flowers by the signature and by each song strip: big and small, some in clusters and some alone, each at its own angle
+// (placed by a fixed seed, so every load matches). Sizes are in px, so none is ever more than 70px across.
+let flowers = [];
+function flowerEl(x, y, size, z, d, key, next) {
+  const img = el("img", "flw dyn"); img.alt = ""; img.decoding = "async";
+  img.src = `img/fl${1 + Math.floor(next() * FLOWER_N)}.webp`;
+  img.style.cssText = `--x:${x.toFixed(1)};--y:${y.toFixed(1)};--s:${Math.round(size)}px;--r:${Math.round(next() * 360)};--z:${z};--d:${d.toFixed(2)}s;--t:${(1.3 + next() * .7).toFixed(2)}s`;
+  img.onload = queueFocus;
+  flowers.push({ el: img, y, size, key });
+  return img;
+}
+function scatterFlowers(board, strips, clear, bottom) {
+  let k = 0; const next = () => rand(7000 + k++);
+  const pick = (a, b) => a + next() * (b - a);
+  const u = (board.clientWidth || 375) / 100, placed = [];
+  // the whole flower stays on the poster and does not sit on top of another one;
+  // its middle stays off the titles and the middle of the photos, though its petals may tuck under or over them
+  const open = (x, y, size) => {
+    const r = size / 2 / u;
+    return x >= r && x <= 100 - r && y >= r && y <= bottom - r &&
+      clear.every(([cx, cy, cw, ch]) => x < cx || x > cx + cw || y < cy || y > cy + ch) &&
+      placed.every(([px, py, pr]) => Math.hypot(x - px, y - py) > (r + pr) * .55);
+  };
+  const put = (x, y, size, z, d, key) => { placed.push([x, y, size / 2 / u]); board.append(flowerEl(x, y, size, z, d, key, next)); };
+  // somewhere just around a strip, off its words
+  const near = ([sx, sy, sw, sh], size) => {
+    for (let tries = 0; tries < 60; tries++) {
+      const x = pick(sx - 10, sx + sw + 12), y = pick(sy - 8, sy + sh + 8);
+      if (open(x, y, size)) return [x, y];
+    }
+    return null;
+  };
+  flowers = [];
+  for (const [x, y, size] of HEAD_FLOWERS) put(x, y, size, 3, pick(0, .25), null);
+  for (const { key, rect, plan } of strips) {
+    if (plan === "C") {
+      // a big bloom with two small ones tucked around it, each arriving and settling a beat apart
+      const big = pick(53, 70), at = near(rect, big); if (!at) continue;
+      put(at[0], at[1], big, 3, 0, key);
+      for (let j = 1, tries = 0; j <= 2 && tries < 30; tries++) {
+        const small = pick(20, 33), a = next() * Math.PI * 2, dist = big / 2 / u * pick(.9, 1.4);
+        const x = at[0] + Math.cos(a) * dist, y = at[1] + Math.sin(a) * dist;
+        if (open(x, y, small)) { put(x, y, small, 4, j * .14 + pick(0, .1), key); j++; }
+      }
+    } else if (plan === "P") {
+      const sizes = [pick(35, 53), pick(20, 31)];
+      sizes.forEach((size, j) => { const at = near(rect, size); if (at) put(at[0], at[1], size, 3, j * .2 + pick(0, .12), key); });
+    } else if (plan === "S") {
+      const r = next(), size = r < .4 ? pick(20, 31) : r < .8 ? pick(35, 51) : pick(55, 70);
+      const at = near(rect, size); if (at) put(at[0], at[1], size, 3, pick(0, .15), key);
+    }
+  }
+}
+// Flowers by a song strip spin into place when the reading line reaches that strip, so only the flowers by the strip being read move;
+// the ones by the signature spin in when they come on screen. Each resets once fully off screen, to spin again next time.
+function updateFlowers(reached) {
+  const vh = window.innerHeight, b = $("#board").getBoundingClientRect(), u = b.width / 100;
+  for (const f of flowers) {
+    const top = b.top + Math.max(0, f.y * u - f.size / 2);
+    if (top > vh || top + f.size < 0) f.el.classList.remove("in");
+    else if (f.el.complete && (f.key ? reached.has(f.key) : top + f.size / 2 < vh * .9)) f.el.classList.add("in");
+  }
+}
+// The strip at the reading line grows and straightens, as on hover, and the flowers by each strip spin in as the line reaches it.
+// The line runs from half a step above the first strip (top of the page) to half a step below the last (bottom of the page),
+// so it stays near the middle of the screen and every strip gets its turn. Nothing is picked out at the very top,
+// so the first strip only grows once the reader scrolls.
+let focusRaf = 0, lastLine = null;
 function updateFocus() {
   focusRaf = 0;
   if ($("#catalog").hidden) return;
-  const mid = window.innerHeight / 2, limit = window.innerHeight * .22;
-  let best = null, bestD = Infinity;
-  document.querySelectorAll(".tk").forEach((a) => {
-    const r = a.getBoundingClientRect(); const d = Math.abs((r.top + r.bottom) / 2 - mid);
-    if (d < bestD) { bestD = d; best = a; }
-  });
-  if (bestD > limit) best = null;
-  document.querySelectorAll(".tk.on").forEach((a) => { if (a !== best) a.classList.remove("on"); });
-  if (best) best.classList.add("on");
+  const tks = [...document.querySelectorAll(".tk")]; if (!tks.length) return;
+  const y0 = window.scrollY, n = tks.length - 1;
+  const at = tks.map((a) => { const r = a.getBoundingClientRect(); return (r.top + r.bottom) / 2 + y0; });
+  const from = at[0] - (n ? (at[1] - at[0]) / 2 : 0), to = at[n] + (n ? (at[n] - at[n - 1]) / 2 : 0);
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const line = from + (to - from) * (max > 0 ? Math.min(1, y0 / max) : 0);
+  let best = -1, bestD = Infinity;
+  at.forEach((c, i) => { const d = Math.abs(c - line); if (d < bestD) { bestD = d; best = i; } });
+  if (bestD > window.innerHeight * .22 || y0 <= 0) best = -1;
+  tks.forEach((a, i) => a.classList.toggle("on", i === best));
+  // the picked strip, and any strip the line went past since last time (a fast fling can skip one)
+  const reached = new Set(best < 0 ? [] : [tks[best].dataset.key]);
+  if (lastLine !== null && y0 > 0) at.forEach((c, i) => { if ((c - lastLine) * (c - line) <= 0) reached.add(tks[i].dataset.key); });
+  lastLine = line;
+  updateFlowers(reached);
 }
 const queueFocus = () => { if (!focusRaf) focusRaf = requestAnimationFrame(updateFocus); };
 window.addEventListener("scroll", queueFocus, { passive: true });
 window.addEventListener("resize", queueFocus);
 // Lots of small stars over the signature and title, each on its own beat (placed by a fixed seed, so every load matches).
 function addGlints(board) {
-  const rand = (i) => { const x = Math.sin(i * 12.9898 + 4.1) * 43758.5453; return x - Math.floor(x); };
   for (let i = 0; i < 64; i++) {
     const g = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     g.setAttribute("class", "glint " + (i % 3 === 1 ? "c-yellow" : "c-paper")); g.setAttribute("aria-hidden", "true");
