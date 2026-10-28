@@ -26,7 +26,7 @@
 | 返回鍵放在影片正下方，不蓋在影片上 | YouTube 規定不能遮住播放器。 |
 | 時間不顯示秒數，「開始／結束」按下去就是那一刻 | 使用者覺得數字和 ±0.1 微調看不懂。 |
 | 詞組維持原本一小段，點開才列出拆解 | 拆太細要點太多次；說明全用白話，不用文法術語。規則見 `work/breakdown/README.md`。 |
-| 修改存在瀏覽器 localStorage，沒有匯出／匯入 | 使用者不需要；代價是清除 Safari 網站資料就會不見。 |
+| 修改存在瀏覽器 localStorage，可從「調整 › 匯出校準」備份 | 用 `work/import_calibration.py` 將備份寫入相符影片的 `calibration`，重新發佈後成為共用預設；本機修改仍優先。 |
 
 ## 時間資料狀態（`dist/data/media.json`）
 
@@ -39,8 +39,8 @@
 ## 還沒做或沒驗證的
 
 1. **還沒在 iPhone 實機測過**。所有測試都是在電腦瀏覽器模擬 iPhone 尺寸。要確認的重點：第一次播放需先點影片的 ▶（iOS 限制，網頁會提示）、點句跳轉、自動捲動、時間校準按鈕。
-2. **公開網站還是舊版**。`https://kaze-lyrics-notebook-1028.summy5677.chatgpt.site` 由 Codex Sites 部署（`.openai/hosting.json`），需要從 Codex 重新部署 `dist/`。
-3. **時間沒人工確認**，可能有個別句子早或晚，需要邊聽邊用校準模式修。
+2. **公開網站由 Codex Sites 部署**。`https://kaze-lyrics-notebook-1028.summy5677.chatgpt.site` 使用 `.openai/hosting.json` 的既有 project_id；修改後需重新部署 `dist/`。
+3. **2026-10-28 已保存前五首 MV 的使用者校準**（5 組影片偏移、99 句個別時間）。來源備份在 `work/media/calibrations/2026-10-28-first-five.json`；其他影片／歌曲仍以自動候選時間為主。重建 `media` 後需重新套用校準備份，不能誤套到音源版。
 4. 舊的歌曲解讀筆記（`lyrics.json` 的 `summary`、`notes`）仍在資料裡，頁面已不顯示。
 
 ## 怎麼更新
